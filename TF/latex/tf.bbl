@@ -1,0 +1,137 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[Baranowska 2010]{baranowska2010importance}
+\abntrefinfo{Baranowska}{BARANOWSKA}{2010}
+{BARANOWSKA, J. Importance of surface activation for nitrided layer formation
+  on austenitic stainless steel.
+\textbf{Surface Engineering}, Taylor \& Francis, v.~26, n.~4, p. 293--298,
+  2010.}
+
+\bibitem[Callister, Rethwisch et al. 1940]{callister2007materials}
+\abntrefinfo{Callister, Rethwisch et al.}{CALLISTER; RETHWISCH et al.}{1940}
+{CALLISTER, W.~D.; RETHWISCH, D.~G. et al. \textbf{Materials science and
+  engineering: an introduction}. [S.l.]: John Wiley \& Sons New York, 1940.
+  v.~7. 105-113~p.}
+
+\bibitem[Christiansen, Dahl e Somers 2008]{christiansen2008nitrogen}
+\abntrefinfo{Christiansen, Dahl e Somers}{CHRISTIANSEN; DAHL; SOMERS}{2008}
+{CHRISTIANSEN, T.; DAHL, K.~V.; SOMERS, M.~A. Nitrogen diffusion and nitrogen
+  depth profiles in expanded austenite: experimental assessment, numerical
+  simulation and role of stress.
+\textbf{Materials Science and Technology}, Taylor \& Francis, v.~24, n.~2, p.
+  159--167, 2008.}
+
+\bibitem[Christiansen e Somers 2006]{christiansen2006controlled}
+\abntrefinfo{Christiansen e Somers}{CHRISTIANSEN; SOMERS}{2006}
+{CHRISTIANSEN, T.; SOMERS, M.~A. Controlled dissolution of colossal quantities
+  of nitrogen in stainless steel.
+\textbf{Metallurgical and Materials Transactions A}, Springer, v.~37, n.~3, p.
+  675--682, 2006.}
+
+\bibitem[Crank et al. 1979]{crank1979mathematics}
+\abntrefinfo{Crank et al.}{CRANK et al.}{1979}
+{CRANK, J. et al. \textbf{The mathematics of diffusion}. [S.l.]: Oxford
+  university press, 1979.}
+
+\bibitem[Galdikas e Moskalioviene 2010]{galdikas2010stress}
+\abntrefinfo{Galdikas e Moskalioviene}{GALDIKAS; MOSKALIOVIENE}{2010}
+{GALDIKAS, A.; MOSKALIOVIENE, T. Stress induced nitrogen diffusion during
+  nitriding of austenitic stainless steel.
+\textbf{Computational Materials Science}, Elsevier, v.~50, n.~2, p. 796--799,
+  2010.}
+
+\bibitem[Galdikas e Moskalioviene 2011]{galdikas2011modeling}
+\abntrefinfo{Galdikas e Moskalioviene}{GALDIKAS; MOSKALIOVIENE}{2011}
+{GALDIKAS, A.; MOSKALIOVIENE, T. Modeling of stress induced nitrogen diffusion
+  in nitrided stainless steel.
+\textbf{Surface and Coatings Technology}, Elsevier, v.~205, n.~12, p.
+  3742--3746, 2011.}
+
+\bibitem[Glicksman 2000]{glicksman2000diffusion}
+\abntrefinfo{Glicksman}{GLICKSMAN}{2000}
+{GLICKSMAN, M. \textbf{Diffusion in solids: field theory, solid-state
+  principles, and applications}. [S.l.: s.n.], 2000. 220-225~p.}
+
+\bibitem[M{\"a}ndl e Rauschenbach 2002]{mandl2002concentration}
+\abntrefinfo{M{\"a}ndl e Rauschenbach}{M{\"A}NDL; RAUSCHENBACH}{2002}
+{M{\"A}NDL, S.; RAUSCHENBACH, B. Concentration dependent nitrogen diffusion
+  coefficient in expanded austenite formed by ion implantation.
+\textbf{Journal of Applied Physics}, AIP, v.~91, n.~12, p. 9737--9742, 2002.}
+
+\bibitem[M{\"a}ndl et al. 2003]{mandl2003nitrogen}
+\abntrefinfo{M{\"a}ndl et al.}{M{\"A}NDL et al.}{2003}
+{M{\"A}NDL, S. et al. Nitrogen diffusivity in expanded austenite.
+\textbf{Surface and Coatings Technology}, Elsevier, v.~174, p. 1191--1195,
+  2003.}
+
+\bibitem[M{\"o}ller et al. 2001]{moller2001surface}
+\abntrefinfo{M{\"o}ller et al.}{M{\"O}LLER et al.}{2001}
+{M{\"O}LLER, W. et al. Surface processes and diffusion mechanisms of ion
+  nitriding of stainless steel and aluminium.
+\textbf{Surface and Coatings Technology}, Elsevier, v.~136, n.~1-3, p. 73--79,
+  2001.}
+
+\bibitem[Moskalioviene e Galdikas 2012]{moskalioviene2012stress}
+\abntrefinfo{Moskalioviene e Galdikas}{MOSKALIOVIENE; GALDIKAS}{2012}
+{MOSKALIOVIENE, T.; GALDIKAS, A. Stress induced and concentration dependent
+  diffusion of nitrogen in plasma nitrided austenitic stainless steel.
+\textbf{Vacuum}, Elsevier, v.~86, n.~10, p. 1552--1557, 2012.}
+
+\bibitem[Moskalioviene et al. 2011]{moskalioviene2011modeling}
+\abntrefinfo{Moskalioviene et al.}{MOSKALIOVIENE et al.}{2011}
+{MOSKALIOVIENE, T. et al. Modeling of nitrogen penetration in polycrystalline
+  aisi 316l austenitic stainless steel during plasma nitriding.
+\textbf{Surface and Coatings Technology}, Elsevier, v.~205, n.~10, p.
+  3301--3306, 2011.}
+
+\bibitem[Murty e Charit 2013]{murty2013introduction}
+\abntrefinfo{Murty e Charit}{MURTY; CHARIT}{2013}
+{MURTY, K.~L.; CHARIT, I. \textbf{An introduction to nuclear materials:
+  fundamentals and applications}. [S.l.]: John Wiley \& Sons, 2013.}
+
+\bibitem[Parascandola, M{\"o}ller e Williamson 2000]{parascandola2000nitrogen}
+\abntrefinfo{Parascandola, M{\"o}ller e Williamson}{PARASCANDOLA; M{\"O}LLER;
+  WILLIAMSON}{2000}
+{PARASCANDOLA, S.; M{\"O}LLER, W.; WILLIAMSON, D. The nitrogen transport in
+  austenitic stainless steel at moderate temperatures.
+\textbf{Applied Physics Letters}, AIP, v.~76, n.~16, p. 2194--2196, 2000.}
+
+\bibitem[Reed 1989]{reed1989nitrogen}
+\abntrefinfo{Reed}{REED}{1989}
+{REED, R.~P. Nitrogen in austenitic stainless steels.
+\textbf{Jom}, Springer, v.~41, n.~3, p. 16--21, 1989.}
+
+\bibitem[Somers, Christiansen e Winther 2018]{somers2018expanded}
+\abntrefinfo{Somers, Christiansen e Winther}{SOMERS; CHRISTIANSEN;
+  WINTHER}{2018}
+{SOMERS, M.~A.; CHRISTIANSEN, T.~L.; WINTHER, G. Expanded austenite; from
+  fundamental understanding to predicting composition-and stress-depth
+  profiles. In:  \textbf{2018 European Conference on Heat Treatment (ECHT
+  2018)}. [S.l.: s.n.], 2018.}
+
+\bibitem[Sun e Bell 1997]{sun1997numerical}
+\abntrefinfo{Sun e Bell}{SUN; BELL}{1997}
+{SUN, Y.; BELL, T. A numerical model of plasma nitriding of low alloy steels.
+\textbf{Materials Science and Engineering: A}, Elsevier, v.~224, n.~1-2, p.
+  33--47, 1997.}
+
+\bibitem[Williamson et al. 1994]{williamson1994metastable}
+\abntrefinfo{Williamson et al.}{WILLIAMSON et al.}{1994}
+{WILLIAMSON, D. et al. Metastable phase formation and enhanced diffusion in fcc
+  alloys under high dose, high flux nitrogen implantation at high and low ion
+  energies.
+\textbf{Surface and Coatings Technology}, Elsevier, v.~65, n.~1-3, p. 15--23,
+  1994.}
+
+\bibitem[Zimmermann 2014]{zimmermannnitretaccao}
+\abntrefinfo{Zimmermann}{ZIMMERMANN}{2014}
+{ZIMMERMANN, M. R.~B.
+\textbf{Nitretação a plasma de um aço inoxidável duplex 2205.}
+Tese (Doutorado) --- Universidade de São Paulo, 2014.}
+
+\end{thebibliography}
