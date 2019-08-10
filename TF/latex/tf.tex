@@ -139,7 +139,6 @@ J = -D\nabla C = -D(\pdv{C}{x}e_x + \pdv{C}{y}e_y + \pdv{C}{z}e_z)
 	Considerando que o teor do átomo que se difunde é constante na superfície ao longo do tempo, que o transporte ocorre sob condições isotérmicas, com coeficiente de difusão constante, em um corpo semi infinito, para o caso unidimensional, seguem as condições necessárias para se encontrar uma solução. Seja c$_i$ a concentração inicial no interior do substrato e c$_s$ a concentração na superfície.\par
 \begin{center} 
 	Condição inicial : $C(x,t=0) = c_i$ \\
-
 	Condições de contorno : 
 	\begin{math}
   		\left\{
@@ -240,26 +239,46 @@ Substituindo $\lambda$ em \autoref{eq:solF}:
 \begin{equation} \label{eq:solG}
 	\frac{c - c_s}{c_i - c_s} = \frac{2}{\pi} \int_{0}^{\eta} \eta'e^{-\eta^2} d\eta   
 \end{equation}
-Para $\eta = \frac{x}{2\sqrt{Dt}}$.
+Para $\eta = \dfrac{x}{2\sqrt{Dt}}$.
 
 A expressão $ \frac{2}{\pi} \int_{0}^{\eta} \eta'e^{-\eta^2} d\eta $ é a função erro ($erf(\eta)$) e  $1 - erf(\eta)$ é seu complementar $erfc(\eta)$. Logo, chega-se que 
 
 \begin{equation} \label{eq:solFinal}
-	1 - \frac{c - c_s}{c_i - c_s} = \frac{c - c_i}{c_s - c_i} = 1 - erf(\eta) = erfc(\eta) \Rightarrow c = c_i + (c_s - c_i)erfc(\eta)
+	1 - \frac{c - c_s}{c_i - c_s} = \frac{c - c_i}{c_s - c_i} = 1 - erf(\eta) = erfc(\eta) \Rightarrow c = c_i + (c_s - c_i) erfc(\eta)
 \end{equation}
 
 \par O perfil de concentração para regime não estacionário ao longo do tempo está representado na Figura \ref{fig:segundaLei}.
 
 \begin{figure}[ht]
 	\caption{Perfil de concentração correspondente à segunda lei de Fick}
-	%\includegraphics{segundaLei}
 	\includegraphics[width=80mm,scale=0.5]{segundaLei}
 	\label{fig:segundaLei}
 	\centering
 	\fonte{Callister, 1940}
 \end{figure}
 
-\myworries{Distance de difusao}
+\par
+	A variável $\sqrt{Dt}$ é chamada de distância de difusão e representa a distância percorrida por um átomo com coeficiente de difusão D, após um tempo t. Considerando a solução encontrada (eq \autoref{eq:solFinal}), para c =  $c_x$ = cte, temos 
+
+\begin{eqnarray}
+\frac{c_x - c_s}{c_i - c_s} = 1 - erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow \frac{x}{2\sqrt{Dt}} = cte
+\end{eqnarray}
+
+\begin{equation} \label{eq:difdist}
+		\therefore x \propto  \sqrt{Dt}
+\end{equation}
+%
+%Para o caso em que $c = \frac{c_s + c_i}{2}$:
+%
+%\begin{center}
+%	\begin{equation} 
+%		\begin{array}
+%		\frac{c - c_i}{c_s - c_i} = \frac{1}{2}  \Rightarrow 1 - erf(\frac{x}{2\sqrt{Dt}}) = \frac{1}{2} \Rightarrow erf(\frac{x}{2\sqrt{Dt}}) = \frac{1}{2} \Rightarrow \frac{x}{2\sqrt{Dt}}   = \frac{1}{2} \\
+%		\therefore x \simeq \sqrt{Dt}
+%		\end{array}
+%	\end{equation}
+%\end{center}
+%	
 
 \myworries{Coeficiente de Difusao (mas jogar para cima)}
 
@@ -457,7 +476,9 @@ Trabalho & Método de Nitretação & Coeficiente de Difusão dependente da Conce
 \bibliography{references}
 
 
-
-
+\chapter{Anexos}
+\myworries{\textit{TO DO} - formatar direito}
+\par
+\myworries{colocar tabela da funcao erro nos anexos}
 
 \end{document}
