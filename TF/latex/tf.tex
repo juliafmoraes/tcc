@@ -192,33 +192,25 @@ Substituindo as equações \autoref{eq:solB} e \autoref{eq:solC} na equação \a
 
 Considerando as constantes arbitrárias a seguir:
 
-\begin{center}
-	\begin{math}
-		\begin{array}{l}	
-			\frac{t^{-1}}{t^{2m}} = 1 \Rightarrow m = -\frac{1}{2} \\
-			4DA^2 = 1 \Rightarrow A = \frac{1}{\sqrt{4D}}
-		\end{array}
-	\end{math}
-\end{center}
+\begin{gather*}		
+	\frac{t^{-1}}{t^{2m}} = 1 \Rightarrow m = -\frac{1}{2} \\
+	4DA^2 = 1 \Rightarrow A = \frac{1}{\sqrt{4D}}
+\end{gather*}	
 
 Substituindo na equação \autoref{eq:solC}:
 \begin{equation} \label{eq:solE}
  \frac{d^2C}{d\eta ^2} + 2\eta \frac{dC}{d\eta} = 0
 \end{equation}
 
-Aonde $\eta = Axt^m = \frac{1}{\sqrt{4D}}xt^{-1/2} = \frac{x}{2\sqrt{Dt}}$.
+Aonde $\eta = Axt^m = \dfrac{1}{\sqrt{4D}}xt^{-1/2} = \dfrac{x}{2\sqrt{Dt}}$.
 
 Segue a resolução matemática:
 
-\begin{center}
-	\begin{math}
-		\begin{array}{l}	
-			\varepsilon = \frac{dC}{d\eta} \Rightarrow \frac{dC}{d\eta} + 2\eta\varepsilon = 0 \\
-			\frac{dC}{d\eta} = -2\eta\varepsilon \Rightarrow \int\frac{d\varepsilon}{\varepsilon} = \int -2\eta d\eta + \lambda \Rightarrow ln\varepsilon = -\eta^2 + \lambda \Rightarrow \frac{dC}{d\eta} = \varepsilon = \lambda'e^{-\eta^2} \\
-			\int_{c_s}^{c} dC = \int_{0}^{\eta} \lambda'e^{-\eta^2} d\eta 
-		\end{array}
-	\end{math}
-\end{center}
+\begin{gather*}		
+	\varepsilon = \frac{dC}{d\eta} \Rightarrow \frac{dC}{d\eta} + 2\eta\varepsilon = 0 \\
+	\frac{dC}{d\eta} = -2\eta\varepsilon \Rightarrow \int\frac{d\varepsilon}{\varepsilon} = \int -2\eta d\eta + \lambda \Rightarrow ln\varepsilon = -\eta^2 + \lambda \Rightarrow \frac{dC}{d\eta} = \varepsilon = \lambda'e^{-\eta^2} \\
+	\int_{c_s}^{c} dC = \int_{0}^{\eta} \lambda'e^{-\eta^2} d\eta 
+\end{gather*}	
 
 \begin{equation} \label{eq:solF}
 	c - c_s =  \lambda'\int_{0}^{\eta} \eta'e^{-\eta^2} d\eta 
@@ -226,14 +218,10 @@ Segue a resolução matemática:
 
 Utilizando a seguinte condição de contorno: $C(\eta\rightarrow \infty) = c_i$ 
 
-\begin{center}
-	\begin{math}
-		\begin{array}{l}	
-			c_i - c_s = \lambda\int_{0}^{\infty} \lambda'e^{-\eta^2} d\eta  \\
-			\int_{0}^{\infty} \lambda'e^{-\eta^2} d\eta  = \frac{\sqrt{\pi}}{2} \Rightarrow \lambda = (c_i - c_s)\frac{2}{\sqrt{\pi}}
-		\end{array}
-	\end{math}
-\end{center}
+\begin{gather*}	
+	c_i - c_s = \lambda\int_{0}^{\infty} \lambda'e^{-\eta^2} d\eta  \\
+	\int_{0}^{\infty} \lambda'e^{-\eta^2} d\eta  = \frac{\sqrt{\pi}}{2} \Rightarrow 			\lambda = (c_i - c_s)\frac{2}{\sqrt{\pi}}
+\end{gather*}
 
 Substituindo $\lambda$ em \autoref{eq:solF}:
 \begin{equation} \label{eq:solG}
@@ -241,7 +229,7 @@ Substituindo $\lambda$ em \autoref{eq:solF}:
 \end{equation}
 Para $\eta = \dfrac{x}{2\sqrt{Dt}}$.
 
-A expressão $ \frac{2}{\pi} \int_{0}^{\eta} \eta'e^{-\eta^2} d\eta $ é a função erro ($erf(\eta)$) e  $1 - erf(\eta)$ é seu complementar $erfc(\eta)$. Logo, chega-se que 
+A expressão $ \frac{2}{\pi} \int_{0}^{\eta} \eta'e^{-\eta^2} d\eta $ é a função erro $erf(\eta)$ e  $1 - erf(\eta)$ é seu complementar $erfc(\eta)$. Logo, chega-se que 
 
 \begin{equation} \label{eq:solFinal}
 	1 - \frac{c - c_s}{c_i - c_s} = \frac{c - c_i}{c_s - c_i} = 1 - erf(\eta) = erfc(\eta) \Rightarrow c = c_i + (c_s - c_i) erfc(\eta)
@@ -260,26 +248,14 @@ A expressão $ \frac{2}{\pi} \int_{0}^{\eta} \eta'e^{-\eta^2} d\eta $ é a funç
 \par
 	A variável $\sqrt{Dt}$ é chamada de distância de difusão e representa a distância percorrida por um átomo com coeficiente de difusão D, após um tempo t. Considerando a solução encontrada (eq \autoref{eq:solFinal}), para c =  $c_x$ = cte, temos 
 
-\begin{eqnarray}
-\frac{c_x - c_s}{c_i - c_s} = 1 - erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow \frac{x}{2\sqrt{Dt}} = cte
-\end{eqnarray}
+$$\frac{c_x - c_s}{c_i - c_s} = 1 - erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow \frac{x}{2\sqrt{Dt}} = cte$$
 
 \begin{equation} \label{eq:difdist}
 		\therefore x \propto  \sqrt{Dt}
 \end{equation}
-%
-%Para o caso em que $c = \frac{c_s + c_i}{2}$:
-%
-%\begin{center}
-%	\begin{equation} 
-%		\begin{array}
-%		\frac{c - c_i}{c_s - c_i} = \frac{1}{2}  \Rightarrow 1 - erf(\frac{x}{2\sqrt{Dt}}) = \frac{1}{2} \Rightarrow erf(\frac{x}{2\sqrt{Dt}}) = \frac{1}{2} \Rightarrow \frac{x}{2\sqrt{Dt}}   = \frac{1}{2} \\
-%		\therefore x \simeq \sqrt{Dt}
-%		\end{array}
-%	\end{equation}
-%\end{center}
-%	
 
+Para o caso em que $c = \dfrac{c_s + c_i}{2}$: \par
+\myworries{\textit{TO DO}} \par
 \myworries{Coeficiente de Difusao (mas jogar para cima)}
 
 
