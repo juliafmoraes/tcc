@@ -76,7 +76,7 @@ para todo $i=1, ..., n$ com $e_i = O(h^2)$ chamado de erro de truncamento.
 		(S)
 		\left\{
     		\begin{array}{l}
-      			\dfrac{-u_{i+1})+ 2u_i - u_{i-1}}{h^2} + p_i\dfrac{u_{i+1} - u_{i-1}{2h}  + q_i u_i - g_i = 0 \\
+      			\dfrac{-u_{i+1}+ 2u_i - u_{i-1}}{h^2} + p_i\dfrac{u_{i+1} - u_{i-1}}{2h}  + q_i u_i - g_i = 0 \\
 				u_0 = \alpha\\
 				u_{n+1} = \beta      			
     		\end{array}
@@ -86,13 +86,51 @@ para todo $i=1, ..., n$ com $e_i = O(h^2)$ chamado de erro de truncamento.
 			\qquad	   
     		\end{array}
     		\begin{array}{l}
-      			x \in [a, b] \\
-				p, q, g \in C^0([a, b])\\
-				q \geq 0 \ em \ [a, b]
+      			i = 1, ... , n 
     		\end{array}
 		\right.
 	\end{math}
 \end{center} 
 
+O problema dado por $(S)$ consiste de um sistema de $n$ equações lineares com $n$ incógnitas que pode ser escrito de forma matricial: \cmrtext{AU=B}, com \cmrtext{A=$M_n$($\mathbb{R}$)}, \cmrtext{U=($u_1, u_2, ... , u_n)^T$} e \cmrtext{B $\in \mathbb{R}^n$}.
 
 
+\begin{equation*}
+	\cmrtext{A} =
+	\begin{bmatrix}
+		2+h^2q_1 & -1+\dfrac{h}{2}p_1 & \ldots  & \ldots & \ldots & 0 \\
+		-1+\dfrac{h}{2}p_2 & 2+h^2q_2 & -1+\dfrac{h}{2}p_2 &  & & \vdots\\
+		\vdots &\ddots&\ddots&\ddots&& \vdots \\
+		\vdots &&\ddots&\ddots&\ddots& \vdots \\
+		\vdots & & & \ddots & \ddots & -1+\dfrac{h}{2}p_{n-1} \\
+		0 & \ldots & \ldots & \ldots & -1+\dfrac{h}{2}p_n & 2+h^2q_n	
+	\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+	\cmrtext{U} =
+	\begin{bmatrix}
+		u_1 \\
+		u_2 \\
+		\vdots \\
+		\vdots \\
+		\vdots \\
+		u_{n-1} \\
+		u_n
+	\end{bmatrix}
+	\qquad
+	\cmrtext{B} =
+	\begin{bmatrix}
+		h^2g_1 + \alpha(1+\dfrac{h}{2}p_1) \\
+		h^2g_2 \\
+		\vdots \\
+		\vdots \\
+		\vdots \\
+		h^2g_{n-1} \\
+		h^2g_{n} + \beta(1+\dfrac{h}{2}p_n)
+	\end{bmatrix}
+\end{equation*}
+
+Esse sistema de equações pode ser resolvido utilizando o algoritmo da matriz tridiagonal (algoritmo de Thomas), apresentado na seção \ref{sec:algo-thomas}.
+
+O método das diferenças finitas amplifica erros causados pelos truncamentos e arredondamentos a cada passo de tempo. Para identificar instabilidade escreve-se a equação para um nó de forma que ao seu lado esquerdo esteja somente a incógnita para a variável dependente daquele nó, se algum coeficiente das variáveis dependentes ao seu lado direito for negativo, é instável. O método explícito é semi-instável, mas como foi utilizado o método implícito, será demonstrado que ele é incodicionalmente estável na seção \ref{sec:sol-numerica-2alei} 

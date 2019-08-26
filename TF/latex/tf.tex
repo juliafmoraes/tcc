@@ -23,6 +23,7 @@
 \def\tableautorefname{Tabela}
 \def\equationautorefname{}
 \newcommand\myworries[1]{\textcolor{red}{#1}}
+\newcommand\cmrtext[1]{\fontfamily{cmr}\selectfont {#1}\normalfont}
 \usepackage{array}
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -441,12 +442,18 @@ Trabalho & Método de Nitretação & Coeficiente de Difusão dependente da Conce
 
 \chapter{Materiais e Métodos}
 \section{Métodos Numéricos e Algoritmos}
+
 \subsection{Método das Diferenças Finitas}
+\label{sec:dif-fin}
 \input{chapters/materiais-e-metodos/diferencas-finitas}
-	
 
+\subsection{Algoritmo de Thomas}	
+\label{sec:algo-thomas}
+\input{chapters/materiais-e-metodos/algoritmo-de-thomas}
 
-\myworries{TDMA}
+\section{Solução Numérica da Segunda Lei de Fick}
+\label{sec:sol-numerica-2alei}
+\input{chapters/materiais-e-metodos/sol-numerica-2alei}
 
 \myworries{\textit{TO DO}}
 
