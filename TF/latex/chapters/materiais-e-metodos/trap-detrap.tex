@@ -1,0 +1,63 @@
+Como descrito na seção \autoref{sec:trap-detrap}, o modelo de \textit{trapping-detrapping} considera que os átomos de Cromo em solução sólida nos aços agem como sítios de aprisionamento de Nitrogênio. Isso ocorre devido à alta afinidade ente os dois átomos.
+
+Para considerar esse fenômeno foi adicionado um termo adicional à equação da Segunda Lei de Fick (eq.\autoref{eq:2alei-num}), $\pdv{N_{trap}(x,t)}{t}$ que permite considerar os efeitos do aprisionamento. Essa abordagem é uma adaptação do modelo criado em \cite{moskalioviene2011modeling}.
+
+Nessa seção será utilizada a seguinte notação: $N_{dif}$ corresponde à concentração de nitrogênio disponível para difusão (não aprisionado), $N_{trap}$ será a concentração de nitrogênio no estado aprisionado e $N$ é a concentração total de nitrogênio em solução.
+
+\begin{equation}
+\label{eq:trap-detrap}
+\pdv{N_{dif}(x,t)}{t} = D\pdv[2]{N_{dif}(x,t)}{x} - \pdv{N_{trap}(x,t)}{t} 
+\end{equation}
+
+O primeiro termo da equação\autoref{eq:trap-detrap} $\left(D\pdv[2]{N_{dif}(x,t)}{x}\right)$ se refere à difusão do nitrogênio da matriz de aço, como visto na Segunda Lei de Fick. Essa equação, juntamente com as equações \autoref{eq:trap-detrap2} e \autoref{eq:trap-detrap3} formam um conjunto de equações que descrevem o transporte de massa do nitrogênio considerando o mecanismo estudado.
+
+\begin{equation}
+\label{eq:trap-detrap2}
+\pdv{N_{trap}(x,t)}{t} = K\left[N_{dif}(x,t)\left(H_t-N_{trap}(x,t)\right) - N_0 N_{trap}(x,t)e^{\frac{-E_B}{k_BT}}\right] 
+\end{equation}
+
+Segue o que representa cada termo da equação \autoref{eq:trap-detrap2}:
+
+$K=4{\pi}R_tD$ : representa uma área (com raio $R_t$) de aprisionamento de um único sítio de aprisionamento
+
+$D=D_0e^{\frac{-E_A}{k_BT}}$ : coeficiente de difusão \myworries{ $D_0$ - fator pre-exponencial de difusao}
+
+$E_A$ : energia de ativação de difusão
+
+$k_B$: constante de Boltzmann \myworries{(colocar o valor e a ref)}
+	
+$T$: temperatura
+
+$H_t$: concentração de sítios de aprisionamento
+
+$N_0$: concentração de átomos hospedeiros
+	
+$E_B$ : energia de ativação para \textit{detrapping}
+
+A eq.\autoref{eq:trap-detrap2} modela o processo de aprisionamento, permitindo calcular a concentração de Nitrogênio ocupando sítios de \textit{trap}. A expressão $N_{dif}(x,t)\left(H_t-N_{trap}(x,t)\right)$ descreve o processo de \textit{trapping} de Nitrogênio livre na matriz, sendo $H_t - N_{trap}(x,t)$ a concentração de traps disponíveis (inocupados) e a expressão $ N_0 N_{trap}(x,t)e^{\frac{-E_B}{k_BT}}$ descreve o Nitrogênio aprisionado pelos \textit{traps} de Cromo que podem se manter aprisionados ou serem liberado para a matriz, dependendo de fatores como a energia de ativação.
+
+A última equação desse conjunto apenas relaciona as três concentrações de Nitrogênio, mostrando que a variação da concentração total é a soma das variações do átomos disponível para a difusão e a variação de átomos aprisionados. 
+
+\begin{equation}
+\label{eq:trap-detrap3}
+\pdv{N(x,t)}{t} = \pdv{N_{dif}(x,t)}{t} + \pdv{N_{trap}(x,t)}{t}
+\end{equation}
+
+Considerando o fluxo de difusão unidirecional, apenas do exterior para o interior do sólido, as condições de contorno podem ser expressas pelas equações:
+
+\begin{equation}
+\label{eq:trap-detrap-cc1}
+\pdv{N_{dif}(0,t)}{t} = -D\pdv[2]{N_{dif}(0,t)}{x} - \pdv{N_{trap}(0,t)}{t}  +\alpha j_{0}\left(N_0-N_{dif}(0,t)-N_{trap}\left(0,t\right)\right)
+\end{equation}
+
+\begin{equation}
+\label{eq:trap-detrap-cc2}
+\pdv{N_{trap}(0,t)}{t} = K\left[N_{dif}(0,t)\left(H_t-N_{trap}(0,t)\right) - N_0 N_{trap}(0,t)e^{\frac{-E_B}{k_BT}}\right] 
+\end{equation}
+
+\begin{equation}
+\label{eq:trap-detrap-cc3}
+\pdv{N(0,t)}{t} = \pdv{N_{dif}(0,t)}{t} + \pdv{N_{trap}(0,t)}{t}
+\end{equation}
+
+A equação\autoref{eq:trap-detrap-cc1} se refere à difusão de Nitrogênio na interface, na qual o termo dado por $\alpha j_{0}\left(N_0-N_{dif}(0,t)-N_{trap}\left(0,t\right)\right)$ descreve a adsorção de nitrogênio, $\alpha$ é o coeficiente de aderência de nitrogênio para os componentes correspondentes \myworries{?????} e  $j_0$ é o fluxo incidente de átomos de Nitrogênio.

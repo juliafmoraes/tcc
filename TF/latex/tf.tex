@@ -38,6 +38,7 @@
 \graphicspath{ {./images/} }
 \usepackage{fontspec}
 \setmainfont{Arial}
+\delimitershortfall=-1pt
 
 % ========== Language options ==========
 \usepackage[brazil]{babel}
@@ -93,6 +94,9 @@
 
 \chapter{tmp}
 \par \myworries{colocar a legenda da figura embaixo}
+
+\myworries{[23] nitriding can be considered as a one-d problem because...
+}
 % ========== Listas (opcional) ==========
 \listadefiguras
 \listadetabelas
@@ -441,6 +445,12 @@ Trabalho & Método de Nitretação & Coeficiente de Difusão dependente da Conce
 	
 
 \chapter{Materiais e Métodos}
+\section{Desenvolvimento}
+\myworries{\textit{TO DO}}
+\myworries{vou falar dos programas que eu usei pra programar/simular/fazer os grafico etc, falar quais modelos eu fiz - apontar as secoes onde explico}
+
+Primeiramente foi simulada a solução clássica da Segunda Lei de Fick com coeficiente de difusão constante e concentração de átomos na superfície constante (seções \ref{sec:sol-numerica-2alei}/\ref{sec:modelo11}). Em seguida foi feito um modelo considerando a variação da concentração de átomos na superfície (seções /\ref{sec:modelo12}). Posteriormente o modelo foi incrementado para melhor satisfazer a realidade da difusão do nitrogênio utilizando a teoria dos sítios de \textit{trapping-detrapping}, considerando a variação da concentração superficial(seções /\ref{sec:modelo21}) e testando a dependência do coeficiente de difusão em relação à concentração (seções /\ref{sec:modelo22}).
+
 \section{Métodos Numéricos e Algoritmos}
 
 \subsection{Método das Diferenças Finitas}
@@ -452,24 +462,57 @@ Trabalho & Método de Nitretação & Coeficiente de Difusão dependente da Conce
 \input{chapters/materiais-e-metodos/algoritmo-de-thomas}
 
 \section{Solução Numérica da Segunda Lei de Fick}
+\subsection{Composição Superficial Constante}
 \label{sec:sol-numerica-2alei}
 \input{chapters/materiais-e-metodos/sol-numerica-2alei}
 
+\subsection{Composição Superficial Variável}
+\label{sec:sol-numerica-2alei2}
 \myworries{\textit{TO DO}}
 
+\section{Modelo de \textit{Trapping-Detrapping}}
+\label{sec:my-trapdetrap}
 \myworries{explicacao do meu modelo - todas as consideracoes - formulas etc}
+\input{chapters/materiais-e-metodos/trap-detrap}
 
-\myworries{vou falar dos programas que eu usei pra programar/simular/fazer os grafico etc}
+\subsection{Coeficiente de Difusão Constante}
+\label{sec:my-trapdetrap-cte}
+\input{chapters/materiais-e-metodos/trap-detrap-Dcte}
+\myworries{\textit{TO DO}}
 
+\subsection{Coeficiente de Difusão Variável}
+\label{sec:my-trapdetrap-full}
+\myworries{\textit{TO DO}}
 
-\myworries{2a lei - solucao numerica}
+\section{Parâmetros e Constantes}
+\label{sec:params}
+\myworries{\textit{TO DO}}
+\subsection{Fluxo na Superfície}
+O fluxo de átomos na superfície depende de muitos fatores e é influenciado pelo tipo de processo e todas as variáveis envolvidas, como temperatura, pressão, potencial, densidade de corrente, etc.
+A primeira simplificação feita nesse estudo foi que a concentração na superfície se mantinha constante do início ao fim do processo de nitretação. Nesse caso, considera-se que existe equilíbrio termodinâmico entre a  mistura gasosa e o metal em tratamento. Esse equilíbrio é dado pela reação $\frac{1}{2}$ N${_2(g)}$ $\leftrightharpoons$ [N] $\gamma$ (no aço) \cite{tschiptschin2000thermodynamics}.
 
-
-
-\myworries{??}
 
 \chapter{Resultados e Discussões}
 \myworries{\textit{TO DO}}
+\section{Modelo 1 - Segunda Lei de Fick}
+
+\subsection{Concentração na superfície constante}
+\label{sec:modelo11}
+
+\subsection{Concentração na superfície variável}
+\label{sec:modelo12}
+
+\section{Modelo 2 - \textit{Trapping-Detrapping}}
+\subsection{Coeficiente de Difusão Constante}
+\label{sec:modelo21}
+
+\subsection{Coeficiente de Difusão inlfuenciado pela Concentração}
+\label{sec:modelo22}
+
+\section{Discussão}
+\myworries{\textit{TO DO}}
+\myworries{\textit{falar de teorias/explicações para o comportamento...}}
+
 
 \chapter{Conclusões}
 \myworries{\textit{TO DO}}
@@ -482,9 +525,9 @@ Trabalho & Método de Nitretação & Coeficiente de Difusão dependente da Conce
 \bibliography{references}
 
 
-\chapter{Anexos}
-\myworries{\textit{TO DO} - formatar direito}
-\par
-\myworries{colocar tabela da funcao erro nos anexos}
+\chapter*{Anexos}
+\myworries{. colocar tabela da funcao erro nos anexos}
+\myworries{. colocar os códigos}
+
 
 \end{document}
