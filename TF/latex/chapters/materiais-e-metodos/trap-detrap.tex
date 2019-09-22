@@ -1,0 +1,34 @@
+Como descrito na seção \autoref{sec:trap-detrap}, o modelo de \textit{trapping-detrapping} considera que os átomos de Cromo em solução sólida nos aços agem como sítios de aprisionamento de Nitrogênio. Isso ocorre devido à alta afinidade ente os dois átomos.
+
+Para considerar esse fenômeno foi adicionado um termo adicional à equação da Segunda Lei de Fick (eq.\autoref{eq:2alei-num}), $S(x)$ que permite considerar os efeitos do aprisionamento. Essa abordagem é uma adaptação do modelo criado em \cite{moskalioviene2011modeling}.
+
+Nessa seção será utilizada a seguinte notação: $N_{dif}$ corresponde à concentração de nitrogênio disponível para difusão (não aprisionado), $N_{trap}$ será a concentração de nitrogênio no estado aprisionado e $N$ é a concentração total de nitrogênio em solução.
+
+\begin{equation}
+\label{eq:trap-detrap}
+\pdv{N_{dif}(x,t)}{t} = D\pdv[2]{N_{dif}(x,t)}{x} - S(x,t)
+\end{equation}
+
+A equação \autoref{eq:trap-detrap}, juntamente com as equações \autoref{eq:trap-detrap2} e \autoref{eq:trap-detrap3} formam um conjunto de equações que descrevem o transporte de massa do nitrogênio considerando o mecanismo estudado.
+
+\begin{equation}
+\label{eq:trap-detrap2}
+\pdv{N_{trap}(x,t)}{t} = S(x,t) = K\left[N_{dif}(x,t)\left(H_t-N_{trap}(x,t)\right) -N_0 N_{trap}(x,t)e^\dfrac{E_B}{k_BT}\right] 
+\end{equation}
+
+Segue o que representa cada termo da equação \autoref{eq:trap-detrap2}:
+
+$K=4{\pi}R_tD$ : representa uma área (com raio $R_t$) de aprisionamento de um único sítio de aprisionamento
+
+$D=D_0e^\dfrac{E_B}{k_BT}$
+	$k_B$: constante de Boltzmann \myworries{(colocar o valor e a ref)}
+	
+	$T$: temperatura
+	
+\begin{equation}
+\label{eq:trap-detrap3}
+\pdv{N(x,t)}{t} = \pdv{N_{dif}(x,t)}{t} + \pdv{N_{trap}(x,t)}{t}
+\end{equation}
+
+
+

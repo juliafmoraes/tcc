@@ -1,5 +1,5 @@
 \par Uma forma de encontrar a solução de equações diferenciais é pelo método das diferenças finitas. A ideia fundamental desse método é aproximar a derivada de uma função ao redor de um dado ponto utilizando valores desta função em pontos vizinhos, criando uma malha de nós sobre o domínio da função.
-\par Considerando um problema de equações diferenciais com \myworries{condições de Drichlet} representada pelo sistema $(S)$, podemos discretizar o intervalo [a, b] no pontos $x_i = a + ih$ para $i \in [0, n+1]$, sendo $h = \dfrac{b-a}{n+1}$, a distância entre os nós.
+\par Considerando um problema de equações diferenciais com condições de Dirichlet (aonde são conhecidos os valores nas extremidadades do domínio) representada pelo sistema $(S)$, podemos discretizar o intervalo [a, b] no pontos $x_i = a + ih$ para $i \in [0, n+1]$, sendo $h = \dfrac{b-a}{n+1}$, a distância entre os nós.
 
 \begin{center}
 	\begin{math}
@@ -25,14 +25,14 @@
 \end{center} 
 
 \par Seja $u_i$ o valor aproximado de $u(x_i)$ que deseja-se calcular e $U = (u_1, ..., u_n)^T$, $u_0 = alpha$ e $u_{n+1} = \beta$. Aproxima-se $u''(x_i)$ e $u'(x_i)$ utilizando a série de Taylor de u em torno de $x_i$.
-\par A série de Taylor é a representação de uma função na forma de uma soma infinita \myworries{cujos termos são as derivadas da função em um único ponto}.
+\par A série de Taylor é a representação de uma função na forma de uma soma infinita cujos termos são calculados pelas derivadas da função em um único ponto.
 A eq.(\ref{eq:taylor}) é a série de Taylor da funçao $f(x)$ em torno de $x_i$.
 
 \begin{equation} \label{eq:taylor}
 f(x_i) = \sum_{n=0}^\infty \dfrac{f^{(n)}(x_i)}{n!}(x-x_i)^n = f(x_i) + \dfrac{f'(x_i)(x-x_i)}{1!} + \dfrac{f''(x_i)(x-x_i)^2}{2!} + ...
 \end{equation}
 
-Pode-se escrever a série de Taylor de $u$ em torno de $x_i$ como visto na equação \ref{eq:taylor-u}
+Pode-se escrever a série de Taylor de $u$ em torno de $x_i$ como visto na equação \ref{eq:taylor-u}.
 
 \begin{equation} \label{eq:taylor-u}
 u(x) = u(x_i) + u'(x_i)(x-x_i) + \dfrac{u''(x_i)}{2!}(x-x_i)^2 + ...

@@ -5,7 +5,7 @@ Recordando a Segunda Lei de Fick mencionada na seção \ref{sec:difusao}, estuda
 \pdv{C(x,t)}{t} = D(C)\pdv[2]{C(x,t)}{x}
 \end{equation}
 
-Considerando o coeficiente de difusão constante (independente da concentração, temos D(C) = D. Utilizando o método das diferenças finitas apresentado na seção \ref{sec:dif-fin}, sendo $i$ o nó do eixo x, $j$ o instante de tempo, {$\Delta j$} o passo no tempo e {$\Delta i$} o passo no espaço (o $h$ das diferenças finitas)tem-se a representação discretizada da eq.\ref{eq:2alei-num} dada pela eq.\ref{eq:2alei-discr}. Destaca-se que foi utilizado o método implícito das diferenças finitas para a realização do trabalho.
+Para essa solução, considera-se o coeficiente de difusão constante (independente da concentração, temos D(C) = D. Utilizando o método das diferenças finitas apresentado na seção \ref{sec:dif-fin}, a discretização do espaço será dada por um espaçamento {$\Delta i$}, e representa-se por $i$ o i-ésimo nó do eixo x. Para o passo do tempo, utilizou-se um passo {$\Delta j$}, e $j$ nota o j-ésimo instante de tempo. Assim, tem-se a representação discretizada da eq.\ref{eq:2alei-num} dada pela eq.\ref{eq:2alei-discr}. Destaca-se que foi utilizado o método implícito das diferenças finitas para a realização do trabalho.
 
 \begin{equation}
 \label{eq:2alei-discr}
@@ -106,4 +106,3 @@ Seja o sistema de equações dado por \cmrtext{AC$^j+1$ = B$^j$}, \cmrtext{A, C 
 \end{equation*}
 
 \cmrtext{A} é uma matriz tridiagonal, \cmrtext{AC$^{j+1}$ = B$^j$} é um sistema de $n$ equações lineares com $n$ incógnitas. Logo, pode-se utilizar o algoritmo de Thomas visto na seção \ref{sec:algo-thomas} para solucionar o problema.
-\myworries{falta explicar melhor o tamanho da malha}
