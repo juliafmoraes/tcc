@@ -31,10 +31,10 @@
 \contentsline {subsection}{\numberline {4.3.1}Composição Superficial Constante}{32}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Composição Superficial Variável}{34}{subsection.4.3.2}
 \contentsline {section}{\numberline {4.4}Modelo de \textit {Trapping-Detrapping}}{34}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Coeficiente de Difusão Constante}{35}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Coeficiente de Difusão Variável}{35}{subsection.4.4.2}
-\contentsline {section}{\numberline {4.5}Parâmetros e Constantes}{35}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Fluxo na Superfície}{35}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.4.1}Coeficiente de Difusão Constante}{36}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Coeficiente de Difusão Variável}{36}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}Parâmetros e Constantes}{36}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Fluxo na Superfície}{36}{subsection.4.5.1}
 \contentsline {chapter}{\numberline {5}Resultados e Discussões}{37}{chapter.5}
 \contentsline {section}{\numberline {5.1}Modelo 1 - Segunda Lei de Fick}{37}{section.5.1}
 \contentsline {subsection}{\numberline {5.1.1}Concentração na superfície constante}{37}{subsection.5.1.1}
