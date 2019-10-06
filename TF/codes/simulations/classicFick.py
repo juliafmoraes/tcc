@@ -20,12 +20,15 @@ class ClassicFick(Simulation):
         self.lower_bound = lower
         self.upper_bound = upper
 
+
 def create_d(c, a, lb):
     d = [-1*element for element in c]
     d[0] = d[0] -a*lb
     return d
 
+
 def run():
+    #condicoes de teste
     lower_bound = 5
     upper_bound = 0
     D = 0.1
@@ -49,7 +52,7 @@ def run():
         l_diag.append(0)
         d = create_d(C[int(i/dt)][1:-1], a, simulation.lower_bound)
         solution = TDMA_solver(main_diag, l_diag, u_diag, d)
-        solution.insert(0,simulation.lower_bound)
+        solution.insert(0, simulation.lower_bound)
         solution.append(simulation.upper_bound)
         C.append(solution)
         print(solution)
