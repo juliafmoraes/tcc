@@ -23,7 +23,6 @@
 \def\tableautorefname{Tabela}
 \def\equationautorefname{}
 \newcommand\myworries[1]{\textcolor{red}{#1}}
-\newcommand\cmrtext[1]{\fontfamily{cmr}\selectfont {#1}\normalfont}
 \usepackage{array}
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -38,7 +37,6 @@
 \graphicspath{ {./images/} }
 \usepackage{fontspec}
 \setmainfont{Arial}
-\delimitershortfall=-1pt
 
 % ========== Language options ==========
 \usepackage[brazil]{babel}
@@ -54,7 +52,7 @@
 
 % ========== Opções do documento ==========
 % Título
-\titulo{TF}
+\titulo{P4 - Revisão Bibliográfica}
 
 % Autor
 \autor{Julia Moraes}
@@ -65,7 +63,7 @@
 %		Nome Sobrenome}
 
 % Orientador / Coorientador
-\orientador{Prof. Dr. Eduardo Franco de Monlevade}
+\orientador{Nome do orientador}
 \coorientador{Nome do coorientador (opcional)}
 
 % Tipo de documento
@@ -92,11 +90,7 @@
 %\falsafolhaderosto
 %\folhaderosto
 
-\chapter{tmp}
-\par \myworries{colocar a legenda da figura embaixo}
 
-\myworries{[23] nitriding can be considered as a one-d problem because...
-}
 % ========== Listas (opcional) ==========
 \listadefiguras
 \listadetabelas
@@ -143,10 +137,10 @@ J = -D\nabla C = -D(\pdv{C}{x}e_x + \pdv{C}{y}e_y + \pdv{C}{z}e_z)
 
 	Quando condições de contorno são identificadas para situações reais é possível obter uma solução para essa equação. Uma forma de encontrar uma solução para a Segunda Lei de Fick é através da utilização de uma variável de similaridade, que consiste em reduzir o número de variáveis independentes para apenas uma variável, que depende das originais. \par
 	Considerando que o teor do átomo que se difunde é constante na superfície ao longo do tempo, que o transporte ocorre sob condições isotérmicas, com coeficiente de difusão constante, em um corpo semi infinito, para o caso unidimensional, seguem as condições necessárias para se encontrar uma solução. Seja c$_i$ a concentração inicial no interior do substrato e c$_s$ a concentração na superfície.\par
-\myworries{melhorar essa deducao}
 \begin{center} 
 	Condição inicial : $C(x,t=0) = c_i$ \\
-	Condições de contorno (condições de Dirichlet): 
+
+	Condições de contorno : 
 	\begin{math}
   		\left\{
     	\begin{array}{l}
@@ -198,25 +192,34 @@ Substituindo as equações \autoref{eq:solB} e \autoref{eq:solC} na equação \a
 \end{equation}
 
 Considerando as constantes arbitrárias a seguir:
-\begin{gather*}		
-	\frac{t^{-1}}{t^{2m}} = 1 \Rightarrow m = -\frac{1}{2} \\
-	4DA^2 = 1 \Rightarrow A = \frac{1}{\sqrt{4D}}
-\end{gather*}	
+
+\begin{center}
+	\begin{math}
+		\begin{array}{l}	
+			\frac{t^{-1}}{t^{2m}} = 1 \Rightarrow m = -\frac{1}{2} \\
+			4DA^2 = 1 \Rightarrow A = \frac{1}{\sqrt{4D}}
+		\end{array}
+	\end{math}
+\end{center}
 
 Substituindo na equação \autoref{eq:solC}:
 \begin{equation} \label{eq:solE}
  \frac{d^2C}{d\eta ^2} + 2\eta \frac{dC}{d\eta} = 0
 \end{equation}
 
-Aonde $\eta = Axt^m = \dfrac{1}{\sqrt{4D}}xt^{-1/2} = \dfrac{x}{2\sqrt{Dt}}$.
+Aonde $\eta = Axt^m = \frac{1}{\sqrt{4D}}xt^{-1/2} = \frac{x}{2\sqrt{Dt}}$.
 
 Segue a resolução matemática:
 
-\begin{gather*}		
-	\varepsilon = \frac{dC}{d\eta} \Rightarrow \frac{dC}{d\eta} + 2\eta\varepsilon = 0 \\
-	\frac{dC}{d\eta} = -2\eta\varepsilon \Rightarrow \int\frac{d\varepsilon}{\varepsilon} = \int -2\eta d\eta + \lambda \Rightarrow ln\varepsilon = -\eta^2 + \lambda \Rightarrow \frac{dC}{d\eta} = \varepsilon = \lambda'e^{-\eta^2} \\
-	\int_{c_s}^{c} dC = \int_{0}^{\eta} \lambda'e^{-\eta^2} d\eta 
-\end{gather*}	
+\begin{center}
+	\begin{math}
+		\begin{array}{l}	
+			\varepsilon = \frac{dC}{d\eta} \Rightarrow \frac{dC}{d\eta} + 2\eta\varepsilon = 0 \\
+			\frac{dC}{d\eta} = -2\eta\varepsilon \Rightarrow \int\frac{d\varepsilon}{\varepsilon} = \int -2\eta d\eta + \lambda \Rightarrow ln\varepsilon = -\eta^2 + \lambda \Rightarrow \frac{dC}{d\eta} = \varepsilon = \lambda'e^{-\eta^2} \\
+			\int_{c_s}^{c} dC = \int_{0}^{\eta} \lambda'e^{-\eta^2} d\eta 
+		\end{array}
+	\end{math}
+\end{center}
 
 \begin{equation} \label{eq:solF}
 	c - c_s =  \lambda'\int_{0}^{\eta} \eta'e^{-\eta^2} d\eta 
@@ -224,44 +227,40 @@ Segue a resolução matemática:
 
 Utilizando a seguinte condição de contorno: $C(\eta\rightarrow \infty) = c_i$ 
 
-\begin{gather*}	
-	c_i - c_s = \lambda\int_{0}^{\infty} \lambda'e^{-\eta^2} d\eta  \\
-	\int_{0}^{\infty} \lambda'e^{-\eta^2} d\eta  = \frac{\sqrt{\pi}}{2} \Rightarrow 			\lambda = (c_i - c_s)\frac{2}{\sqrt{\pi}}
-\end{gather*}
+\begin{center}
+	\begin{math}
+		\begin{array}{l}	
+			c_i - c_s = \lambda\int_{0}^{\infty} \lambda'e^{-\eta^2} d\eta  \\
+			\int_{0}^{\infty} \lambda'e^{-\eta^2} d\eta  = \frac{\sqrt{\pi}}{2} \Rightarrow \lambda = (c_i - c_s)\frac{2}{\sqrt{\pi}}
+		\end{array}
+	\end{math}
+\end{center}
 
 Substituindo $\lambda$ em \autoref{eq:solF}:
 \begin{equation} \label{eq:solG}
 	\frac{c - c_s}{c_i - c_s} = \frac{2}{\pi} \int_{0}^{\eta} \eta'e^{-\eta^2} d\eta   
 \end{equation}
-Para $\eta = \dfrac{x}{2\sqrt{Dt}}$.
+Para $\eta = \frac{x}{2\sqrt{Dt}}$.
 
-A expressão $ \frac{2}{\pi} \int_{0}^{\eta} \eta'e^{-\eta^2} d\eta $ é a função erro $erf(\eta)$ e  $1 - erf(\eta)$ é seu complementar $erfc(\eta)$. Logo, chega-se que 
+A expressão $ \frac{2}{\pi} \int_{0}^{\eta} \eta'e^{-\eta^2} d\eta $ é a função erro ($erf(\eta)$) e  $1 - erf(\eta)$ é seu complementar $erfc(\eta)$. Logo, chega-se que 
 
 \begin{equation} \label{eq:solFinal}
-	1 - \frac{c - c_s}{c_i - c_s} = \frac{c - c_i}{c_s - c_i} = 1 - erf(\eta) = erfc(\eta) \Rightarrow c = c_i + (c_s - c_i) erfc(\eta)
+	1 - \frac{c - c_s}{c_i - c_s} = \frac{c - c_i}{c_s - c_i} = 1 - erf(\eta) = erfc(\eta) \Rightarrow c = c_i + (c_s - c_i)erfc(\eta)
 \end{equation}
 
 \par O perfil de concentração para regime não estacionário ao longo do tempo está representado na Figura \ref{fig:segundaLei}.
 
 \begin{figure}[ht]
 	\caption{Perfil de concentração correspondente à segunda lei de Fick}
+	%\includegraphics{segundaLei}
 	\includegraphics[width=80mm,scale=0.5]{segundaLei}
 	\label{fig:segundaLei}
 	\centering
 	\fonte{Callister, 1940}
 \end{figure}
 
-\par
-	A variável $\sqrt{Dt}$ é chamada de distância de difusão e representa a distância percorrida por um átomo com coeficiente de difusão D, após um tempo t. Considerando a solução encontrada (eq \autoref{eq:solFinal}), para c =  $c_x$ = cte, temos 
+\myworries{Distance de difusao}
 
-$$\frac{c_x - c_s}{c_i - c_s} = 1 - erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow \frac{x}{2\sqrt{Dt}} = cte$$
-
-\begin{equation} \label{eq:difdist}
-		\therefore x \propto  \sqrt{Dt}
-\end{equation}
-
-Para o caso em que $c = \dfrac{c_s + c_i}{2}$: \par
-\myworries{\textit{TO DO}} \par
 \myworries{Coeficiente de Difusao (mas jogar para cima)}
 
 
@@ -270,7 +269,6 @@ Para o caso em que $c = \dfrac{c_s + c_i}{2}$: \par
 	As direções possíveis para o movimento aleatórios em materiais cristalinos são limitadas pela sua cristalografia, mais especificamente são as direções paralelas aos vetores que ligam pontos vizinhos do reticulado ou espaços intersticiais.
 	Diferentes mecanismos de difusão podem existir mutuamente sendo que alguns fatores determinam qual será mais frequente, como por exemplo o tamanho do átomo com relação ao átomo hospedeiro. De forma geral, para que ocorra mudança de posição de um átomo é necessário que haja uma posição livre adjacente a sua atual posição e ele deve possuir energia suficiente para quebrar as ligações químicas existentes com seus vizinhos e causar uma distorção no reticulado durante seu deslocamento. \par
 	Os principais mecanismos de difusão são:
-\myworries{colocar figuras}
 \subsubsection{Difusão por lacuna}
 A difusão por lacuna ocorre quando um átomo se desloca de uma posição normal do reticulado para uma posição vazia, uma lacuna, que em si é um defeito presente na rede cristalina. Quanto maior a quantidade desses defeitos maior a possibilidade de difusão por esse mecanismo \cite{callister2007materials}. Ele predomina no caso de difusão de átomos substitucionais e até mesmo na autodifusão. Nessa difusão ocorre uma distorção do reticulado quando o átomo muda de posição, o que torna necessário que haja uma energia mínima envolvida nesse processo.
 \subsubsection{Difusão intersticial}
@@ -319,7 +317,7 @@ A difusão em contorno de grão é mais rápida que os outros mecanismos (assim 
 \subsection{Nitrogênio em Aços Austeníticos}
 	A adição de nitrogênio em aços estabiliza a austenita, melhora as propriedades mecânicas e a resistência à corrosão. A sua presença aumenta a resistência ao escoamento mais do que a adição de carbono ou outras ligas e ele é mais solúvel que carbono em temperaturas médias e altas, o que reduz a formação de precipitados. Além disso, reduz a formação de carbetos, o que reduz sensitização e como é um elemento que existe em abundância, possui baixo custo \cite{reed1989nitrogen}.\par
 	Os interstícios predominantemente ocupados pelo nitrogenio no reticulado CFC são os octaédricos ~\cite{christiansen2006controlled}. A solubilidade intersticial do nitrogênio em aços austenítiocs inoxidáveis é baixa, de forma que nos casos aonde a quantidade de nitrogênio na liga excede o limite de solubilidade, pode ocorrer a precipitação de Cr$_{2}$N, que reduz a resistência a corrosão pois diminui a quantidade disponível de cromo que poderia originar a camada passiva que protege o material da corrosão \cite{somers2018expanded}, o que não é desejado nas aplicações comuns desses aços. O efeito da adição de nitrogênio para algumas ligas pode ser observado na Figura \ref{fig:diagrN}, quanto maior a quantidade de nitrogênio ou carbono, maior o campo de formação de precipitados.\par
-\myworries{talvez substituir por aquele outro diagrama de fases do nitrogenio}
+	
 	\begin{figure}[ht]
 	\caption{Diagrama de Fases do Nitrogênio em algumas ligas}
 	\includegraphics{solubN}
@@ -355,10 +353,6 @@ A difusão em contorno de grão é mais rápida que os outros mecanismos (assim 
 	A austenita expandida ($\gamma_{N}$), também chamada de fase S,  é uma solução supersaturada de átomos intersiticiais (como nitrogênio e carbono) em austenita com concentrações de nitrogênio variando entre 9 a 20\%  ~\cite{williamson1994metastable} ou até 30\% ~\cite{moskalioviene2011modeling}. Ela é caracterizada por ser uma microsestrutura desenvolvida durante processos de endurecimento da superfície temperaturas entre 350 e 400°C ~\cite{mandl2003nitrogen}. \par
 	Como consequência dos interstícios supersaturados, essa fase apresenta uma expansão do reticulado cristalino, de até 11\% do parâmetro de rede e uma tensão residual de compressão associada elevada ~\cite{somers2018expanded}. Essa expansão pode facilitar a transferência de átomos de nitrogênio de um interstício octaédrico para um tetraédrico do reticulado CFC. Dessa forma, a energia de ativação para a difusão do nitrogênio é reduziada. Por outro lado, o aumento do teor de nitrogênio aumenta a ocupância dos interstícios, reduzindo a probabilidade do átomo em estado ativado conseguir mudar de uma posição para outra, o que reduz sua difusão \cite{christiansen2008nitrogen}. \par
 	As propriedades da austenita expandida que a torna interessante economicamente são a elevada dureza, de até 15 GPa ~\cite{mandl2003nitrogen} e redução da taxa de desgaste em 5 ordens de grandeza.
-
-\myworries{explicar o metodo das diferencas finitas}
-\myworries{explicar newton rhapson se eu chegar a usar}
-\myworries{explicar coisas do mo da carolina se eu usar}
 
 \section{Modelos}
 	Os estudos do transporete de nitrogênio em aços austeníticos com formação de camadas superficiais constatou que o perfil dessa espécie não são consistentes com o perfil obtido pela resolução clássica da 2$^a$ Lei de Fick que considera o coeficiente de difusão independente da concentração para um sólido semi-infinito e concentração na superfície constante, como visto na seção \autoref{sec:difusao}. Na realidade, o perfil obtido é caracterizado por um platô seguido de uma queda brusca da concentração de N. Além disso, a velocidade de difusão observada é de 4 a 5 ordens de grandeza maior que o esperado para a difusão do N em aços inoxidáveis austeníticos \cite{parascandola2000nitrogen}. \par
@@ -445,74 +439,12 @@ Trabalho & Método de Nitretação & Coeficiente de Difusão dependente da Conce
 	
 
 \chapter{Materiais e Métodos}
-\section{Desenvolvimento}
-\myworries{\textit{TO DO}}
-\myworries{vou falar dos programas que eu usei pra programar/simular/fazer os grafico etc, falar quais modelos eu fiz - apontar as secoes onde explico}
-
-Primeiramente foi simulada a solução clássica da Segunda Lei de Fick com coeficiente de difusão constante e concentração de átomos na superfície constante (seções \ref{sec:sol-numerica-2alei}/\ref{sec:modelo11}). Em seguida foi feito um modelo considerando a variação da concentração de átomos na superfície (seções /\ref{sec:modelo12}). Posteriormente o modelo foi incrementado para melhor satisfazer a realidade da difusão do nitrogênio utilizando a teoria dos sítios de \textit{trapping-detrapping}, considerando a variação da concentração superficial(seções /\ref{sec:modelo21}) e testando a dependência do coeficiente de difusão em relação à concentração (seções /\ref{sec:modelo22}).
-
-\section{Métodos Numéricos e Algoritmos}
-
-\subsection{Método das Diferenças Finitas}
-\label{sec:dif-fin}
-\input{chapters/materiais-e-metodos/diferencas-finitas}
-
-\subsection{Algoritmo de Thomas}	
-\label{sec:algo-thomas}
-\input{chapters/materiais-e-metodos/algoritmo-de-thomas}
-
-\section{Solução Numérica da Segunda Lei de Fick}
-\subsection{Composição Superficial Constante}
-\label{sec:sol-numerica-2alei}
-\input{chapters/materiais-e-metodos/sol-numerica-2alei}
-
-\subsection{Composição Superficial Variável}
-\label{sec:sol-numerica-2alei2}
 \myworries{\textit{TO DO}}
 
-\section{Modelo de \textit{Trapping-Detrapping}}
-\label{sec:my-trapdetrap}
-\myworries{explicacao do meu modelo - todas as consideracoes - formulas etc}
-\input{chapters/materiais-e-metodos/trap-detrap}
-
-\subsection{Coeficiente de Difusão Constante}
-\label{sec:my-trapdetrap-cte}
-\input{chapters/materiais-e-metodos/trap-detrap-Dcte}
-\myworries{\textit{TO DO}}
-
-\subsection{Coeficiente de Difusão Variável}
-\label{sec:my-trapdetrap-full}
-\myworries{\textit{TO DO}}
-
-\section{Parâmetros e Constantes}
-\label{sec:params}
-\myworries{\textit{TO DO}}
-\subsection{Fluxo na Superfície}
-O fluxo de átomos na superfície depende de muitos fatores e é influenciado pelo tipo de processo e todas as variáveis envolvidas, como temperatura, pressão, potencial, densidade de corrente, etc.
-A primeira simplificação feita nesse estudo foi que a concentração na superfície se mantinha constante do início ao fim do processo de nitretação. Nesse caso, considera-se que existe equilíbrio termodinâmico entre a  mistura gasosa e o metal em tratamento. Esse equilíbrio é dado pela reação $\frac{1}{2}$ N${_2(g)}$ $\leftrightharpoons$ [N] $\gamma$ (no aço) \cite{tschiptschin2000thermodynamics}.
-
+\myworries{??}
 
 \chapter{Resultados e Discussões}
 \myworries{\textit{TO DO}}
-\section{Modelo 1 - Segunda Lei de Fick}
-
-\subsection{Concentração na superfície constante}
-\label{sec:modelo11}
-
-\subsection{Concentração na superfície variável}
-\label{sec:modelo12}
-
-\section{Modelo 2 - \textit{Trapping-Detrapping}}
-\subsection{Coeficiente de Difusão Constante}
-\label{sec:modelo21}
-
-\subsection{Coeficiente de Difusão inlfuenciado pela Concentração}
-\label{sec:modelo22}
-
-\section{Discussão}
-\myworries{\textit{TO DO}}
-\myworries{\textit{falar de teorias/explicações para o comportamento...}}
-
 
 \chapter{Conclusões}
 \myworries{\textit{TO DO}}
@@ -525,9 +457,7 @@ A primeira simplificação feita nesse estudo foi que a concentração na superf
 \bibliography{references}
 
 
-\chapter*{Anexos}
-\myworries{. colocar tabela da funcao erro nos anexos}
-\myworries{. colocar os códigos}
+
 
 
 \end{document}

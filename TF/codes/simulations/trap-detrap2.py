@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import math
+import openpyxl
 
 from simulations.simulation import Simulation
 
@@ -22,7 +23,7 @@ class TrapDetrap(Simulation):
         self.capture_radius = 0.38 * (10**(-7))
         self.K = 4*math.pi*self.capture_radius*self.D_coef
         self.exponential_term = math.exp(-self.detrapping_energy/(self.boltzmann_constant*self.temperature))
-
+        self.Fo = self.D_coef*self.dt/(self.dx**2)
 
     def boundary_conditions(self, lower, upper):
         self.lower_bound = lower
@@ -31,12 +32,14 @@ class TrapDetrap(Simulation):
 
 def run():
     #concentracao superficial constante
-    lower_bound = 25
+    lower_bound = 3*7.29*(10**(-7+22))
     #concentracao no meio
     upper_bound = 0
     #condicoes de teste
-    #coeficiente de difusao
+    #coeficiente de difusao - teste
     D = 0.1
+    #coeficiente de difusao - real
+    # D = 4.81 * (10**(-12))
     #passo no tempo
     dt = 0.2
     dx = 0.5
@@ -46,23 +49,37 @@ def run():
     simulation = TrapDetrap(dt, dx, T, n, D, lower_bound, upper_bound)
 
     # condicoes de contorno:
-    N_dif = [[0]*int(simulation.nodes)]
+    N_dif =[[simulation.lower_bound]+[0]*int(simulation.nodes-1)]
     N_trap = [[0]*int(simulation.nodes)]
-    N = [[0]*int(simulation.nodes)]
+    N = [[simulation.lower_bound]+[0]*int(simulation.nodes-1)]
 
-    for j in np.arange(1, T, dt):
-        print("solving t={}s".format(i))
-        for i in np.arange(1, n, dx):
-            gamma = (N_dif[-1][i]*simulation.trap_concentration - N_dif[-1][i]*N_trap[-1][i] - \
-                    simulation.host_atom_concentration*N_trap[-1][i]*simulation.exponential_term)*\
+    for j in range(simulation.iterations):
+        print("solving t={}s".format(j))
+        N_dif_solution = [simulation.lower_bound]+[0]*int(simulation.nodes-1)
+        N_trap_solution = [0]*int(simulation.nodes)
+        N_solution = [simulation.lower_bound]+[0]*int(simulation.nodes-1)
+        for i in range(1, simulation.nodes-1):
+            gamma = (N_dif[-1][i] - N_dif[-1][i]*N_trap[-1][i]/simulation.trap_concentration -
+                     simulation.host_atom_concentration*N_trap[-1][i]*simulation.exponential_term)*\
                     simulation.K*simulation.dt
+            N_trap_solution[i] = gamma + N_trap[-1][i]
+            N_dif_solution[i] = simulation.Fo*(N_dif[-1][i+1]-2*N_dif[-1][i]+N_dif[-1][i-1]) +\
+                                N_dif[-1][i] - simulation.dt*gamma
+            N_solution[i] = N[-1][i] - N_dif[-1][i] - N_trap[-1][i] + N_trap_solution[i] + N_dif_solution[i]
 
-        d = create_d(C[int(i/dt)][1:-1], a, simulation.lower_bound)
-        solution = TDMA_solver(main_diag, l_diag, u_diag, d)
-        solution.insert(0,simulation.lower_bound)
-        solution.append(simulation.upper_bound)
-        C.append(solution)
-        print(solution)
+        N_dif_solution.append(simulation.upper_bound)
+        N_trap_solution.append(simulation.upper_bound)
+        N_solution.append(simulation.upper_bound)
 
-    final_solution = pd.DataFrame(C)
-    final_solution.to_excel(r"C:\Users\Julia\Documents\tcc\TF\codes\results\detrap2.xlsx")
+        N_dif.append(N_dif_solution)
+        N_trap.append(N_trap_solution)
+        N.append(N_solution)
+
+        # print(solution)
+
+    final_solution = pd.DataFrame(N)
+    final_solution.to_excel(r"C:\Users\Ju\tcc\TF\codes\results\trap_detrap2.xlsx")
+
+
+if __name__ == "__main__":
+    run()
