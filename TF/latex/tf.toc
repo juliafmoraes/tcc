@@ -1,48 +1,28 @@
 \babel@toc {brazil}{}
-\contentsline {chapter}{\numberline {2}Introdução}{8}{chapter.2}
-\contentsline {chapter}{\numberline {3}Revisão Bibliográfica}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}Difusão}{9}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Mecanismos de difusão em sólidos}{13}{subsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.1.1}Difusão por lacuna}{14}{subsubsection.3.1.1.1}
-\contentsline {subsubsection}{\numberline {3.1.1.2}Difusão intersticial}{14}{subsubsection.3.1.1.2}
-\contentsline {subsubsection}{\numberline {3.1.1.3}Difusão em contorno de grão}{15}{subsubsection.3.1.1.3}
-\contentsline {subsection}{\numberline {3.1.2}Fatores que influenciam na difusão}{15}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Nitretação}{15}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Nitretação à gás}{15}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Nitretação líquida}{16}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Nitretação por plasma}{16}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Aços}{17}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Aços Austeníticos}{17}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Nitrogênio em Aços Austeníticos}{17}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Austenita Expandida}{19}{subsection.3.3.3}
-\contentsline {section}{\numberline {3.4}Modelos}{20}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Modelos \textit {trapping-detrapping}}{21}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Modelos para coeficiente de difusão dependente da concentração}{23}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Difusão induzida por Tensão}{24}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Modelos que combinam fatores}{25}{subsection.3.4.4}
-\contentsline {subsubsection}{\numberline {3.4.4.1}Coeficiente de Difusão dependente da Concentração + \textit {trapping}}{25}{subsubsection.3.4.4.1}
-\contentsline {subsubsection}{\numberline {3.4.4.2}Coeficiente de Difusão dependente da Concentração + Tensão}{26}{subsubsection.3.4.4.2}
-\contentsline {chapter}{\numberline {4}Materiais e Métodos}{27}{chapter.4}
-\contentsline {section}{\numberline {4.1}Desenvolvimento}{27}{section.4.1}
-\contentsline {section}{\numberline {4.2}Métodos Numéricos e Algoritmos}{27}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Método das Diferenças Finitas}{27}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Algoritmo de Thomas}{30}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Solução Numérica da Segunda Lei de Fick}{32}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Composição Superficial Constante}{32}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Composição Superficial Variável}{34}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}Modelo de \textit {Trapping-Detrapping}}{34}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Coeficiente de Difusão Constante}{35}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Coeficiente de Difusão Variável}{35}{subsection.4.4.2}
-\contentsline {section}{\numberline {4.5}Parâmetros e Constantes}{35}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Fluxo na Superfície}{35}{subsection.4.5.1}
-\contentsline {chapter}{\numberline {5}Resultados e Discussões}{37}{chapter.5}
-\contentsline {section}{\numberline {5.1}Modelo 1 - Segunda Lei de Fick}{37}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Concentração na superfície constante}{37}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Concentração na superfície variável}{37}{subsection.5.1.2}
-\contentsline {section}{\numberline {5.2}Modelo 2 - \textit {Trapping-Detrapping}}{37}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Coeficiente de Difusão Constante}{37}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Coeficiente de Difusão inlfuenciado pela Concentração}{37}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Discussão}{37}{section.5.3}
-\contentsline {chapter}{\numberline {6}Conclusões}{38}{chapter.6}
-\contentsline {chapter}{Referências}{39}{chapter.6}
-\contentsline {chapter}{Anexos}{41}{chapter.6}
+\contentsline {chapter}{\numberline {1}Introdução}{6}{chapter.1}
+\contentsline {chapter}{\numberline {2}Revisão Bibliográfica}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Difusão}{7}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Mecanismos de difusão em sólidos}{11}{subsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.1.1}Difusão por lacuna}{11}{subsubsection.2.1.1.1}
+\contentsline {subsubsection}{\numberline {2.1.1.2}Difusão intersticial}{11}{subsubsection.2.1.1.2}
+\contentsline {subsubsection}{\numberline {2.1.1.3}Difusão em contorno de grão}{12}{subsubsection.2.1.1.3}
+\contentsline {subsection}{\numberline {2.1.2}Fatores que influenciam na difusão}{12}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Nitretação}{13}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Nitretação à gás}{13}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Nitretação líquida}{13}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Nitretação por plasma}{14}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Aços}{14}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Aços Austeníticos}{15}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Nitrogênio em Aços Austeníticos}{15}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Austenita Expandida}{16}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}Modelos}{18}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Modelos \textit {trapping-detrapping}}{19}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Modelos para coeficiente de difusão dependente da concentração}{21}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Difusão induzida por Tensão}{21}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Modelos que combinam fatores}{22}{subsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.4.1}Coeficiente de Difusão dependente da Concentração + \textit {trapping}}{22}{subsubsection.2.4.4.1}
+\contentsline {subsubsection}{\numberline {2.4.4.2}Coeficiente de Difusão dependente da Concentração + Tensão}{23}{subsubsection.2.4.4.2}
+\contentsline {chapter}{\numberline {3}Materiais e Métodos}{25}{chapter.3}
+\contentsline {chapter}{\numberline {4}Resultados e Discussões}{26}{chapter.4}
+\contentsline {chapter}{\numberline {5}Conclusões}{27}{chapter.5}
+\contentsline {chapter}{Referências}{28}{chapter.5}
