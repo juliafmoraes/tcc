@@ -19,7 +19,7 @@ class TrapDetrap(Simulation):
         self.diffusion_energy = 1.7622 * (10 ** (-19))  # J
         self.boltzmann_constant = 1.38064852 * (10 ** (-23))  # m2 kg s-2 K-1 = (J/K)
         self.capture_radius = 0.38 * (10 ** (-9))  # m
-        self.D_zero = 8.37 * (10 ** (-8)) #m2/s
+        self.D_zero = 8.37 * (10 ** (-8))
         self.D_coef = self.D_zero * math.exp(-1 * self.diffusion_energy / (self.boltzmann_constant * self.temperature))
         self.K = 4 * math.pi * self.capture_radius * self.D_coef
         self.exponential_term = math.exp(-1 * self.detrapping_energy / (self.boltzmann_constant * self.temperature))
@@ -40,8 +40,8 @@ def run():
 
     # condicoes reais
     # passo no tempo
-    dt = 0.01  # s
-    dx = 1 * (10 ** (-6))  # micro -> m
+    dt = 0.00001  # s
+    dx = 0.1 * (10 ** (-6))  # micro -> m
     T = 2 * 60 * 60  # s (2horas)
     n = 20 * (10 ** (-6))  # micro -> m
 
@@ -65,7 +65,7 @@ def run():
 
         for i in range(0, simulation.nodes - 1):
             gamma = (
-                            (N_dif[-1][i] * (simulation.trap_concentration - 6*(10**2)*N_trap[-1][i])) -
+                            (N_dif[-1][i] * (simulation.trap_concentration - N_trap[-1][i])) -
                             (simulation.host_atom_concentration * N_trap[-1][i] * simulation.exponential_term)
                     ) * simulation.K * simulation.dt
             N_trap_solution[i] = gamma + N_trap[-1][i]
@@ -75,7 +75,7 @@ def run():
                                                 simulation.host_atom_concentration - N_dif[-1][i] - N_trap[-1][i])
             else:
                 N_dif_solution[i] = simulation.Fo * (N_dif[-1][i + 1] - 2 * N_dif[-1][i] + N_dif[-1][i - 1]) + \
-                                    N_dif[-1][i] - gamma
+                                    N_dif[-1][i] - simulation.dt * gamma
 
         N_solution[i] = N_trap_solution[i] + N_dif_solution[i]
 
@@ -103,7 +103,7 @@ def run():
     final_N_trap_solution_excel = final_N_trap_solution.iloc[
         [x for x in range(0, simulation.iterations, int(simulation.iterations / 50))]]
 
-    writer = pd.ExcelWriter(r"C:\Users\Julia\Documents\tcc\TF\codes\results\trap_detrap2_3.xlsx")
+    writer = pd.ExcelWriter(r"C:\Users\Julia\Documents\tcc\TF\codes\results\trap_detrap3.xlsx")
     final_N_solution_excel.to_excel(writer, 'N')
     final_N_dif_solution_excel.to_excel(writer, 'N_dif')
     final_N_trap_solution_excel.to_excel(writer, 'N_trap')
