@@ -40,24 +40,24 @@ def run():
 
     # condicoes reais
     # passo no tempo
-    dt = 0.00001  # s
+    dt = 0.001  # s
     dx = 0.1 * (10 ** (-6))  # micro -> m
     T = 2 * 60 * 60  # s (2horas)
     n = 20 * (10 ** (-6))  # micro -> m
 
-    simulation = TrapDetrap(dt, dx, T, n)
+    # dt = 0.001  # s
+    # dx = 0.1 * (10 ** (-6))  # micro -> m
+    # T = 2 * 60 * 60  # s (2horas)
+    # n = 20 * (10 ** (-6))  # micro -> m
 
-    # condicoes de contorno:
-    # N_dif = [[simulation.lower_bound] + [0] * int(simulation.nodes - 1)]
-    # N_trap = [[0] * int(simulation.nodes)]
-    # N = [[simulation.lower_bound] + [0] * int(simulation.nodes - 1)]
+    simulation = TrapDetrap(dt, dx, T, n)
 
     N_dif = [[0] * int(simulation.nodes)]
     N_trap = [[0] * int(simulation.nodes)]
     N = [[0] * int(simulation.nodes)]
 
     for j in range(simulation.iterations):
-        print("solving t={}s".format(j))
+        print("solving j={}".format(j))
 
         N_dif_solution = [0] * int(simulation.nodes)
         N_trap_solution = [0] * int(simulation.nodes)
@@ -86,8 +86,6 @@ def run():
         N_dif.append(N_dif_solution)
         N_trap.append(N_trap_solution)
         N.append(N_solution)
-
-        # print(solution)
 
     final_N_solution = pd.DataFrame(N)
     final_N_dif_solution = pd.DataFrame(N_dif)

@@ -64,8 +64,12 @@ def run():
         N_solution = [0] * int(simulation.nodes)
 
         for i in range(0, simulation.nodes - 1):
+            # gamma = (
+            #                 (N_dif[-1][i] * (simulation.trap_concentration - N_trap[-1][i])) -
+            #                 (simulation.host_atom_concentration * N_trap[-1][i] * simulation.exponential_term)
+            #         ) * simulation.K * simulation.dt
             gamma = (
-                            (N_dif[-1][i] * (simulation.trap_concentration - 6*(10**2)*N_trap[-1][i])) -
+                            (N_dif[-1][i] * (simulation.trap_concentration - N_trap[-1][i])) -
                             (simulation.host_atom_concentration * N_trap[-1][i] * simulation.exponential_term)
                     ) * simulation.K * simulation.dt
             N_trap_solution[i] = gamma + N_trap[-1][i]
