@@ -1,2 +1,27 @@
-Para o coeficiente de difusão constante
+Para o coeficiente de difusão constante, a discretização das equações \autoref{eq:trap-detrap} e \autoref{eq:trap-detrap2} pelo método explícito segue:
 
+Para a concentração de nitrogênio em solução sólida:
+\begin{equation*}
+\dfrac{{N_{dif}}_{i}^{j+1} - {N_{dif}}_{i}^{j}}{\Delta j} = D \dfrac{{N_{dif}}_{i+1}^{j} - 2{N_{dif}}_i^{j} + {N_{dif}}_{i-1}^{j}}{(\Delta i)^2} - S_i^j
+\end{equation*} 
+
+\begin{equation}
+\label{eq:trap-detrap-discr2}
+{N_{dif}}_{i}^{j+1} = {N_{dif}}_{i}^{j} + Fo({N_{dif}}_{i+1}^{j} - 2{N_{dif}}_i^{j} + {N_{dif}}_{i-1}^{j}) - {\Delta j} S_i^j
+\end{equation} 
+
+
+Para a concentração de nitrogênio aprisionado:
+\begin{equation*}
+S_i^j = \dfrac{{N_{trap}}_i^{j+1} - {N_{trap}}_{i}^{j}}{\Delta j} = k_t\left[{N_{dif}}_{i}^{j} \left(H_t-{N_{trap}}_{i}^{j}\right)\right] - k_d{N_{trap}}_i^{j}
+\end{equation*}
+
+
+\begin{equation}
+\label{eq:trap-detrap2-discr2}
+{N_{trap}}_i^{j+1} = {N_{trap}}_{i}^{j} + {\Delta j}\left[k_t\left({N_{dif}}_{i}^{j} \left(H_t-{N_{trap}}_{i}^{j}\right)\right) - k_d{N_{trap}}_i^{j}\right]
+\end{equation}
+
+\myworries{add algum comentario sobre as ccs}
+
+Com as equações \autoref{eq:trap-detrap-discr2} e \autoref{eq:trap-detrap2-discr2} é possível resolver computacionalmente o problema.
