@@ -260,16 +260,13 @@ $$\frac{c_x - c_s}{c_i - c_s} = 1 - erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow 
 		\therefore x \propto  \sqrt{Dt}
 \end{equation}
 
-Para o caso em que $c = \dfrac{c_s + c_i}{2}$: \par
-\myworries{\textit{TO DO}} \par
-\myworries{Coeficiente de Difusao (mas jogar para cima)}
-
 
 \subsection{Mecanismos de difusão em sólidos}
 	Existem diferentes mecanismos de difusão, isto é, diferentes formas em que um átomo pode mudar de posição em um reticulado cristalino. Em geral, em sólidos cristalinos com reticulados bem definidos, a difusão ocorre na forma de movimentos atômicos. A probabilidade de um átomo se deslocar em uma determinada direção e uma dada distância é função da microestrutura do material e das forças interatômicas \cite{glicksman2000diffusion}.
 	As direções possíveis para o movimento aleatórios em materiais cristalinos são limitadas pela sua cristalografia, mais especificamente são as direções paralelas aos vetores que ligam pontos vizinhos do reticulado ou espaços intersticiais.
 	Diferentes mecanismos de difusão podem existir mutuamente sendo que alguns fatores determinam qual será mais frequente, como por exemplo o tamanho do átomo com relação ao átomo hospedeiro. De forma geral, para que ocorra mudança de posição de um átomo é necessário que haja uma posição livre adjacente a sua atual posição e ele deve possuir energia suficiente para quebrar as ligações químicas existentes com seus vizinhos e causar uma distorção no reticulado durante seu deslocamento. \par
-	Os principais mecanismos de difusão são:
+
+Os principais mecanismos de difusão são:
 \myworries{colocar figuras}
 \subsubsection{Difusão por lacuna}
 A difusão por lacuna ocorre quando um átomo se desloca de uma posição normal do reticulado para uma posição vazia, uma lacuna, que em si é um defeito presente na rede cristalina. Quanto maior a quantidade desses defeitos maior a possibilidade de difusão por esse mecanismo \cite{callister2007materials}. Ele predomina no caso de difusão de átomos substitucionais e até mesmo na autodifusão. Nessa difusão ocorre uma distorção do reticulado quando o átomo muda de posição, o que torna necessário que haja uma energia mínima envolvida nesse processo.
@@ -283,8 +280,26 @@ A difusão por lacuna ocorre quando um átomo se desloca de uma posição normal
 A difusão em contorno de grão é mais rápida que os outros mecanismos (assim como ocorre com a difusão em outros defeitos como discordâncias e superfícies externas). Isso se deve ao fato que o espaço disponível nessas regiões é maior do que aquele no volume do reticulado cristalino. Mas pode se tornar pouco significante dado que a seção transversal das áreas é relativamente menor que comparada ao interior do material. 
 
 \subsection{Fatores que influenciam na difusão}
-	A difusão depende da espécie do átomo em difusão e da espécie que constitui o meio em que ele se difunde. Isso ocorre pois o tamanho do átomo e o espaço que ele tem para se locomover influenciam a difusão, o que influencia em qual será o mecanismo predominante da difusão, além da interação química entre ambos ~\cite{callister2007materials}.
-	A temperatura também influencia a difusão à medida que um aumento da temperatura aumenta a vibração dos átomos e consequentemente sua mobilidade e difusão, além de aumentar também a concentração de lacunas. 
+	A difusão depende da espécie do átomo em difusão e da espécie que constitui o meio em que ele se difunde. Isso ocorre pois o tamanho do átomo e o espaço que ele tem para se locomover influenciam a difusão, o que influencia em qual será o mecanismo predominante da difusão, além da interação química entre ambos ~\cite{callister2007materials}. A temperatura também influencia a difusão à medida que um aumento da temperatura aumenta a vibração dos átomos e consequentemente sua mobilidade e difusão, além de aumentar também a concentração de lacunas. 
+	
+	Dada a influência dos diferentes fatores na difusão, como a espécie em difusão, o material hospedeiro e a temperatura, o Coeficiente de Difusão D pode ser dado pela equação \autoref{eq:coeficiente-de-dif}.
+\begin{equation} \label{eq:coeficiente-de-dif}
+	D = D_0 \ {e^{\frac{-E_A}{RT}}}		
+\end{equation}
+
+Os termos das equação \autoref{eq:coeficiente-de-dif} estão listados a seguir:
+
+$D_0$ : constante pré-expnencial independente da temperatura [$m^2/s$]
+
+$E_A$ : energia de ativação para difusão [$J/mol$ ou $eV/átomo$]
+
+$R$ : constante universal dos gases [$8,31 J/mol.K$ ou $8,62 10^{-5} eV/átomo.K$]
+
+$T$ : temperatura absoluta [$K$]
+
+Também é possível utilizar a constante de boltzmann $k_B$ [$J/mol$] no lugar da constante universal dos gases se a energia de ativação estiver em $Joule$.
+
+A energia de ativação é a energia necessária para movimentar um mol de átomos por difusão, quanto maior for, menor será o coeficiente de difusão D. Com relação à temperatura, pode-se observar que quanto mais elevada, maior será o termo exponencial, logo maior o coeficiente de difusão.
 
 \section{Nitretação}
 	A nitretação é um processo de tratamento térmico que promove a adição de nitrogênio através da superfície de metais através da difusão. Esse tratamento é frequentemente utilizado para melhorar as propriedades mecânicas do material, em especial, a sua dureza. No caso de aços austeníticos, também é utilizado para aumentar a resistência ao desgaste sem prejudicar a resistência à corrosão \cite{baranowska2010importance}.
@@ -450,6 +465,7 @@ Trabalho & Método de Nitretação & Coeficiente de Difusão dependente da Conce
 \myworries{vou falar dos programas que eu usei pra programar/simular/fazer os grafico etc, falar quais modelos eu fiz - apontar as secoes onde explico}
 
 Primeiramente foi simulada a solução clássica da Segunda Lei de Fick com coeficiente de difusão constante e concentração de átomos na superfície constante (seções \ref{sec:sol-numerica-2alei}/\ref{sec:modelo11}). Em seguida foi feito um modelo considerando a variação da concentração de átomos na superfície (seções /\ref{sec:modelo12}). Posteriormente o modelo foi incrementado para melhor satisfazer a realidade da difusão do nitrogênio utilizando a teoria dos sítios de \textit{trapping-detrapping}, considerando a variação da concentração superficial(seções /\ref{sec:modelo21}) e testando a dependência do coeficiente de difusão em relação à concentração (seções /\ref{sec:modelo22}).
+O código elaborado para o trabalho foi feito em python e pode ser observado nos anexos.
 
 \section{Métodos Numéricos e Algoritmos}
 
@@ -473,12 +489,12 @@ Primeiramente foi simulada a solução clássica da Segunda Lei de Fick com coef
 \section{Modelo de \textit{Trapping-Detrapping}}
 \label{sec:my-trapdetrap}
 \myworries{explicacao do meu modelo - todas as consideracoes - formulas etc}
+
 \input{chapters/materiais-e-metodos/trap-detrap}
 
 \subsection{Coeficiente de Difusão Constante}
 \label{sec:my-trapdetrap-cte}
 \input{chapters/materiais-e-metodos/trap-detrap-Dcte}
-\myworries{\textit{TO DO}}
 
 \subsection{Coeficiente de Difusão Variável}
 \label{sec:my-trapdetrap-full}
@@ -488,9 +504,13 @@ Primeiramente foi simulada a solução clássica da Segunda Lei de Fick com coef
 \label{sec:params}
 \myworries{\textit{TO DO}}
 \subsection{Fluxo na Superfície}
+\myworries{this might die}
 O fluxo de átomos na superfície depende de muitos fatores e é influenciado pelo tipo de processo e todas as variáveis envolvidas, como temperatura, pressão, potencial, densidade de corrente, etc.
 A primeira simplificação feita nesse estudo foi que a concentração na superfície se mantinha constante do início ao fim do processo de nitretação. Nesse caso, considera-se que existe equilíbrio termodinâmico entre a  mistura gasosa e o metal em tratamento. Esse equilíbrio é dado pela reação $\frac{1}{2}$ N${_2(g)}$ $\leftrightharpoons$ [N] $\gamma$ (no aço) \cite{tschiptschin2000thermodynamics}.
 
+\subsection{Parâmetros}
+\label{params_sub}
+\input{chapters/parametros-e-constantes/parametros}
 
 \chapter{Resultados e Discussões}
 \myworries{\textit{TO DO ------}}
