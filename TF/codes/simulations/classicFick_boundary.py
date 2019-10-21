@@ -51,8 +51,8 @@ def run():
     # T = 10
     # n = 10
     # condicoes reais
-    # dt = 0.00001  # s
-    dt = 0.01  # s
+    dt = 0.0001  # s
+    # dt = 0.01  # s
     dx = 0.1 * (10 ** (-6))  # micro -> m
     T = 2 * 60 * 60  # s (2horas)
     n = 20 * (10 ** (-6))  # micro -> m
@@ -63,7 +63,9 @@ def run():
     # condicoes de contorno:
     C = [[0] * int(simulation.nodes)]
 
-    for i in np.arange(0, T, dt):
+    # for i in np.arange(0, T, dt):
+    print('total iterations', T//dt)
+    for i in range(1, int(T/dt) + 1):
 
         print("solving t={}s".format(i))
         main_diag = [1 - a + simulation.flux_term, -1*(a**2+2*a+1)] + [-(1 + 2 * a)] * (simulation.nodes - 3)
@@ -72,15 +74,20 @@ def run():
         u_diag = [a] + secondary_diag + [0]
         l_diag = [0, a ** 2 - a*simulation.flux_term] + secondary_diag
 
-        d = simulation.create_d(C[int(i / dt)][0:-1], a, simulation.lower_bound)
+        d = simulation.create_d(C[i%1000-1][0:-1], a, simulation.lower_bound)
         solution = TDMA_solver(main_diag, l_diag, u_diag, d)
         # solution.insert(0, simulation.lower_bound)
         solution.append(simulation.upper_bound)
         C.append(solution)
         print(solution)
 
-    final_solution = pd.DataFrame(C)
-    final_solution.to_excel(r"C:\Users\Julia\Documents\tcc\TF\codes\results\classicFick_not_constant_real.xlsx")
+        if i % 1000 == 0:
+            C = C[-1:]
+        if i % 10000 == 0:
+            final_solution = pd.DataFrame(C)
+            final_solution.to_excel(r"C:\Users\Julia\Documents\tcc\TF\codes\results\new\2\classicFick_not_constant_test{}.xlsx".format(i))
+    # final_solution = pd.DataFrame(C)
+    # final_solution.to_excel(r"C:\Users\Julia\Documents\tcc\TF\codes\results\new\classicFick_not_constant_test{}.xlsx".format(i))
 
 
 if __name__ == "__main__":
