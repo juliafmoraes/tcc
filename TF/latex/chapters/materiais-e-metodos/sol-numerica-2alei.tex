@@ -5,11 +5,11 @@ Recordando a Segunda Lei de Fick mencionada na seção \ref{sec:difusao}, estuda
 \pdv{C(x,t)}{t} = D(C)\pdv[2]{C(x,t)}{x}
 \end{equation}
 
-Para essa solução, considera-se o coeficiente de difusão constante (independente da concentração, temos D(C) = D. Utilizando o método das diferenças finitas apresentado na seção \ref{sec:dif-fin}, a discretização do espaço será dada por um espaçamento {$\Delta i$}, e representa-se por $i$ o i-ésimo nó do eixo x. Para o passo do tempo, utilizou-se um passo {$\Delta j$}, e $j$ nota o j-ésimo instante de tempo. Assim, tem-se a representação discretizada da eq.\ref{eq:2alei-num} dada pela eq.\ref{eq:2alei-discr}. Destaca-se que foi utilizado o método implícito das diferenças finitas para a realização do trabalho.
+Para essa solução, considera-se o coeficiente de difusão constante (independente da concentração, temos D(C) = D. Utilizando o método das diferenças finitas apresentado na seção \ref{sec:dif-fin}, a discretização do espaço será dada por um espaçamento {$\Delta x$}, e representa-se por $i$ o i-ésimo nó do eixo x. Para o passo do tempo, utilizou-se um passo {$\Delta t$}, e $j$ nota o j-ésimo instante de tempo. Assim, tem-se a representação discretizada da eq.\ref{eq:2alei-num} dada pela eq.\ref{eq:2alei-discr}. Destaca-se que foi utilizado o método implícito das diferenças finitas para a realização do trabalho.
 
 \begin{equation}
 \label{eq:2alei-discr}
-\dfrac{C_i^{j+1} - C_i^j}{\Delta j} = D\dfrac{C_{i+1}^{j+1} - 2C_i^{j+1} + C_{i-1}^{j+1}}{(\Delta i)^2}
+\dfrac{C_i^{j+1} - C_i^j}{\Delta t} = D\dfrac{C_{i+1}^{j+1} - 2C_i^{j+1} + C_{i-1}^{j+1}}{(\Delta x)^2}
 \end{equation}
 
 \myworries{colocar o grafico mostrando os nós}
@@ -40,14 +40,14 @@ A eq.(\ref{eq:2alei-discr}) pode ser reescrita como:
 
 \begin{equation}
 \label{eq:antesFo}
-C_i^{j+1} - \frac{D\Delta j}{(\Delta i)^2} (C_{i+1}^{j+1} - 2C_i^{j+1} + C_{i-1}^{j+1}) = C_i^j
+C_i^{j+1} - \frac{D\Delta t}{(\Delta x)^2} (C_{i+1}^{j+1} - 2C_i^{j+1} + C_{i-1}^{j+1}) = C_i^j
 \end{equation}
 
-A relação $\dfrac{D\Delta j}{(\Delta i)^2}$ é um número adimensional chamado de número de Fourier. Seja $Fo = \dfrac{D\Delta j}{(\Delta i)^2} $. Reescrevemos a eq.\ref{eq:antesFo} subsitindo com $Fo$, isolando a incógnita ao lado esquerdo:
+A relação $\dfrac{D\Delta t}{(\Delta x)^2}$ é um número adimensional chamado de número de Fourier. Seja $Fo = \dfrac{D\Delta t}{(\Delta x)^2} $. Reescrevemos a eq.\ref{eq:antesFo} subsitindo com $Fo$, isolando a incógnita ao lado esquerdo:
 
 \begin{gather*}
 \label{eq:depoisFo}
-- FoC_{i+1}^{j+1} + (1+2Fo)C_i^{j+1} - FoC_{i-1}^{j+1}) = C_i^j \\
+- FoC_{i+1}^{j+1} + (1+2Fo)C_i^{j+1} - FoC_{i-1}^{j+1} = C_i^j \\
 C_i^{j+1} = \dfrac{1}{(1+2Fo)}C_i^j + \dfrac{Fo}{(1+2Fo)}C_{i-1}^{j+1} + \dfrac{Fo}{(1+2Fo)}C_{i+1}^{j+1}
 \end{gather*}
 
@@ -56,20 +56,20 @@ Segundo o critério de estabilidade mencionado na seção \ref{sec:dif-fin}, com
 Agora desenvolve-se o sistema de equações para resolver o problema diferencial.
 
 \begin{equation*}
-FoC_{i+1}^{j+1} - (1+2Fo)C_i^{j+1} + FoC_{i-1}^{j+1}) + C_i^j = 0
+FoC_{i+1}^{j+1} - (1+2Fo)C_i^{j+1} + FoC_{i-1}^{j+1} + C_i^j = 0
 \end{equation*}
 
 \begin{equation*}
 \label{eq:depoisFo}
 \begin{matrix}
 i = 1: \qquad FoC_{0}^{j+1} - (1+2Fo)C_1^{j+1} + FoC_{2}^{j+1} + C_1^j & = & 0\\
-(1+2Fo)C_1^{j+1} - FoC_{2}^{j+1})& = & FoC_{s}^{j+1}  + C_1^j \\ 
+(1+2Fo)C_1^{j+1} - FoC_{2}^{j+1}& = & FoC_{s}^{j+1}  + C_1^j \\ 
 \\
 i = 2: \qquad FoC_{1}^{j+1} - (1+2Fo)C_2^{j+1} + FoC_{3}^{j+1} + C_2^j & = & 0\\
-(1+2Fo)C_2^{j+1} - FoC_{3}^{j+1}) - FoC_{1}^{j+1} & = & C_2^j \\ 
+(1+2Fo)C_2^{j+1} - FoC_{3}^{j+1} - FoC_{1}^{j+1} & = & C_2^j \\ 
 \vdots \\
 i = n: \qquad FoC_{n-1}^{j+1} - (1+2Fo)C_n^{j+1} + FoC_{n+1}^{j+1} + C_n^j & = & 0\\
-(1+2Fo)C_n^{j+1} - FoC_{n-1}^{j+1}) & = & C_n^j \\ 
+(1+2Fo)C_n^{j+1} - FoC_{n-1}^{j+1} & = & C_n^j \\ 
 \end{matrix}
 \end{equation*}
 
