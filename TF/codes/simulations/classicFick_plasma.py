@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import argparse
+
 import numpy as np
 import pandas as pd
 import math
@@ -32,15 +34,15 @@ class ClassicFickBoundary(Simulation):
         self.lower_bound = lower
         self.upper_bound = upper
 
-    def create_d(self, c, a, lb):
+    def create_d(self, c):
         d = [-1 * element for element in c]
         d[0] = c[0] + self.flux_term * self.host_atom_concentration
         return d
 
 
-def run():
+def run(outdir: str):
     # condicoes de teste
-    lower_bound = 0
+    lower_bound = None
     upper_bound = 0
 
     # D = 0.1
@@ -49,7 +51,7 @@ def run():
     # T = 10
     # n = 10
     # condicoes reais
-    dt = 0.01  # s
+    dt = 0.0001  # s
     # dt = 0.01  # s
     dx = 0.1 * (10 ** (-6))  # micro -> m
     T = 2 * 60 * 60  # s (2horas)
@@ -63,32 +65,31 @@ def run():
 
     # for i in np.arange(0, T, dt):
     print('total iterations', T // dt)
+    main_diag = [1 - a + simulation.flux_term] + [-(1 + 2 * a)] * (simulation.nodes - 2)
+    secondary_diag = [a] * (simulation.nodes - 2)
+
+    u_diag = secondary_diag + [0]
+    l_diag = [0] + secondary_diag
     for i in range(1, int(T / dt) + 1):
 
         print("solving t={}s".format(i))
-        main_diag = [1 - a + simulation.flux_term] + [-(1 + 2 * a)] * (simulation.nodes - 2)
-        secondary_diag = [a] * (simulation.nodes - 2)
-
-        u_diag = secondary_diag + [0]
-        l_diag = [0] + secondary_diag
-
-        d = simulation.create_d(C[i % 1000 - 1][0:-1], a, simulation.lower_bound)
+        d = simulation.create_d(C[i % 1000 - 1][0:-1])
         solution = TDMA_solver(main_diag, l_diag, u_diag, d)
-        # solution.insert(0, simulation.lower_bound)
         solution.append(simulation.upper_bound)
         C.append(solution)
         print(solution)
 
         if i % 1000 == 0:
             C = C[-1:]
-        if i % 1000 == 0:
+        if i % 10000 == 0:
             final_solution = pd.DataFrame(C)
             final_solution.to_excel(
-                r"C:\Users\Julia\Documents\tcc\TF\codes\results\new\20191026\test2\classicFick_not_constant_teste{}.xlsx".format(i),
+                r"{}\classicFickPlasma_teste{}.xlsx".format(outdir, i),
                 index=False, header=[x for x in range(0, simulation.nodes)])
-    # final_solution = pd.DataFrame(C)
-    # final_solution.to_excel(r"C:\Users\Julia\Documents\tcc\TF\codes\results\new\classicFick_not_constant_test{}.xlsx".format(i))
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Classic Fick - Plasma boundary')
+    parser.add_argument('outdir', type=str, help='Output dir for results')
+    args = parser.parse_args()
     run()

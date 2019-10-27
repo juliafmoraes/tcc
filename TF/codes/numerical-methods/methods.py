@@ -14,7 +14,7 @@ def TDMA_solver(diag, l_diag, u_diag, d):
     u_diag[0] = u_diag[0] / diag[0]
     d[0] = d[0] / diag[0]
     for eq in range(1, n-1):
-        print("TDMA_eq:", eq)
+        # print("TDMA_eq:", eq)
         u_diag[eq] = u_diag[eq] / (diag[eq] - l_diag[eq] * u_diag[eq - 1])
         d[eq] = (d[eq] - l_diag[eq] * d[eq - 1]) / (diag[eq] - l_diag[eq] * u_diag[eq - 1])
 

@@ -67,7 +67,7 @@ class TrapDetrap(Simulation):
             # N.append(N_solution)
 
             #save results to use
-            if j*dt in [60, 600, 1800] or j*dt % 3600 == 0:
+            if int(j*dt) in [60, 600, 1800] or j*dt % 3600 == 0:
                 writer = pd.ExcelWriter(r"C:\Users\Julia\Documents\tcc\TF\codes\results\new\1\trap_detrap{}.xlsx".format(j*dt))
                 df_N_dif = pd.DataFrame(N_dif_solution).T
                 df_N_trap = pd.DataFrame(N_trap_solution).T
