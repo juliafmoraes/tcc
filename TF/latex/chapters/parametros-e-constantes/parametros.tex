@@ -1,10 +1,10 @@
 Os parâmetros utilizados estão explicitados na Tabela \ref{tab:resumoParametros}. Todos os valores de parâmetros que não são conhecidos da literatura foram retirados de \cite{moskalioviene2011modeling}.
 
-\begin{table}[]
+\begin{table}[ht]
 \centering
 \setlength{\doublerulesep}{\arrayrulewidth}
 {\def\arraystretch{2}\tabcolsep=10pt
-\caption{Parâmetros}
+\caption{Parâmetros compartilhados pelos modelos}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{c c c C{4cm}}
 \hline\hline
@@ -22,5 +22,57 @@ $k_B$  & Constante de Boltzmann & $ 1,38064852 \times 10^{-23} J/K$ \\
 }
 \end{table}
 
+\subsection{Especificações do material}
+Para a execução das simulações foi considerado que o aço em questão é um AISI 316L com composição 11,3 at.\%Ni, 19,5 at.\%Cr (e restante Fe, para efeito dos cálculos). Essa escolha foi feita pois foi o material utilizado por \cite{moskalioviene2011modeling} e \cite{christiansen2008nitrogen} usa um AISI 316 com composição similar.
 
+\subsection{Unidades de concentração}
+Na aplicação foram utilizadas as concentrações em átomos/m$^3$, mas para melhor entendimento dos resultados e conformidade com os artigos estudados, a concentração é mostrada em at.\%.
+Para isso, foram utilizados os volumes molares dos elementos do material, definidos na \autoref{tab:volmolar} e o número de Avogadro ($N_A = 6,0221409 \times 10^{23}$).
+
+\begin{table}[ht]
+\centering
+\setlength{\doublerulesep}{\arrayrulewidth}
+{\def\arraystretch{2}\tabcolsep=10pt
+\caption{Volume Molar para alguns elementos}
+\begin{tabular}{c c c}
+\hline\hline
+Elemento & Valor & Fonte\\\hline
+Fe & 7,09 $\times$ 10$^{-6}$ m$^3$/mol  & \cite{singman1984atomic}\\
+Cr & 7,23 $\times$ 10$^{-6}$ m$^3$/mol  & \cite{singman1984atomic}\\
+Ni & 6,59 $\times$ 10$^{-6}$ m$^3$/mol  & \cite{singman1984atomic}\\
+%N & 4 $\times$ 10$^{-5}$ m$^3$/mol  & \cite{galdikas2011modeling}\\ 
+\hline\hline
+\end{tabular}
+\label{tab:volmolar}
+}
+\end{table}
+
+A partir desses volumes molares, é possível o obter a concentração em at.\% utilizando a concentração em m$^3$/mol.
+
+\begin{table}[ht]
+\centering
+\setlength{\doublerulesep}{\arrayrulewidth}
+{\def\arraystretch{2}\tabcolsep=10pt
+\caption{Transformação de Unidade para concentração}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c c c c}
+\hline\hline
+Elemento & at.\% & Volume Molar (m$^3$/mol) & átomos/m$^3$\\\hline
+Fe & 69,2\% & 7,09 $\times$ 10$^{-6}$  &  1,032  $\times$ 10$^{28}$\\
+Cr & 19,5\% & 7,23 $\times$ 10$^{-6}$  &  1,624 $\times$ 10$^{28}$\\
+Ni & 11,3\% & 6,59 $\times$ 10$^{-6}$  & 5,877  $\times$ 10$^{28}$\\
+TOTAL (multiplicado pela composição) & &  & 8,534 $\times$ 10$^{28}$\\ 
+\hline\hline
+\end{tabular}
+\label{tab:volmolar-convert}
+}
+}
+\end{table}
+
+Sendo assim, a composição de nitrogênio em at.\% pode ser obtida utilizando a eq.\autoref{eq:convert}
+
+\begin{equation}
+\label{eq:convert}
+	N(at.\%) = \dfrac{N(m^{-3})}{N(m^{-3}) + 8,534 \times 10^{28}\\  } 
+\end{equation}
 

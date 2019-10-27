@@ -2,10 +2,10 @@ Para o caso de nitretação gasosa, segundo o artigo de \cite{christiansen2008ni
 
 \begin{equation}
 \label{eq:cs-gas}
-C_{s}(t) = C_{\infty}(1 - e^{\beta t})
+C_{s}(t) = C_{\infty}(1 - e^{-\beta t})
 \end{equation}
 
-Sendo assim, basta substituir $C_s^{j+1} = C_{\infty}(1 - e^{\beta j\Delta t})$ no desenvolvimento realizado na seção \autoref{sec:modelo11}, de forma que o sistema apresentado (\cmrtext{AC$^{j+1}$ = B$^j$}) tenha uma equação para $c_0$:
+Sendo assim, basta substituir $C_s^{j+1} = C_{\infty}(1 - e^{-\beta j\Delta t})$ no desenvolvimento realizado na seção \autoref{sec:modelo11}, de forma que o sistema apresentado (\cmrtext{AC$^{j+1}$ = B$^j$}) tenha uma equação para $c_0$:
 
 \begin{equation*}
 	\cmrtext{A} =
@@ -29,7 +29,7 @@ Sendo assim, basta substituir $C_s^{j+1} = C_{\infty}(1 - e^{\beta j\Delta t})$ 
 	\qquad
 	\cmrtext{B^j} =	
 	\begin{bmatrix}
-		C_{\infty}(1 - e^{\beta j\Delta t}) \\
+		C_{\infty}(1 - e^{-\beta j\Delta t}) \\
 		c_1^j \\
 		c_2^{j} \\
 		\vdots \\
