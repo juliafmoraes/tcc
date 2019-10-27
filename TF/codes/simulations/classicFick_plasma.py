@@ -17,7 +17,7 @@ class ClassicFickBoundary(Simulation):
         super().__init__(dt, dx, T, n)
         self.temperature = 673  # K
         self.alfa = 1
-        self.j_zero = 3 * (10**(-9)) #m/2?
+        self.j_zero = 3 * (10 ** (-9))  # m/2?
         # self.host_atom_concentration = 50
         self.host_atom_concentration = 7.29 * (10 ** 28)  # m-3
         self.diffusion_energy = 1.7622 * (10 ** (-19))  # J
@@ -32,11 +32,9 @@ class ClassicFickBoundary(Simulation):
         self.lower_bound = lower
         self.upper_bound = upper
 
-
     def create_d(self, c, a, lb):
         d = [-1 * element for element in c]
-        d[0] = c[0] + self.flux_term*self.host_atom_concentration
-        d[1] = -a*(c[0] + self.flux_term * self.host_atom_concentration) - c[1]
+        d[0] = c[0] + self.flux_term * self.host_atom_concentration
         return d
 
 
@@ -51,7 +49,7 @@ def run():
     # T = 10
     # n = 10
     # condicoes reais
-    dt = 0.0001  # s
+    dt = 0.01  # s
     # dt = 0.01  # s
     dx = 0.1 * (10 ** (-6))  # micro -> m
     T = 2 * 60 * 60  # s (2horas)
@@ -64,17 +62,17 @@ def run():
     C = [[0] * int(simulation.nodes)]
 
     # for i in np.arange(0, T, dt):
-    print('total iterations', T//dt)
-    for i in range(1, int(T/dt) + 1):
+    print('total iterations', T // dt)
+    for i in range(1, int(T / dt) + 1):
 
         print("solving t={}s".format(i))
-        main_diag = [1 - a + simulation.flux_term, -1*(a**2+2*a+1)] + [-(1 + 2 * a)] * (simulation.nodes - 3)
-        secondary_diag = [a] * (simulation.nodes - 3)
+        main_diag = [1 - a + simulation.flux_term] + [-(1 + 2 * a)] * (simulation.nodes - 2)
+        secondary_diag = [a] * (simulation.nodes - 2)
 
-        u_diag = [a] + secondary_diag + [0]
-        l_diag = [0, a ** 2 - a*simulation.flux_term] + secondary_diag
+        u_diag = secondary_diag + [0]
+        l_diag = [0] + secondary_diag
 
-        d = simulation.create_d(C[i%1000-1][0:-1], a, simulation.lower_bound)
+        d = simulation.create_d(C[i % 1000 - 1][0:-1], a, simulation.lower_bound)
         solution = TDMA_solver(main_diag, l_diag, u_diag, d)
         # solution.insert(0, simulation.lower_bound)
         solution.append(simulation.upper_bound)
@@ -83,9 +81,11 @@ def run():
 
         if i % 1000 == 0:
             C = C[-1:]
-        if i % 10000 == 0:
+        if i % 1000 == 0:
             final_solution = pd.DataFrame(C)
-            final_solution.to_excel(r"C:\Users\Julia\Documents\tcc\TF\codes\results\new\2\classicFick_not_constant_test{}.xlsx".format(i))
+            final_solution.to_excel(
+                r"C:\Users\Julia\Documents\tcc\TF\codes\results\new\20191026\test2\classicFick_not_constant_teste{}.xlsx".format(i),
+                index=False, header=[x for x in range(0, simulation.nodes)])
     # final_solution = pd.DataFrame(C)
     # final_solution.to_excel(r"C:\Users\Julia\Documents\tcc\TF\codes\results\new\classicFick_not_constant_test{}.xlsx".format(i))
 
