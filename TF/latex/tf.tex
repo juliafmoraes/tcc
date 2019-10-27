@@ -465,7 +465,8 @@ Trabalho & Método de Nitretação & Coeficiente de Difusão dependente da Conce
 \myworries{\textit{TO DO}}
 \myworries{vou falar dos programas que eu usei pra programar/simular/fazer os grafico etc, falar quais modelos eu fiz - apontar as secoes onde explico}
 
-Primeiramente foi simulada a solução clássica da Segunda Lei de Fick com coeficiente de difusão constante e concentração de átomos na superfície constante (seções \ref{sec:sol-numerica-2alei}/\ref{sec:modelo11}). Em seguida foi feito um modelo considerando a variação da concentração de átomos na superfície (seções /\ref{sec:modelo12}). Posteriormente o modelo foi incrementado para melhor satisfazer a realidade da difusão do nitrogênio utilizando a teoria dos sítios de \textit{trapping-detrapping}, considerando a variação da concentração superficial(seção\ref{sec:modelo21}) e testando a dependência do coeficiente de difusão em relação à concentração (seção\ref{sec:modelo22}).
+Primeiramente foi simulada a solução clássica da Segunda Lei de Fick com coeficiente de difusão constante e concentração de átomos na superfície constante (seções \ref{sec:sol-numerica-2alei}/\ref{sec:modelo11}). Em seguida foi feito um modelo considerando a variação da concentração de átomos na superfície (seção \ref{sec:modelo12}). Posteriormente o modelo foi incrementado para melhor satisfazer a realidade da difusão do nitrogênio utilizando a teoria dos sítios de \textit{trapping-detrapping}, considerando a variação da concentração superficial(seção \ref{sec:modelo21}) .
+%e testando a dependência do coeficiente de difusão em relação à concentração (seção\ref{sec:modelo22}).
 O código elaborado para o trabalho foi feito em python e pode ser observado nos anexos. \myworries{colocar o git}
 
 \section{Métodos Numéricos e Algoritmos}
@@ -488,7 +489,6 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 \input{chapters/materiais-e-metodos/sol-numerica-2alei-plasma}
 \input{chapters/materiais-e-metodos/sol-numerica-2alei-gas}
 
-\myworries{\textit{TO DO}}
 
 \section{Modelo de \textit{Trapping-Detrapping}}
 \label{sec:my-trapdetrap}
@@ -500,15 +500,16 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 \label{sec:my-trapdetrap-cte}
 \input{chapters/materiais-e-metodos/trap-detrap-Dcte}
 
-\subsection{Coeficiente de Difusão Variável}
-\label{sec:my-trapdetrap-full}
+%\subsection{Coeficiente de Difusão Variável}
+%\label{sec:my-trapdetrap-full}
 \myworries{\textit{TO DO}}
 
 \section{Parâmetros e Constantes}
 \label{sec:params}
 \myworries{\textit{TO DO}}
 \subsection{Fluxo na Superfície}
-\myworries{this might die}
+\myworries{//this might die}
+
 O fluxo de átomos na superfície depende de muitos fatores e é influenciado pelo tipo de processo e todas as variáveis envolvidas, como temperatura, pressão, potencial, densidade de corrente, etc.
 A primeira simplificação feita nesse estudo foi que a concentração na superfície se mantinha constante do início ao fim do processo de nitretação. Nesse caso, considera-se que existe equilíbrio termodinâmico entre a  mistura gasosa e o metal em tratamento. Esse equilíbrio é dado pela reação $\frac{1}{2}$ N${_2(g)}$ $\leftrightharpoons$ [N] $\gamma$ (no aço) \cite{tschiptschin2000thermodynamics}.
 
@@ -517,11 +518,12 @@ A primeira simplificação feita nesse estudo foi que a concentração na superf
 \input{chapters/parametros-e-constantes/parametros}
 
 \chapter{Resultados}
-\myworries{\textit{TO DO}}
+\myworries{\textit{//TO DO}}
 \section{Modelo 1 - Segunda Lei de Fick}
 
 \subsection{Concentração na superfície constante}
 \label{sec:modelo11}
+\input{chapters/resultados/sol-numerica-2alei-cscte}
 
 \subsection{Concentração na superfície variável}
 \label{sec:modelo12}
@@ -530,9 +532,6 @@ A primeira simplificação feita nesse estudo foi que a concentração na superf
 \section{Modelo 2 - \textit{Trapping-Detrapping}}
 \subsection{Coeficiente de Difusão Constante}
 \label{sec:modelo21}
-
-\subsection{Coeficiente de Difusão inlfuenciado pela Concentração}
-\label{sec:modelo22}
 
 \section{Discussão}
 \myworries{\textit{TO DO}}
