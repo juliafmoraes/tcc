@@ -5,7 +5,7 @@ Recordando a Segunda Lei de Fick mencionada na seção \ref{sec:difusao}, estuda
 \pdv{C(x,t)}{t} = D(C)\pdv[2]{C(x,t)}{x}
 \end{equation}
 
-Para essa solução, considera-se o coeficiente de difusão constante (independente da concentração, temos D(C) = D. Utilizando o método das diferenças finitas apresentado na seção \ref{sec:dif-fin}, a discretização do espaço será dada por um espaçamento {$\Delta x$}, e representa-se por $i$ o i-ésimo nó do eixo x. Para o passo do tempo, utilizou-se um passo {$\Delta t$}, e $j$ nota o j-ésimo instante de tempo. Assim, tem-se a representação discretizada da eq.\ref{eq:2alei-num} dada pela eq.\ref{eq:2alei-discr}. Destaca-se que foi utilizado o método implícito das diferenças finitas para a realização do trabalho.
+Para essa solução, considera-se o coeficiente de difusão constante (independente da concentração, D(C) = D. Utilizando o método das diferenças finitas apresentado na seção \ref{sec:dif-fin}, a discretização do espaço será dada por um espaçamento {$\Delta x$}, e representa-se por $i$ o i-ésimo nó do eixo x. Para o passo do tempo, utilizou-se um passo {$\Delta t$}, e $j$ nota o j-ésimo instante de tempo. Assim, tem-se a representação discretizada da eq.\ref{eq:2alei-num} dada pela eq.\ref{eq:2alei-discr}. Destaca-se que foi utilizado o método implícito das diferenças finitas para essa parte do trabalho.
 
 \begin{equation}
 \label{eq:2alei-discr}
@@ -43,7 +43,7 @@ A eq.(\ref{eq:2alei-discr}) pode ser reescrita como:
 C_i^{j+1} - \frac{D\Delta t}{(\Delta x)^2} (C_{i+1}^{j+1} - 2C_i^{j+1} + C_{i-1}^{j+1}) = C_i^j
 \end{equation}
 
-A relação $\dfrac{D\Delta t}{(\Delta x)^2}$ é um número adimensional chamado de número de Fourier. Seja $Fo = \dfrac{D\Delta t}{(\Delta x)^2} $. Reescrevemos a eq.\ref{eq:antesFo} subsitindo com $Fo$, isolando a incógnita ao lado esquerdo:
+A relação $\dfrac{D\Delta t}{(\Delta x)^2}$ é um número adimensional chamado de número de Fourier. Seja $Fo = \dfrac{D\Delta t}{(\Delta x)^2} $, a eq.\ref{eq:antesFo} é reescrita subsitindo com $Fo$, isolando a incógnita ao lado esquerdo:
 
 \begin{gather*}
 \label{eq:depoisFo}

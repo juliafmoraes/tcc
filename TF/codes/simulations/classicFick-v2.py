@@ -24,10 +24,9 @@ class ClassicFick(Simulation):
         self.D_coef = self.D_zero * math.exp(-self.diffusion_energy / (self.boltzmann_constant * self.temperature))
         self.boundary_conditions(lower, upper)
 
-
     def boundary_conditions(self, lower, upper):
-            self.lower_bound = lower
-            self.upper_bound = upper
+        self.lower_bound = lower
+        self.upper_bound = upper
 
 
 def create_d(c, a, lb):
@@ -38,12 +37,12 @@ def create_d(c, a, lb):
 
 def run(outdir: str):
     # condicoes de teste
-    lower_bound = 2.8496 * (10 ** 28) #m^-3
+    lower_bound = 2.0358 * (10 ** 28)  # m^-3
     upper_bound = 0
     dt = 0.01  # s
     dx = 0.1 * (10 ** (-6))  # micro -> m
-    T = 2 * 60 * 60  # s (2horas)
-    n = 20 * (10 ** (-6))  # micro -> m
+    T = 22 * 60 * 60  # s (22horas)
+    n = 35 * (10 ** (-6))  # micro -> m
     simulation = ClassicFick(dt, dx, T, n, lower_bound, upper_bound)
     a = simulation.D_coef * dt / (dx ** 2)
 
@@ -65,10 +64,10 @@ def run(outdir: str):
         if i % 1000 == 0:
             print("solving t={}s  --> {}".format(i, i / int(T / dt)))
             C = C[-1:]
-        if i*dt in [60.0, 600.0, 1800.0] or i*dt % 3600 == 0:
+        if i * dt in [60.0, 600.0, 1800.0] or i * dt % 3600 == 0:
             final_solution = pd.DataFrame(C)
             final_solution.to_excel(
-                r"{}\classicFickCsCte_{}.xlsx".format(outdir, i*dt),
+                r"{}\classicFickCsCte_{}.xlsx".format(outdir, i * dt),
                 index=False, header=[x for x in range(0, simulation.nodes)])
 
 

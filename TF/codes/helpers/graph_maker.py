@@ -33,7 +33,7 @@ def plot(inputdir: str, outputdir: str):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Graph Maker')
     parser.add_argument('input', type=str,
-                        help=r'Input Dir for data (e.g C:\Users\Julia\Documents\tcc\TF\codes\results\plot\plot_test2.xlsx)')
+                        help=r'Input Dir for data (e.g C:\Users\Julia\Documents\tcc\TF\codes\results\plot\20191029\plot_classicFickGasBeta.xlsx)')
     parser.add_argument('outdir', type=str,
                         help=r'Output Dir for graph (e.g C:\Users\Julia\Documents\tcc\TF\codes\helpers\test8.png)')
     args = parser.parse_args()

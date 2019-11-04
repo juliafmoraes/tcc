@@ -20,7 +20,8 @@ class ClassicFickGas(Simulation):
         self.boltzmann_constant = 1.38064852 * (10 ** (-23))  # m2 kg s-2 K-1 = (J/K)
         self.D_zero = 8.37 * (10 ** (-8))  # m2/s
         self.beta = 0.0001
-        self.c_eq = 2.8496 * (10**28)
+        # self.c_eq = 2.8496 * (10**28)
+        self.c_eq = 2.0358 * (10 ** 28)  # m^-3
         self.D_coef = self.D_zero * math.exp(-self.diffusion_energy / (self.boltzmann_constant * self.temperature))
         self.boundary_conditions(lower, upper)
 
@@ -30,7 +31,6 @@ class ClassicFickGas(Simulation):
 
     def get_surface_conc(self, t):
         return self.c_eq*(1-math.exp(-self.beta*t))
-
 
 def create_d(c, a, simulation, t):
     d = [-1 * element for element in c]
@@ -50,8 +50,8 @@ def run(outdir: str):
     # condicoes reais
     dt = 0.01  # s
     dx = 0.1 * (10 ** (-6))  # micro -> m
-    T = 2 * 60 * 60  # s (2horas)
-    n = 20 * (10 ** (-6))  # micro -> m
+    T = 22 * 60 * 60  # s (22horas)
+    n = 35 * (10 ** (-6))  # micro -> m
     simulation = ClassicFickGas(dt, dx, T, n, lower_bound, upper_bound)
     D = simulation.D_coef
     a = D * dt / (dx ** 2)
@@ -66,7 +66,7 @@ def run(outdir: str):
     u_diag = secondary_diag + [0]
 
     for i in range(1, int(T / dt) + 1):
-        print("solving t={}s  --> {}".format(i, i/int(T / dt)))
+
         d = create_d(C[i % 1000 - 1][1:-1], a, simulation, i*simulation.dt)
         solution = TDMA_solver(main_diag, l_diag, u_diag, d)
         solution.insert(0, simulation.get_surface_conc(i*simulation.dt))
@@ -75,6 +75,7 @@ def run(outdir: str):
         # print(solution)
 
         if i % 1000 == 0:
+            print("solving t={}s  --> {}".format(i, i / int(T / dt)))
             C = C[-1:]
         if i*dt in [60.0, 600.0, 1800.0] or i*dt % 3600 == 0:
             final_solution = pd.DataFrame(C)

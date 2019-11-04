@@ -57,7 +57,7 @@ def run():
         print(solution)
 
     final_solution = pd.DataFrame(C)
-    final_solution.to_excel(r"C:\Users\Julia\Documents\tcc\TF\codes\results\classicFick1013_2710.xlsx")
+    final_solution.to_excel(r"C:\Users\Julia\Documents\tcc\TF\codes\results\new\20191028\t22\classicFick1013_2710.xlsx")
 
 
 if __name__ == "__main__":

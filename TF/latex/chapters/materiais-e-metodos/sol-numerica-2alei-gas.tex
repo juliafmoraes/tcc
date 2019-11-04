@@ -1,4 +1,4 @@
-Para o caso de nitretação gasosa, segundo o artigo de \cite{christiansen2008nitrogen}, uma forma de simular a concentração na superfície é utilizando a relação dada pela equação \autoref{eq:cs-gas}. Na qual, t é o instante de tempo, $\beta$ determina a velocidade com que a concentração na superfície atinge a concentração em equilíbrio e $C_{\infty}$ é a concentração de equilíbrio para o gás e o aço.
+Para o caso de nitretação gasosa, segundo o artigo de \cite{christiansen2008nitrogen}, uma forma de simular a concentração na superfície é utilizando a relação dada pela equação \autoref{eq:cs-gas}. Na qual, t é o instante de tempo, $\beta$ determina a velocidade com que a concentração na superfície atinge a concentração em equilíbrio e $C_{\infty}$ é a concentração de equilíbrio entre o gás e o aço.
 
 \begin{equation}
 \label{eq:cs-gas}
@@ -37,4 +37,4 @@ Sendo assim, basta substituir $C_s^{j+1} = C_{\infty}(1 - e^{-\beta j\Delta t})$
 	\end{bmatrix}
 \end{equation*}
 
-
+Assim como os outros sistemas triadiagonais obtidos, pode ser resolvido utilizando o Algoritmo de Thomas.

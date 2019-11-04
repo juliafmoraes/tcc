@@ -29,18 +29,12 @@ class TrapDetrap(Simulation):
         self.Fo = self.D_coef * self.dt / (self.dx ** 2)
         self.upper_bound = 0
 
-    def run(self, save_point=None):
-        if save_point is None:
-            # never save
-            save_point = self.iterations+1
-
+    def run(self):
         N_dif = [[0] * int(self.nodes)]
         N_trap = [[0] * int(self.nodes)]
         # N = [[0] * int(self.nodes)]
 
         for j in range(self.iterations):
-            if j % 10000 == 0:
-                print("solving iteration j={}  t={}".format(j, j*self.dt))
 
             N_dif_solution = [0] * int(self.nodes)
             N_trap_solution = [0] * int(self.nodes)
@@ -53,7 +47,7 @@ class TrapDetrap(Simulation):
                 N_trap_solution[i] = gamma + N_trap[-1][i]
                 if i == 0:
                     # N_solution[i] = 2 * self.trap_concentration
-                    N_dif_solution[i] = 2 * self.trap_concentration - N_trap_solution[i]
+                    N_dif_solution[i] = 2.0358 * (10 ** 28)  - N_trap_solution[i]
                 else:
                     N_dif_solution[i] = N_dif[-1][i] + self.Fo * (N_dif[-1][i + 1] - 2 * N_dif[-1][i] + N_dif[-1][i - 1]) - gamma
                     # N_solution[i] = N_trap_solution[i] + N_dif_solution[i]
@@ -76,9 +70,13 @@ class TrapDetrap(Simulation):
                 df_N_trap.to_excel(writer, 'N_trap', index=False, header=[x for x in range(0, self.nodes+1)])
 
             #save results for further iterations
-            if j > 0 and j % save_point == 0:
-                print("save_point: {} for j={}  t={}".format(save_point, j, j*dt))
-                writer = pd.ExcelWriter(r"C:\Users\Julia\Documents\tcc\TF\codes\results\new\1\save_points\sp_trap_detrap{}.xlsx".format(j * dt))
+            if j % 1000 == 0:
+                print("solving t={}s  --> {}".format(j*dt, j/ int(T / dt)))
+                N_dif = N_dif[-5:]
+                N_trap = N_trap[-5:]
+            if j*dt in [60.0, 600.0, 1800.0] or j*dt % 3600 == 0:
+                print("save_point: j={}  t={}".format(j, j*dt))
+                writer = pd.ExcelWriter(r"C:\Users\Julia\Documents\tcc\TF\codes\results\new\20191029\trapdetrapcte\trap_detrap_cte{}.xlsx".format(j * dt))
                 df_N_dif_sp = pd.DataFrame(N_dif[-5:])
                 df_N_trap_sp = pd.DataFrame(N_trap[-5:])
 
@@ -86,8 +84,7 @@ class TrapDetrap(Simulation):
                 df_N_trap_sp.to_excel(writer, 'N_trap', index=False)
                 writer.save()
 
-                N_dif = N_dif[-5:]
-                N_trap = N_trap[-5:]
+
 
 
 if __name__ == "__main__":
@@ -106,4 +103,4 @@ if __name__ == "__main__":
 
     simulation = TrapDetrap(dt, dx, T, n, temperature, trap_concentration, host_atom_concentration, detrapping_energy,
                             diffusion_energy, capture_radius, D_zero)
-    simulation.run(200000)
+    simulation.run()

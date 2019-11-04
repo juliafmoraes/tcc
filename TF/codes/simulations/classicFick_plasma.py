@@ -65,21 +65,20 @@ def run(outdir: str):
 
     # for i in np.arange(0, T, dt):
     print('total iterations', T // dt)
-    main_diag = [1 - a + simulation.flux_term] + [-(1 + 2 * a)] * (simulation.nodes - 2)
+    main_diag = [1 + a + simulation.flux_term] + [-(1 + 2 * a)] * (simulation.nodes - 2)
     secondary_diag = [a] * (simulation.nodes - 2)
 
     u_diag = secondary_diag + [0]
     l_diag = [0] + secondary_diag
     for i in range(1, int(T / dt) + 1):
-
-        print("solving t={}s".format(i))
         d = simulation.create_d(C[i % 1000 - 1][0:-1])
         solution = TDMA_solver(main_diag, l_diag, u_diag, d)
         solution.append(simulation.upper_bound)
         C.append(solution)
-        print(solution)
+        # print(solution)
 
         if i % 1000 == 0:
+            print("solving t={}s  --> {}".format(i, i / int(T / dt)))
             C = C[-1:]
         if i % 10000 == 0:
             final_solution = pd.DataFrame(C)
@@ -92,4 +91,4 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Classic Fick - Plasma boundary')
     parser.add_argument('outdir', type=str, help='Output dir for results')
     args = parser.parse_args()
-    run()
+    run(args.outdir)
