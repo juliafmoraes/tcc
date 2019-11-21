@@ -12,7 +12,7 @@ from simulations.simulation import Simulation
 
 class TrapDetrap(Simulation):
     def __init__(self, dt, dx, T, n, temperature, trap_concentration, host_atom_concentration, detrapping_energy,
-                 diffusion_energy, capture_radius, D_zero):
+                 diffusion_energy, capture_radius, D_zero, c_eq):
         super().__init__(dt, dx, T, n)
 
         # input values
@@ -23,8 +23,10 @@ class TrapDetrap(Simulation):
         self.diffusion_energy = diffusion_energy  # J
         self.capture_radius = capture_radius  # m
         self.D_zero = D_zero  # m2/s
+        self.c_eq = c_eq  # m^-3
 
         # constants and calculated values
+        self.beta = 0.0001
         self.boltzmann_constant = 1.38064852 * (10 ** (-23))  # m2 kg s-2 K-1 = (J/K)
         self.D_coef = self.D_zero * math.exp(-1 * self.diffusion_energy / (self.boltzmann_constant * self.temperature))
         self.k_d = math.exp(-1 * self.detrapping_energy / (self.boltzmann_constant * self.temperature))
@@ -47,7 +49,7 @@ class TrapDetrap(Simulation):
                          ) * self.K * self.dt
                 N_trap_solution[i] = gamma + N_trap[-1][i]
                 if i == 0:
-                    N_dif_solution[i] = 2.0358 * (10 ** 28) - N_trap_solution[i]
+                    N_dif_solution[i] = N_trap_solution[i] - self.c_eq*(1-math.exp(-self.beta*j*self.dt))
                 else:
                     N_dif_solution[i] = N_dif[-1][i] + self.Fo * (
                                 N_dif[-1][i + 1] - 2 * N_dif[-1][i] + N_dif[-1][i - 1]) - gamma
@@ -59,7 +61,7 @@ class TrapDetrap(Simulation):
             N_trap.append(N_trap_solution)
 
             #save results
-            if j % 1000 == 0:
+            if j % 100000 == 0:
                 print("solving t={}s  --> {}".format(j * dt, j / int(T / dt)))
                 N_dif = N_dif[-5:]
                 N_trap = N_trap[-5:]
@@ -76,7 +78,7 @@ class TrapDetrap(Simulation):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Trapping-Detrapping - Constant boundary')
+    parser = argparse.ArgumentParser(description='Trapping-Detrapping - Gas Nitriding boundary')
     parser.add_argument('outdir', type=str, help='Output dir for results')
     args = parser.parse_args()
 
@@ -87,6 +89,7 @@ if __name__ == "__main__":
     diffusion_energy = 1.7622 * (10 ** (-19))  # J
     capture_radius = 0.38 * (10 ** (-9))  # m
     D_zero = 8.37 * (10 ** (-8))  # m2/s
+    c_eq = 2.0358 * (10 ** 28) # m-3
 
     dt = 0.0001  # s
     dx = 0.1 * (10 ** (-6))  # micro -> m
@@ -94,5 +97,5 @@ if __name__ == "__main__":
     n = 20 * (10 ** (-6))  # micro -> m
 
     simulation = TrapDetrap(dt, dx, T, n, temperature, trap_concentration, host_atom_concentration, detrapping_energy,
-                            diffusion_energy, capture_radius, D_zero)
+                            diffusion_energy, capture_radius, D_zero, c_eq)
     simulation.run(args.outdir)
