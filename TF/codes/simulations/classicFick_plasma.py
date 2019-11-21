@@ -7,7 +7,7 @@ import math
 import openpyxl
 
 from simulations.simulation import Simulation
-from methods import TDMA_solver, create_d
+from methods import TDMA_solver
 
 
 class ClassicFickBoundary(Simulation):
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
     dt = 0.01  # s
     dx = 0.1 * (10 ** (-6))  # micro -> m
-    T = 2 * 60 * 60  # s (2horas)
+    T = 22 * 60 * 60  # s (22horas)
     n = 20 * (10 ** (-6))  # micro -> m
     simulation = ClassicFickBoundary(dt, dx, T, n, lower_bound, upper_bound)
 
