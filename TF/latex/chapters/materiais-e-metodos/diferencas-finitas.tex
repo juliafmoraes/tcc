@@ -24,7 +24,7 @@
 	\end{math}
 \end{center} 
 
-\par Seja $u_i$ o valor aproximado de $u(x_i)$ que deseja-se calcular e $U = (u_1, ..., u_n)^T$, $u_0 = alpha$ e $u_{n+1} = \beta$. Aproxima-se $u''(x_i)$ e $u'(x_i)$ utilizando a série de Taylor de u em torno de $x_i$.
+\par Seja $u_i$ o valor aproximado de $u(x_i)$ que deseja-se calcular e $U = (u_1, ..., u_n)^T$, $u_0 = \alpha$ e $u_{n+1} = \beta$. Aproxima-se $u''(x_i)$ e $u'(x_i)$ utilizando a série de Taylor de u em torno de $x_i$.
 \par A série de Taylor é a representação de uma função na forma de uma soma infinita cujos termos são calculados pelas derivadas da função em um único ponto.
 A eq.(\ref{eq:taylor}) é a série de Taylor da funçao $f(x)$ em torno de $x_i$.
 
@@ -133,4 +133,4 @@ O problema dado por $(S)$ consiste de um sistema de $n$ equações lineares com 
 
 Esse sistema de equações pode ser resolvido utilizando o algoritmo da matriz tridiagonal (algoritmo de Thomas), apresentado na seção \ref{sec:algo-thomas}.
 
-O método das diferenças finitas amplifica erros causados pelos truncamentos e arredondamentos a cada passo de tempo. Para identificar instabilidade escreve-se a equação para um nó de forma que ao seu lado esquerdo esteja somente a incógnita para a variável dependente daquele nó, se algum coeficiente das variáveis dependentes ao seu lado direito for negativo, é instável. O método explícito é semi-instável, mas como foi utilizado o método implícito, será demonstrado que ele é incodicionalmente estável na seção \ref{sec:sol-numerica-2alei} 
+O método das diferenças finitas amplifica erros causados pelos truncamentos e arredondamentos a cada passo de tempo. Para identificar instabilidade escreve-se a equação para um nó de forma que ao seu lado esquerdo esteja somente a incógnita para a variável dependente daquele nó, se algum coeficiente das variáveis dependentes ao seu lado direito for negativo, é instável. O método explícito é semi-instável, o método implícito é incodicionalmente estável como será demonstrado na seção \ref{sec:sol-numerica-2alei} 

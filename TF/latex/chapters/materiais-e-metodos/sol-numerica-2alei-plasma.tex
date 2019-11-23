@@ -1,0 +1,74 @@
+Para considerar a varição na concentração da superfície quando o processo de nitretação é à plasma, pode-se utilizar um termo de adsorção na condição de contorno, como foi utilizado por \cite{galdikas2011modeling}, dado por $\dfrac{\alpha j}{qH_{superfície}}\left(H_0-C(0,t)\right)$, onde $j$ representa a densidade de corrente média do íon de nitrogênio (A/m$^2$), $\alpha$ é o coeficiente de adesão do nitrogênio nos componentes, $q$ é a carga elementar (equivalente a $1,602.10^{-19}C$), $H_{superfície}$ é a concentração de átomos hospedeiros na superfície (em átomos/m$^2$), $H_0$ é  concentração de átomos hospedeiros (átomos/m$^3$) e $C(0,t)$ é a concentração de átomos de nitrogênio na superfície (átomos/m$^3$).
+
+As equações da seção \ref{sec:sol-numerica-2alei} se mantêm as mesmas, exceto pelo contorno que define a superfície pela qual ocorre adsorção, que é descrito pela eq.\autoref{eq:2alei-num-plasma}
+
+\begin{equation}
+\label{eq:2alei-num-plasma}
+\pdv{C(x,t)}{t} = D(C)\pdv[2]{C(x,t)}{x} + \dfrac{\alpha j}{qH_{superfície}}\left(H_0-C(0,t)\right)
+\end{equation}
+
+As condições iniciais e a condição de contorno para $x\rightarrow\infty$ não se alteram.
+
+Discretizando a equação \autoref{eq:2alei-num-plasma}, utilizando $j_0 = \dfrac{j}{qH_{superfície}}$ obtêm-se:
+
+\begin{gather*}
+\dfrac{C_0^{j+1} - C_0^j}{\Delta t} = D\dfrac{C_{i+1}^{j+1} - C_{i}^{j+1}}{(\Delta x)^2} + \alpha j_0\left(H_0-C(0,t)\right) 
+\end{gather*}
+
+\begin{equation}
+\label{eq:2alei-num-plasma-discr}
+C_0^{j+1} = C_0^j + Fo(C_{1}^{j+1} - C_{0}^{j+1})+ \alpha j_0 \Delta t \left(H_0-C_{0}^{j+1}\right)  \qquad   j \in [0,\ T]
+\end{equation}
+
+Para resolver o probelma diferencial, desenvolve-se o sistema de equações:
+
+\begin{equation*}
+\label{eq:depoisFo}
+\begin{matrix}
+i = 0: \qquad (1 + Fo + \alpha j_0 \Delta t)C_0^{j+1} - FoC_{1}^{j+1} & = & C_0^j + \alpha j_0 \Delta t H_0 \\
+\\
+i = 1: \qquad -FoC_{0}^{j+1} + (1+2Fo)C_1^{j+1} - FoC_{2}^{j+1} - C_1^j & = & 0\\
+(1+2Fo)C_1^{j+1} - FoC_{2}^{j+1} - FoC_{0}^{j+1} & = & C_1^j \\ 
+\\
+i = 2: \qquad -FoC_{1}^{j+1} + (1+2Fo)C_2^{j+1} - FoC_{3}^{j+1} - C_2^j & = & 0\\
+(1+2Fo)C_2^{j+1} - FoC_{3}^{j+1} - FoC_{1}^{j+1} & = & C_2^j \\ 
+\vdots \\
+i = n: \qquad -FoC_{n-1}^{j+1} + (1+2Fo)C_n^{j+1} - FoC_{n+1}^{j+1} - C_n^j & = & 0\\
+(1+2Fo)C_n^{j+1} - FoC_{n-1}^{j+1} & = & C_n^j \\
+\end{matrix}
+\end{equation*}
+
+Analogamente ao que foi feito na seção \ref{sec:sol-numerica-2a-lei}, considerando o sistema de equações dado por \cmrtext{AC$^j+1$ = B$^j$}, \cmrtext{A, C e B} podem ser definidos por:
+
+\begin{equation*}
+	\cmrtext{A} =
+	\begin{bmatrix}
+		(1 + Fo + \alpha j_0 \Delta t) & -Fo &         &        & 0\\
+		-Fo & (1+2Fo) &  -Fo   &        & \\
+		    & -Fo &   (1+2Fo)   & \ddots & \\
+		    &     &  \ddots & \ddots & -Fo \\
+	     0  &     &         &  -Fo   & (1+2Fo) 
+	\end{bmatrix}
+\end{equation*}
+\begin{equation*}
+	\cmrtext{C^{j+1}} =
+	\begin{bmatrix}
+		c_0^{j+1} \\
+		c_1^{j+1} \\
+		c_2^{j+1} \\
+		\vdots \\
+		c_n^{j+1}
+	\end{bmatrix}
+	\qquad
+	\cmrtext{B^j} =	
+	\begin{bmatrix}
+	c_0^j + \alpha j_0 \Delta t H_0 \\
+		c_1^j \\
+		c_2^{j} \\
+		\vdots \\
+		c_n^{j}
+	\end{bmatrix}
+\end{equation*}
+
+\cmrtext{A} é uma matriz tridiagonal, \cmrtext{AC$^{j+1}$ = B$^j$} é um sistema de $n$ equações lineares com $n$ incógnitas. Logo, também é possível utilizar o algoritmo de Thomas visto na seção \ref{sec:algo-thomas} para solucionar o problema.
+
