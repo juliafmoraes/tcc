@@ -22,7 +22,6 @@ class ClassicFickBoundary(Simulation):
         self.j = 3 * (10 ** (-9))  # m/2?
         self.q = 1.602 * (10 ** (-19))
         self.host_surface_concentration = 8 * (10 ** 25)  # at/m2
-        # self.host_atom_concentration = 50
         self.host_atom_concentration = 7.29 * (10 ** 28)  # m-3
         self.diffusion_energy = 1.7622 * (10 ** (-19))  # J
         self.boltzmann_constant = 1.38064852 * (10 ** (-23))  # m2 kg s-2 K-1 = (J/K)
@@ -64,10 +63,10 @@ class ClassicFickBoundary(Simulation):
             if i % 1000 == 0:
                 print("solving t={}s  --> {}".format(i, i / int(T / dt)))
                 C = C[-1:]
-            if i % 10000 == 0:
+            if i * dt in [60.0, 600.0, 1800.0] or i * dt % 3600 == 0:
                 final_solution = pd.DataFrame(C)
                 final_solution.to_excel(
-                    r"{}\classicFickPlasma_teste{}.xlsx".format(outdir, i),
+                    r"{}\classicFickPlasma{}.xlsx".format(outdir, i),
                     index=False, header=[x for x in range(0, self.nodes)])
 
 
