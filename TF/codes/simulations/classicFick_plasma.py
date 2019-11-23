@@ -19,8 +19,8 @@ class ClassicFickBoundary(Simulation):
         super().__init__(dt, dx, T, n)
         self.temperature = 673  # K
         self.alfa = 1
-        self.j = 3 * (10 ** (-9))  # m/2?
-        self.q = 1.602 * (10 ** (-19))
+        self.j = 4.4  # A/m2
+        self.q = 1.602 * (10 ** (-19))  # C = A/s
         self.host_surface_concentration = 8 * (10 ** 25)  # at/m2
         self.host_atom_concentration = 7.29 * (10 ** 28)  # m-3
         self.diffusion_energy = 1.7622 * (10 ** (-19))  # J
@@ -66,7 +66,7 @@ class ClassicFickBoundary(Simulation):
             if i * dt in [60.0, 600.0, 1800.0] or i * dt % 3600 == 0:
                 final_solution = pd.DataFrame(C)
                 final_solution.to_excel(
-                    r"{}\classicFickPlasma{}.xlsx".format(outdir, i),
+                    r"{}\classicFickPlasma{}.xlsx".format(outdir, i * dt),
                     index=False, header=[x for x in range(0, self.nodes)])
 
 
