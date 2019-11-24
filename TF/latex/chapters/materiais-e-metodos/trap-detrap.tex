@@ -99,15 +99,13 @@ Que podem ser resolvidas numericante aplicando diferenças finitas.
 
 \subsection{Condições de Contorno - Nitretação à Plasma}
 \label{sec:trap-detrap-plasma-cc}
-\myworries{isso aqui deve entrar no outro topico e ser mais mencionado aqui}
-
 Considerando o fluxo de difusão unidirecional, apenas do exterior para o interior do sólido, as condições de contorno podem ser expressas pelo conjunto de equações visto na Seção \ref{sec:trap-detrap-gas-cc}, substituindo a eq. \ref{eq:trap-detrap-gas-cc1} pela eq. \ref{eq:trap-detrap-cc1}
 
 \begin{equation}
 \label{eq:trap-detrap-cc1}
-\pdv{N_{dif}(0,t)}{t} = -D\pdv[2]{N_{dif}(0,t)}{x} - \pdv{N_{trap}(0,t)}{t}  +\alpha j_{0}\left(H_0-N_{dif}(0,t)-N_{trap}\left(0,t\right)\right)
+\pdv{N_{dif}(0,t)}{t} = -D\pdv[2]{N_{dif}(0,t)}{x} - \pdv{N_{trap}(0,t)}{t}  + j_{0}\left(H_0-N_{dif}(0,t)-N_{trap}\left(0,t\right)\right)
 \end{equation}
 
 
-A equação\autoref{eq:trap-detrap-cc1} se refere à difusão de Nitrogênio na interface, na qual o termo dado por $\alpha j_{0}\left(H_0-N_{dif}(0,t)-N_{trap}\left(0,t\right)\right)$ descreve a adsorção de nitrogênio, $\alpha$ é o coeficiente de aderência de nitrogênio para os componentes correspondentes \myworries{?????} e  $j_0$ é o fluxo incidente de átomos de Nitrogênio, previamente explicado na Seção \autoref{sec:sol-numerica-2alei2}
+A equação\autoref{eq:trap-detrap-cc1} se refere à difusão de Nitrogênio na interface, na qual o termo dado por $\alpha j_{0}\left(H_0-N_{dif}(0,t)-N_{trap}\left(0,t\right)\right)$ descreve a adsorção de nitrogênio, e  $j_0$ é o fluxo incidente de átomos de Nitrogênio, previamente explicado na Seção \autoref{sec:sol-numerica-2alei2}
 

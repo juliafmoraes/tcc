@@ -463,9 +463,8 @@ Trabalho & Método de Nitretação & Coeficiente de Difusão dependente da Conce
 \myworries{\textit{TO DO}}
 \myworries{vou falar dos programas que eu usei pra programar/simular/fazer os grafico etc, falar quais modelos eu fiz - apontar as secoes onde explico}
 
-Primeiramente foi simulada a solução clássica da Segunda Lei de Fick com coeficiente de difusão constante e concentração de átomos na superfície constante (seções \ref{sec:sol-numerica-2alei}/\ref{sec:modelo11}). Em seguida foi feito um modelo considerando a variação da concentração de átomos na superfície (seção \ref{sec:modelo12}). Posteriormente o modelo foi incrementado para melhor satisfazer a realidade da difusão do nitrogênio utilizando a teoria dos sítios de \textit{trapping-detrapping}, considerando a variação da concentração superficial(seção \ref{sec:modelo21}) .
-%e testando a dependência do coeficiente de difusão em relação à concentração (seção\ref{sec:modelo22}).
-O código elaborado para o trabalho foi feito em python e pode ser observado nos anexos. \myworries{colocar o git}
+Primeiramente foi simulada a solução clássica da Segunda Lei de Fick com coeficiente de difusão constante e concentração de átomos na superfície constante (seções \ref{sec:sol-numerica-2alei}/\ref{sec:modelo11}). Em seguida foi feito um modelo considerando a variação da concentração de átomos na superfície (seção \ref{sec:modelo12}). Posteriormente o modelo foi incrementado para melhor satisfazer a realidade da difusão do nitrogênio utilizando a teoria dos sítios de \textit{trapping-detrapping}, considerando a variação da concentração superficial(seção \ref{sec:modelo21}).
+O código elaborado para o trabalho foi feito em python e pode ser observado nos anexos.
 
 \section{Métodos Numéricos e Algoritmos}
 
@@ -484,8 +483,8 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 
 \subsection{Composição Superficial Variável}
 \label{sec:sol-numerica-2alei2}
-\input{chapters/materiais-e-metodos/sol-numerica-2alei-plasma}
 \input{chapters/materiais-e-metodos/sol-numerica-2alei-gas}
+\input{chapters/materiais-e-metodos/sol-numerica-2alei-plasma}
 
 
 \section{Modelo de \textit{Trapping-Detrapping}}
@@ -495,24 +494,25 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 \subsection{Discretização}
 \input{chapters/materiais-e-metodos/trap-detrap-Dcte}
 
-%\subsection{Coeficiente de Difusão Variável}
-%\label{sec:my-trapdetrap-full}
-\myworries{\textit{TO DO}}
 
 \section{Parâmetros e Constantes}
 \label{sec:params}
-\myworries{\textit{TO DO}}
 \subsection{Fluxo na Superfície}
-\myworries{//this might die}
+\myworries{//this might die - colocar na disussao?}
 
 O fluxo de átomos na superfície depende de muitos fatores e é influenciado pelo tipo de processo e todas as variáveis envolvidas, como temperatura, pressão, potencial, densidade de corrente, etc.
 A primeira simplificação feita nesse estudo foi que a concentração na superfície se mantinha constante do início ao fim do processo de nitretação. Nesse caso, considera-se que existe equilíbrio termodinâmico entre a  mistura gasosa e o metal em tratamento. Esse equilíbrio é dado pela reação $\frac{1}{2}$ N${_2(g)}$ $\leftrightharpoons$ [N] $\gamma$ (no aço) \cite{tschiptschin2000thermodynamics}.
 
-\subsection{Parâmetros}
-\label{params_sub}
+
 \input{chapters/parametros-e-constantes/parametros}
 
 \chapter{Resultados}
+	Foram simulados dois modelos distintos - um dado pela Segunda Lei de Fick e outro dado pelo mecanismo de \textit{trapping-detrapping}, para três condições de contorno distintas: concentração superfícal constante, nitretaçao gasosa e nitretação à plasma.
+	
+	Com o objetivo de validar o modelo, foram utilizados dados experimentais obtidos de artigos de autores referenciados anteriormente. No caso da nitretação gasosa, foi disponibilizado pelo Dr Marcel Somers o resultado do experimento utilizado no artigo \cite{christiansen2008nitrogen} e para a nitretação à plasma foram retirados os dados do artigo \cite{moskalioviene2011modeling} utilizando o software WebPlotDigitizer.
+	
+	Para cada simulação, todas as entradas podem ser consultadas nas tabelas correspondentes encontradas no Anexo A.
+
 \section{Modelo 1 - Segunda Lei de Fick}
 
 \subsection{Concentração na superfície constante}
@@ -535,11 +535,15 @@ A primeira simplificação feita nesse estudo foi que a concentração na superf
 \subsection{Nitretação à Plasma}
 \label{sec:modelo23}
 
+\chapter{Análise dos Resultados}
+\input{chapters/discussao/analise-resultados}
 
-\section{Discussão}
+\chapter{Discussão}
+\label{sec:discussao}
 \myworries{\textit{TO DO}}
 \myworries{\textit{falar de teorias/explicações para o comportamento...}}
-\myworries{fazer uma tabela com entradas do sommers/galdikas}
+
+%\input{chapters/discussao/discussao}
 
 \chapter{Conclusões}
 \myworries{\textit{TO DO}}
@@ -559,4 +563,3 @@ A primeira simplificação feita nesse estudo foi que a concentração na superf
 
 
 \end{document}
-
