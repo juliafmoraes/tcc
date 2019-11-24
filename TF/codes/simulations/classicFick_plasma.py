@@ -21,7 +21,7 @@ class ClassicFickBoundary(Simulation):
         self.alfa = 1
         self.j = 4.4  # A/m2
         self.q = 1.602 * (10 ** (-19))  # C = A/s
-        self.host_surface_concentration = 8 * (10 ** 25)  # at/m2
+        self.host_surface_concentration = 1.6 * (10 ** 22)  # at/m2
         self.host_atom_concentration = 7.29 * (10 ** 28)  # m-3
         self.diffusion_energy = 1.7622 * (10 ** (-19))  # J
         self.boltzmann_constant = 1.38064852 * (10 ** (-23))  # m2 kg s-2 K-1 = (J/K)

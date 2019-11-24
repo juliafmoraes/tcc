@@ -1,21 +1,20 @@
-Os parâmetros utilizados estão explicitados na Tabela \ref{tab:resumoParametros}. Todos os valores de parâmetros que não são conhecidos da literatura foram retirados de \cite{moskalioviene2011modeling}.
+\FloatBarrier
+\subsection{Parâmetros}
+\label{params_sub}
+Os parâmetros compartilhados por todos os modelos estão definidos na Tabela \ref{tab:resumoParametros}, e aqueles utilizados para o modelo de \textit{trapping-detrapping} estão explicitados na Tabela \ref{tab:resumoParametrosTD}. Todos os valores de parâmetros que não são conhecidos da literatura foram retirados de \cite{moskalioviene2011modeling}.
 
-\begin{table}[ht]
+\begin{table}[!hbt]
 \centering
 \setlength{\doublerulesep}{\arrayrulewidth}
 {\def\arraystretch{2}\tabcolsep=10pt
 \caption{Parâmetros compartilhados pelos modelos}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{c c c C{4cm}}
+\begin{tabular}{c c c}
 \hline\hline
-Parâmetro & Descrição & Valor & Obs \\\hline
+Parâmetro & Descrição & Valor \\\hline
 $E_A$ & Energia de ativação de Difusão & $1,7622 \times 10^{-19} J$  \\
-$E_B$ & Energia de ativação de \textit{detrapping} & $4,48609 \times 10^{-20} J$  \\\
 $D_0$ & Fator pré-exponencial de difusão & $8,37 \times 10^{-8} m^2/s$  \\
-$H_0$  & Concentração de Átomos Hospedeiros& $H_0 = 4(1/R_t)^3 = 7,29 \times 10^{28} m^{-3}$ & o fator 4 aparece pois existem 4 átomos hospedeiros por célula unitária \cite{peng2018numerical} \\
-$H_t$  & Concentração de Sítios de Aprisionamento & $H_t = 0.18H_0 = 1,31 \times 10^{28}m^{-3}$ \\ 
 $k_B$  & Constante de Boltzmann & $ 1,38064852 \times 10^{-23} J/K$ \\ 
-$R_t$     & Raio de aprisionamento           & $0,38 \times 10^{-9} m$  \\
 \hline\hline
 \end{tabular}
 \label{tab:resumoParametros}
@@ -23,8 +22,31 @@ $R_t$     & Raio de aprisionamento           & $0,38 \times 10^{-9} m$  \\
 }
 \end{table}
 
+\begin{table}[!hbt]
+\centering
+\setlength{\doublerulesep}{\arrayrulewidth}
+{\def\arraystretch{2}\tabcolsep=10pt
+\caption{Parâmetros para o modelo de \textit{trapping-detrapping}}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{c c c C{4cm}}
+\hline\hline
+Parâmetro & Descrição & Valor & Obs \\\hline
+$E_B$ & Energia de ativação de \textit{detrapping} & $4,48609 \times 10^{-20} J$  \\\
+$H_0$  & Concentração de Átomos Hospedeiros& $H_0 = 4(1/R_t)^3 = 7,29 \times 10^{28} m^{-3}$ & o fator 4 aparece pois existem 4 átomos hospedeiros por célula unitária \cite{peng2018numerical} \\
+$H_t$  & Concentração de Sítios de Aprisionamento & $H_t = 0.18H_0 = 1,31 \times 10^{28}m^{-3}$ \\ 
+$k_B$  & Constante de Boltzmann & $ 1,38064852 \times 10^{-23} J/K$ \\ 
+$R_t$     & Raio de aprisionamento           & $0,38 \times 10^{-9} m$  \\
+\hline\hline
+\end{tabular}
+\label{tab:resumoParametrosTD}
+}
+}
+\end{table}
+
+\FloatBarrier
 \subsection{Especificações do material}
 Para a execução das simulações foi considerado que o aço em questão é um AISI 316L com composição 11,3 at.\%Ni, 19,5 at.\%Cr (e restante Fe, para efeito dos cálculos). Essa escolha foi feita pois foi o material utilizado por \cite{moskalioviene2011modeling} e \cite{christiansen2008nitrogen} usa um AISI 316 com composição similar.
+\FloatBarrier
 
 \subsection{Unidades de concentração}
 Na aplicação foram utilizadas as concentrações em átomos/m$^3$, mas para melhor entendimento dos resultados e conformidade com os artigos estudados, a concentração é mostrada em at.\%.
@@ -50,7 +72,7 @@ Ni & 6,59 $\times$ 10$^{-6}$ m$^3$/mol  & \cite{singman1984atomic}\\
 
 A partir desses volumes molares, é possível o obter a concentração em at.\% utilizando a concentração em m$^3$/mol.
 
-\begin{table}[ht]
+\begin{table}[!ht]
 \centering
 \setlength{\doublerulesep}{\arrayrulewidth}
 {\def\arraystretch{2}\tabcolsep=10pt
@@ -77,3 +99,76 @@ Sendo assim, a composição de nitrogênio em at.\% pode ser obtida utilizando a
 	N(at.\%) = \dfrac{N(m^{-3})}{N(m^{-3}) + 8,534 \times 10^{28}\\  } 
 \end{equation}
 
+\subsection{Concentração de Equilíbrio}
+\label{sec:ceq-param}
+Para definir um valor para a concentração da superfície para implementação da solução com as condições de contorno descritas na Seção \autoref{sec:sol-numerica-2alei}, foi utilizado o artigo  \cite{christiansen2008nitrogen}, que possui o valor da ocupância de átomos de nitrogênio $y_N^{S}$ (mais especificamente a fração de interstícios octaédricos do reticulado cúbico de face centrada ocupada por nitrogênio) para o estado de equilíbrio, com $K_N=$2,49 $bar^{-1/2}$ (valor para o qual os dados experimentais do artigo em questão mostravam-se mais próximos dos dados do modelo), para 445°C (718K). A variável $K_N=\dfrac{p_{NH_3}}{p_{H_2}^{3/2}}$ é o potencial de nitretação para uma mistura gasosa de NH$_3$/H$_2$.
+
+A partir do valor de $y_N^{eq}$, para uma temperatura de 718K, é possível definir a concentração em $mols/m^3$ de nitrogênio utilizando a relação apresentada no apêndice A2 do artigo \cite{jespersen2016modelling}, dada pela equação\autoref{eq:oc-to-m3}.
+
+\begin{equation} \label{eq:oc-to-m3}
+	C = \dfrac{4}{N_A} \cdot y_N \cdot \dfrac{1}{V(y_N)}
+\end{equation}
+
+O fator 4 é o número de interstícios octaédricos de uma célula unitária CFC, $N_A$ é o número de Avogadro ($N_A = 6,0221409 \times 10^{23} (mol^{-1})$) e $V(y_N)$ é o volume da célula unitária (em $m^3$) para uma dada ocupância de nitrogênio.
+
+A função $V(y_N)$ foi aproximada por uma função linear: 
+\begin{gather*}
+	V(y_N) = 2,8147 \times 10^{-29} \cdot y_N + 4,7134 \times 10^{-29}
+\end{gather*}
+
+Sendo assim, pode-se reescrever a equação \autoref{eq:oc-to-m3} como:
+
+\begin{equation} \label{eq:oc-to-m3-full}
+	C = \dfrac{4}{6,0221409 \times 10^{23}} \cdot \dfrac{y_N}{2,8147 \times 10^{-29} \cdot y_N + 4,7134 \times 10^{-29}}
+\end{equation}
+
+Dessa forma, para as condições especificadas acima, o valor de $y_N$ é 0,28 e a concentrção é 33.805 mol/m$^3$ (2,0358 $\times$ 10$^{28}$ m$^{-3}$).
+
+\begin{table}[ht]
+\centering
+\setlength{\doublerulesep}{\arrayrulewidth}
+{\def\arraystretch{2}\tabcolsep=10pt
+\caption{Parâmetros para concentração na superfície constante}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c c c}
+\hline\hline
+Parâmetro & Descrição & Valor \\\hline
+
+$C_{eq}$ & Concentração de equilíbrio entre gás e aço &  47.318,64 mol/m$^3$ (2,0358 $\times$ 10$^{28}$ m$^{-3}$)   \\
+\hline\hline
+\end{tabular}
+\label{tab:parametros_csvar}
+}
+}
+\end{table}
+
+
+\subsection{Paramêtros para Nitretação Gasosa}
+\label{sec:param-gas}
+Para simular a concentração na superfície durante nitretação gasosa de acordo com a descrição dada na Seção \autoref{sec:nit-gas}, foram utilizados os paramêtros dados pela \autoref{tab:parametros_csvar}.
+
+\begin{table}[!htb]
+\centering
+\setlength{\doublerulesep}{\arrayrulewidth}
+{\def\arraystretch{2}\tabcolsep=10pt
+\caption{Parâmetros para concentração na superfície variável - nitretação gasosa}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c c c}
+\hline\hline
+Parâmetro & Descrição & Valor \\\hline
+$\beta$ & Coeficiente para relacionar velocidade em que se atinge o equilíbrio & 0,0001 \\
+$C_{eq}$ & Concentração de equilíbrio entre gás e aço &  47.318,64 mol/m$^3$ (2,0358 $\times$ 10$^{28}$ m$^-3$)    \\
+\hline\hline
+\end{tabular}
+\label{tab:parametros_csvar}
+}
+}
+\end{table}
+
+Os valores da \autoref{tab:parametros_csvar} foram retirados de \cite{christiansen2008nitrogen}. O valor de $\beta$ foi definido testando o melhor \textit{fit} em dados experimentais e $C_{eq}$ foi definido como descrito na seção \autoref{sec:ceq-param}.
+
+
+\subsection{Paramêtros para Nitretação à Plasma}
+\label{sec:param-plasma}
+
+Para a densidade de corrente média ($j$) da Seção \ref{sec:nit-plasma}, foi utilizado o valor encontrados no artigo \cite{galdikas2011modeling}, de 0,44mA/cm$^{2}$. 

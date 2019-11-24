@@ -53,8 +53,9 @@ class TrapDetrap(Simulation):
                          ) * self.K * self.dt
                 N_trap_solution[i] = gamma + N_trap[-1][i]
                 if i == 0:
+                    cc = max(self.host_atom_concentration - N_dif[-1][i] - N_trap[-1][i], 0)
                     N_dif_solution[i] = N_dif[-1][i] - self.Fo * (N_dif[-1][i + 1] - N_dif[-1][i]) - gamma + \
-                                        self.flux_term * (self.host_atom_concentration - N_dif[-1][i] - N_trap[-1][i])
+                                        self.flux_term * cc
                 else:
                     N_dif_solution[i] = N_dif[-1][i] + self.Fo * (N_dif[-1][i + 1] - 2 * N_dif[-1][i] + N_dif[-1][i - 1]) \
                                         - gamma
@@ -97,7 +98,7 @@ if __name__ == "__main__":
     c_eq = 2.0358 * (10 ** 28)  # m-3
     j = 4.4  # A/m2
     alfa = 1
-    host_surface_concentration = 8 * (10 ** 25)  # at/m2
+    host_surface_concentration = 5 * (10 ** 23)  # at/m2
 
     dt = 0.0001  # s
     dx = 0.1 * (10 ** (-6))  # micro -> m
