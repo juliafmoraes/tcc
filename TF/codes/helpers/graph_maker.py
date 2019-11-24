@@ -3,24 +3,26 @@ import argparse
 
 import plotly.graph_objects as go
 import pandas as pd
-from helpers.transform import from_vol_to_at
+from helpers.transform import from_vol_to_at, from_yn_to_m3
 
 
-def plot(inputdir: str, outputdir: str):
+def plot(inputdir: str, outputdir: str, exp: bool):
     df = pd.read_excel(r'{}'.format(inputdir), sheet_name='results',
                        index_col='index')
     x_range = list(df.columns)
     data = [(i[0], from_vol_to_at(i[1])) for i in df.iterrows()]
 
-    xaxis = go.layout.XAxis(title='profundidade (um)', dtick=0.2, mirror=True, ticks='outside', showline=True, rangemode='tozero',
+    xaxis = go.layout.XAxis(title='profundidade (um)', dtick=2, mirror=True, ticks='outside', showline=True,
+                            rangemode='tozero',
                             linecolor='black', titlefont=dict(family='Arial', size=10))
-    yaxis = go.layout.YAxis(title='concentração (at.%)', mirror=True, ticks='outside', showline=True, rangemode='tozero',
+    yaxis = go.layout.YAxis(title='concentração (at.%)', mirror=True, ticks='outside', showline=True,
+                            rangemode='tozero',
                             linecolor='black', titlefont=dict(family='Arial', size=10), tickformat=".2%")
     layout = go.Layout(plot_bgcolor='white', xaxis=xaxis, yaxis=yaxis, width=700, height=350,
-                       legend=dict(x=0.75, y=0.95), margin=dict(t=2,b=2,l=2,r=3))
+                       legend=dict(x=0.75, y=0.95), margin=dict(t=2, b=2, l=2, r=3))
 
     fig = go.Figure(layout=layout)
-    dash_types = iter(["solid", "dot", "dash", "dashdot", "longdash",  "longdashdot"])
+    dash_types = iter(["solid", "dot", "dash", "dashdot", "longdash", "longdashdot"])
     colors = iter(['#0048b3', '#e92123', '#13c23c', '#4c94ff', '#ffa500'])
     # Add traces
     for d in data:
@@ -32,9 +34,24 @@ def plot(inputdir: str, outputdir: str):
                                            )
                                  )
                       )
+    if exp:
+        df_exp = pd.read_excel(r'C:\Users\Julia\Documents\tcc\TF\codes\results\plot\finals\ExpEPMAdata.xlsx',
+                               sheet_name='results',
+                               index_col='index')
+        x_range = list(df_exp.columns)
+        data = [(i[0], from_vol_to_at(from_yn_to_m3(i[1]))) for i in df_exp.iterrows()]
+        fig.add_trace(go.Scatter(x=x_range, y=data[0][1],
+                                 mode='markers',
+                                 name=str(data[0][0]),
+                                 marker=dict(symbol='circle',
+                                             color='black'
+                                             )
+                                 )
+                      )
 
     fig.write_image(r'{}'.format(outputdir))
     print("done")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Graph Maker')
@@ -42,5 +59,6 @@ if __name__ == "__main__":
                         help=r'Input Dir for data (e.g C:\Users\Julia\Documents\tcc\TF\codes\results\plot\20191029\plot_classicFickGasBeta.xlsx)')
     parser.add_argument('outdir', type=str,
                         help=r'Output Dir for graph (e.g C:\Users\Julia\Documents\tcc\TF\codes\helpers\test8.png)')
+    parser.add_argument('--exp', help=r'Add experimental data')
     args = parser.parse_args()
-    plot(args.input, args.outdir)
+    plot(args.input, args.outdir, args.exp)
