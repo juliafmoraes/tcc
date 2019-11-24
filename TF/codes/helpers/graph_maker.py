@@ -19,10 +19,12 @@ def plot(inputdir: str, outputdir: str, exp: bool):
                             rangemode='tozero',
                             linecolor='black', titlefont=dict(family='Arial', size=10), tickformat=".2%")
     layout = go.Layout(plot_bgcolor='white', xaxis=xaxis, yaxis=yaxis, width=700, height=350,
+
                        legend=dict(x=0.75, y=0.95), margin=dict(t=2, b=2, l=2, r=3))
 
     fig = go.Figure(layout=layout)
     dash_types = iter(["solid", "dot", "dash", "dashdot", "longdash", "longdashdot"])
+
     colors = iter(['#0048b3', '#e92123', '#13c23c', '#4c94ff', '#ffa500'])
     # Add traces
     for d in data:
