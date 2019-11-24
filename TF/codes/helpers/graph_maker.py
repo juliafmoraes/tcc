@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import argparse
+import os
+import sys
 
 import plotly.graph_objects as go
 import pandas as pd
@@ -37,11 +39,18 @@ def plot(inputdir: str, outputdir: str, exp: bool):
                                  )
                       )
     if exp:
-        df_exp = pd.read_excel(r'C:\Users\Julia\Documents\tcc\TF\codes\results\plot\finals\ExpEPMAdata.xlsx',
-                               sheet_name='results',
-                               index_col='index')
+        if exp == 'gas':
+            df_exp = pd.read_excel(r'{}\ExpEPMAdata.xlsx'.format(os.path.dirname(os.path.abspath(__file__))),
+                                   sheet_name='results',
+                                   index_col='index')
+            data = [(i[0], from_vol_to_at(from_yn_to_m3(i[1]))) for i in df_exp.iterrows()]
+        elif exp == 'plasma':
+                df_exp = pd.read_excel(r'{}\plasma_exp.xlsx'.format(os.path.dirname(os.path.abspath(__file__))),
+                                       sheet_name='results',
+                                       index_col='index')
+                data = [(i[0], i[1]/100) for i in df_exp.iterrows()]
+
         x_range = list(df_exp.columns)
-        data = [(i[0], from_vol_to_at(from_yn_to_m3(i[1]))) for i in df_exp.iterrows()]
         fig.add_trace(go.Scatter(x=x_range, y=data[0][1],
                                  mode='markers',
                                  name=str(data[0][0]),
@@ -61,6 +70,6 @@ if __name__ == "__main__":
                         help=r'Input Dir for data (e.g C:\Users\Julia\Documents\tcc\TF\codes\results\plot\20191029\plot_classicFickGasBeta.xlsx)')
     parser.add_argument('outdir', type=str,
                         help=r'Output Dir for graph (e.g C:\Users\Julia\Documents\tcc\TF\codes\helpers\test8.png)')
-    parser.add_argument('--exp', help=r'Add experimental data')
+    parser.add_argument('--exp', type=str, help=r'Add experimental data (gas or plasma)')
     args = parser.parse_args()
     plot(args.input, args.outdir, args.exp)
