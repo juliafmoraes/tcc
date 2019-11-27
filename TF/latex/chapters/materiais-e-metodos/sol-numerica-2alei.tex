@@ -5,14 +5,22 @@ Recordando a Segunda Lei de Fick mencionada na seção \ref{sec:difusao}, estuda
 \pdv{C(x,t)}{t} = D(C)\pdv[2]{C(x,t)}{x}
 \end{equation}
 
-Para essa solução, considera-se o coeficiente de difusão constante (independente da concentração, D(C) = D. Utilizando o método das diferenças finitas apresentado na seção \ref{sec:dif-fin}, a discretização do espaço será dada por um espaçamento {$\Delta x$}, e representa-se por $i$ o i-ésimo nó do eixo x. Para o passo do tempo, utilizou-se um passo {$\Delta t$}, e $j$ nota o j-ésimo instante de tempo. Assim, tem-se a representação discretizada da eq.\ref{eq:2alei-num} dada pela eq.\ref{eq:2alei-discr}. Destaca-se que foi utilizado o método implícito das diferenças finitas para essa parte do trabalho.
+Para essa solução, considera-se o coeficiente de difusão constante (independente da concentração, D(C) = D. Utilizando o método das diferenças finitas apresentado na seção \ref{sec:dif-fin}, a discretização do espaço será dada por um espaçamento {$\Delta x$}, e representa-se por $i$ o i-ésimo nó do eixo x. Para o passo do tempo, utilizou-se um passo {$\Delta t$}, e $j$ nota o j-ésimo instante de tempo. Assim, tem-se a representação discretizada da eq.\ref{eq:2alei-num} dada pela eq.\ref{eq:2alei-discr} e um esquema dessa malha ilustrado na Figura \ref{fig:malha}. Destaca-se que foi utilizado o método implícito das diferenças finitas para essa parte do trabalho.
 
 \begin{equation}
 \label{eq:2alei-discr}
 \dfrac{C_i^{j+1} - C_i^j}{\Delta t} = D\dfrac{C_{i+1}^{j+1} - 2C_i^{j+1} + C_{i-1}^{j+1}}{(\Delta x)^2}
 \end{equation}
 
-\myworries{colocar o grafico mostrando os nós}
+
+
+\begin{figure}[ht]
+	\caption{Malha de discretização}
+	\includegraphics{malha}
+	\label{fig:malha}
+	\centering
+    \fonte{adaptado de Y.Sun; T.Bell, 1997}	
+	\end{figure}
 
 
 As condições de contorno adotadas serão as mesmas apresentadas na seção \ref{sec:difusao}, isto é, a concentração inicial de N no interior do material é nula e a concentração na superfície se mantém constante ao longo do tempo. Essas condições podem ser descritas da seguinte forma:

@@ -21,7 +21,7 @@ Segundo o artigo de Parascandola, o transporte de nitrogênio pode ser descrito 
 \pdv{N_{trap}(x,t)}{t} = k_t\left[N_{dif}(x,t)\left(H_t-N_{trap}(x,t)\right)\right] - k_dN_{trap}(x,t)
 \end{equation}
 
-Aonde $k_t$ é o coeficiente de \textit{trapping} e $k_d$ é o coeficiente de \textit{detrapping}. Na difusão assistida por \textit{trapping} e \textit{detrapping}, $k_t$ é proporcional ao coeficiente de difusão ${D=D_0e^{\frac{-E_A}{k_BT}}}$ e $k_d$ é proprocional a ${e^{\frac{-E_B}{k_BT}}}$. Ainda segundo Parascandola, os coeficiente $k_t$ e $k_d$ tem pouca influência na difusão não estacionária e o aprisionamento segue uma cinética de primeira ordem, ou seja, a taxa de aprisionamento é proporcional ao produto da concentração de nitrogênio e da concentração de sítios de aprisionamento livres (não ocupados). A eq.\autoref{eq:trap-detrap2} modela o processo de aprisionamento, permitindo calcular a concentração de nitrogênio ocupando sítios de \textit{trap}. A expressão $k_t\left[N_{dif}(x,t)\left(H_t-N_{trap}(x,t)\right)\right]$ descreve o processo de \textit{trapping} denNitrogênio livre na matriz, sendo $H_t - N_{trap}(x,t)$ a concentração de traps disponíveis (inocupados) e a expressão $ k_dN_{trap}(x,t)$ descreve o nitrogênio aprisionado pelos \textit{traps} de cromo que podem se manter aprisionados ou serem liberado para a matriz, dependendo de fatores como a energia de ativação.
+Aonde $k_t$ é o coeficiente de \textit{trapping} e $k_d$ é o coeficiente de \textit{detrapping}. Na difusão assistida por \textit{trapping} e \textit{detrapping}, $k_t$ é proporcional ao coeficiente de difusão ${D=D_0e^{\frac{-E_A}{k_BT}}}$ e $k_d$ é proprocional a ${e^{\frac{-E_B}{k_BT}}}$. Ainda segundo Parascandola, os coeficiente $k_t$ e $k_d$ tem pouca influência na difusão não estacionária e o aprisionamento segue uma cinética de primeira ordem, ou seja, a taxa de aprisionamento é proporcional ao produto da concentração de nitrogênio e da concentração de sítios de aprisionamento livres (não ocupados). A eq.\autoref{eq:trap-detrap2} modela o processo de aprisionamento, permitindo calcular a concentração de nitrogênio ocupando sítios de \textit{trap}. A expressão $k_t\left[N_{dif}(x,t)\left(H_t-N_{trap}(x,t)\right)\right]$ descreve o processo de \textit{trapping} de nitrogênio livre na matriz, sendo $H_t - N_{trap}(x,t)$ a concentração de traps disponíveis (inocupados) e a expressão $ k_dN_{trap}(x,t)$ descreve o nitrogênio aprisionado pelos \textit{traps} de cromo que podem se manter aprisionados ou serem liberado para a matriz, dependendo de fatores como a energia de ativação.
 
 
 As hipóteses tomadas para a construção do modelo são: existe apenas um tipo de aprisionamento causado pelos átomos de cromo, cada sítio de aprisionamento pode reter apenas um átomo de nitrogênio, a concentração de sítios de aprisionamento é constante no tempo e espaço, a energia de ativação para  \textit{detrapping} não depende da fração de traps ocupados, existe equilíbrio local entre o nitrogênio nos sítios de difusão e aqueles nos sítios de aprisionamento e o fenômeno de \textit{trapping-detrapping} é controlado por difusão e segue cinética de primeira ordem.
@@ -62,7 +62,7 @@ $H_0$: concentração de átomos hospedeiros
 	
 $E_B$ : energia de ativação para \textit{detrapping}
 
-Para efeito desse trabalho, com o objetivo de desenvolver um modelo simples, foram considerados os seguintes valores para $k_t$ e $k_d$:
+Para efeito desse trabalho, com o objetivo de desenvolver um modelo simples e levando em conta que os coeficientes não tem grande influência como dito por Parascandola, foram considerados os seguintes valores para $k_t$ e $k_d$:
 \begin{center}
 $k_t = R_tD = R_tD_0e^{\frac{-E_A}{k_BT}}$ \\ $k_d = R_tDH_0 = R_tR_tD_0e^{\frac{-E_A}{k_BT}}H_0$
 \end{center}
@@ -107,5 +107,5 @@ Considerando o fluxo de difusão unidirecional, apenas do exterior para o interi
 \end{equation}
 
 
-A equação\autoref{eq:trap-detrap-cc1} se refere à difusão de Nitrogênio na interface, na qual o termo dado por $\alpha j_{0}\left(H_0-N_{dif}(0,t)-N_{trap}\left(0,t\right)\right)$ descreve a adsorção de nitrogênio, e  $j_0$ é o fluxo incidente de átomos de Nitrogênio, previamente explicado na Seção \autoref{sec:sol-numerica-2alei2}
+A equação\autoref{eq:trap-detrap-cc1} se refere à difusão de Nitrogênio na interface, na qual o termo dado por $j_{0}\left(H_0-N_{dif}(0,t)-N_{trap}\left(0,t\right)\right)$ descreve a adsorção de nitrogênio, e  $j_0$ é o fluxo incidente de átomos de Nitrogênio, previamente explicado na Seção \autoref{sec:sol-numerica-2alei2}
 
