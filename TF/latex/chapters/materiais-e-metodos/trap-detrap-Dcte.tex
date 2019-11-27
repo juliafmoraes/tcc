@@ -49,12 +49,12 @@ Pelas outras equações do conjunto \ref{eq:trap-detrap-gas-cc1}, \ref{eq:trap-d
 Para a eq. \ref{eq:trap-detrap-cc1}:
 
 \begin{equation*}
-\dfrac{{N_{dif}}_{0}^{j+1} - {N_{dif}}_{1}^{j}}{\Delta j} = -D \dfrac{{N_{dif}}_{1}^{j} - {N_{dif}}_0^{j}}{(\Delta i)^2} - \dfrac{{N_{trap}}_0^{j+1} - {N_{trap}}_0^{j}}{\Delta j} +\alpha j_{0}\left(H_0-{N_{dif}}_0^{j}-{N_{trap}}_0^j\right)
+\dfrac{{N_{dif}}_{0}^{j+1} - {N_{dif}}_{1}^{j}}{\Delta j} = -D \dfrac{{N_{dif}}_{1}^{j} - {N_{dif}}_0^{j}}{(\Delta i)^2} - \dfrac{{N_{trap}}_0^{j+1} - {N_{trap}}_0^{j}}{\Delta j} + j_{0}\left(H_0-{N_{dif}}_0^{j}-{N_{trap}}_0^j\right)
 \end{equation*} 
 
 \begin{equation}
 \label{eq:trap-detrap-discr5}
-{N_{dif}}_{0}^{j+1} = {N_{dif}}_{1}^{j} - Fo({N_{dif}}_{1}^{j} - {N_{dif}}_0^{j}) - \gamma_0^j +\alpha j_{0}\left(H_0-{N_{dif}}_0^{j}-{N_{trap}}_0^j\right)
+{N_{dif}}_{0}^{j+1} = {N_{dif}}_{1}^{j} - Fo({N_{dif}}_{1}^{j} - {N_{dif}}_0^{j}) - \gamma_0^j +j_{0}\left(H_0-{N_{dif}}_0^{j}-{N_{trap}}_0^j\right)
 \end{equation} 
 
 Com as equações \autoref{eq:trap-detrap-discr2} e \autoref{eq:trap-detrap2-discr2} e as condições dados pelas eq.\ref{eq:trap-detrap2-discr3} e eq.\ref{eq:trap-detrap2-discr4} ou eq.\ref{eq:trap-detrap-discr5} é possível resolver computacionalmente o problema.

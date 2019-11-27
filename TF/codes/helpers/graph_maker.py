@@ -22,12 +22,12 @@ def plot(inputdir: str, outputdir: str, exp: bool):
                             linecolor='black', titlefont=dict(family='Arial', size=10), tickformat=".2%")
     layout = go.Layout(plot_bgcolor='white', xaxis=xaxis, yaxis=yaxis, width=700, height=350,
 
-                       legend=dict(x=0.75, y=0.95), margin=dict(t=2, b=2, l=2, r=3))
+                       legend=dict(x=0.75, y=0.95), margin=dict(t=2, b=2, l=20, r=50))
 
     fig = go.Figure(layout=layout)
     dash_types = iter(["solid", "dot", "dash", "dashdot", "longdash", "longdashdot"])
 
-    colors = iter(['#0048b3', '#e92123', '#13c23c', '#4c94ff', '#ffa500'])
+    colors = iter(['#0048b3', '#ff007f', 'black', '#e92123', '#4c94ff'])
     # Add traces
     for d in data:
         fig.add_trace(go.Scatter(x=x_range, y=d[1],

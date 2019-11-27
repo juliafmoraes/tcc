@@ -1,3 +1,18 @@
+Uma questão a ser levantada é a diferença nos resultados experimentais dos artigos utilizados para validação dos modelos. No experimento de Galdikas e Moskalioviene, para uma duração de 2 horas a profundidade da camada nitretada é de aproximadamente   12 $\mu$m, enquanto para Somers essa profundidade só é obtida após 23 horas. A principal diferença entre os processos é que o primeiro utilizou nitretação à plasma enquanto o segundo utilizou nitretação gasosa.  Ainda assim, outros artigos para aços com composição similares também não chegam próximo ao resultado obtido por Galdikas e Moskalioviene em \cite{moskalioviene2011modeling}. Em \cite{galdikas2011modeling}, uma profundidade similar foi obtida para 4 horas de experimento. Esse fato pode indicar uma influência do processo, que deve ser adicionada às condições de contorno do modelo e possivelmente podem causar grandes diferenças nos resultados
+
 Os principais fatores levados em consideração nos estudos da difusão do nitrogênio nos aços são a afinidade do cromo (que provoca o fenômeno de \textit{trapping-detrapping}, as tensões residuais, os efeitos de sputtering do processo à plasma, efeitos das reações na superfície e a dependência do coeficiente de difusão com a concentração.
 
 Dessa forma o modelo desenvolvido possui algumas limitações, seguem algumas delas. Ele não pode ser utilizado para processos de nitretação com temperaturas superiores à 450°C, pois para tais temperaturas existe a possibilidade de precipitação de nitretos de cromo que não estão previstas no modelo. Não foram levadas em consideração os efeitos da taxa de sputtering e do surgimento de defeitos causados pelo bombardeamento de íon de alta energia no processo à plasma ou similiares. Não foram consideradas possíveis reações na superfície durante os processos de nitretação. Não foi analisado a influência de tensões causadas pela expansão do reticulado durante a incorporação de nitrogênio e não considerou-se a influência da composição no coeficiente de difusão.
+
+Difusão nos contornos de grão pode ser desconsiderada pois a concentração de nitrogênio é maior dentro dos grãos do que no contorno segundo \cite{parascandola2000nitrogen}.
+
+O fluxo de átomos na superfície depende de muitos fatores e é influenciado pelo tipo de processo e todas as variáveis envolvidas, como temperatura, pressão, potencial, densidade de corrente, etc.
+A primeira simplificação feita nesse estudo foi que a concentração na superfície se mantinha constante do início ao fim do processo de nitretação. Nesse caso, considera-se que existe equilíbrio termodinâmico entre a  mistura gasosa e o metal em tratamento.
+% Esse equilíbrio é dado pela reação $\frac{1}{2}$ N${_2(g)}$ $\leftrightharpoons$ [N] $\gamma$ (no aço) \cite{tschiptschin2000thermodynamics}.
+Procurando melhorar 
+
+Como alternativa ao modelamento da nitretação à plasma, poderia ser utilizado uma condição de contorno utilizando a fração volumétrica da mistura gasosa do processo, como visto em \cite{garzon2006modelamento}. Nesse artigo o fluxo de nitrogênio na superfície é dado pela eq.\ref{eq:alternativa-cc}.
+
+\begin{equation} \label{eq:alternativa-cc}
+ J = \left[-D\pdv{N}{x}\right]_{x=0} = \dfrac{A}{\rho} = 0,00003255 \times (\%N_2)  \left[\frac{g}{m^2\times s}\right]
+\end{equation}
