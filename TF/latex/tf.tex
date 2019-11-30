@@ -55,14 +55,14 @@
 
 % ========== Opções do documento ==========
 % Título
-\titulo{Análise Numérica da Difusão de Nitrogênio durante a Nitretação dos Aços}
+\titulo{Análise numérica da difusão de nitrogênio em aços inoxidáveis austeníticos}
 
 % Autor
 \autor{Julia Moraes}
 
 
 % Orientador / Coorientador
-\orientador{Prof. Dr. Eduardo Franco de Monlevade}
+\orientador{Prof. Dr. Eduardo Franco de             Monlevade}
 
 % Tipo de documento
 \tcc{Engenharia de Materiais}
@@ -85,8 +85,55 @@
 \begin{document}
 % ========== Capa e folhas de rosto ==========
 \capa
-%\falsafolhaderosto
-%\folhaderosto
+\falsafolhaderosto
+\folhaderosto
+
+% ========== Ficha catalográfica ==========
+% Fazer solicitação no site:
+%	http://www.poli.usp.br/en/bibliotecas/servicos/catalogacao-na-publicacao.html
+
+
+% ========== Dedicatória (opcional) ==========
+\dedicatoria{Dedico esse trabalho ao meu avô e ao meu pai}
+
+
+% ========== Agradecimentos ==========
+\begin{agradecimentos}
+
+Thanks...
+
+\end{agradecimentos}
+
+
+% ========== Epígrafe (opcional) ==========
+\epigrafe{%
+	\emph{``I can’t do what I do alone, and I need something from everybody. The only thing I know how to do is sketch and come up with a few ideas, but for the rest of it, I need help.''}
+	\begin{flushright}
+		(Karl Lagerfeld)
+	\end{flushright}
+}
+
+
+% ========== Resumo ==========
+\begin{resumo}
+Resumo...
+%
+\\[3\baselineskip]
+%
+\textbf{Palavras-Chave} -- Nitretação, Difusão de nitrogênio, Aço inoxidável austenítico, Modelamento matemático, Difusão de nitrogênio, Austenita expandida.
+\end{resumo}
+
+
+% ========== Abstract ==========
+\begin{abstract}
+Abstract...
+%
+\\[3\baselineskip]
+%
+\textbf{Keywords} -- Nitriding, Nitrogen  difusion, Autenitic stainless steel, Mathematical Modeling, Expanded austenite.
+\end{abstract}
+
+
 
 \chapter{tmp}
 \par \myworries{colocar a legenda da figura embaixo}
@@ -103,9 +150,8 @@
 
 % ========== Elementos textuais ==========
 \chapter{Introdução}
+\input{chapters/outros/introducao}
 
-\myworries{//O objetivo é buscar entender o perfil obtido (plato...) e a velocidade ---
- criar um modelo simplessssss e verificar a validade do mesmo}
 
 \chapter{Revisão Bibliográfica}
 \section{Difusão}
@@ -526,7 +572,7 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 	
 	Com o objetivo de validar o modelo, foram utilizados dados experimentais obtidos de artigos de autores referenciados anteriormente. No caso da nitretação gasosa, foi disponibilizado pelo Dr Marcel Somers o resultado do experimento utilizado no artigo \cite{christiansen2008nitrogen} e para a nitretação à plasma foram retirados os dados do artigo \cite{moskalioviene2011modeling} utilizando o software WebPlotDigitizer.
 	
-	Para cada simulação, todas as entradas podem ser consultadas nas tabelas correspondentes encontradas no Anexo A.
+	Para cada simulação, todas as entradas podem ser consultadas nas tabelas correspondentes encontradas no Apêndice A.
 
 \section{Modelo 1 - Segunda Lei de Fick}
 
@@ -539,6 +585,7 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 \input{chapters/resultados/sol-numerica-2alei-csvar}
 
 \section{Modelo 2 - \textit{Trapping-Detrapping}}
+\label{sec:modelo2}
 \subsection{Concentração na superfície constante}
 \label{sec:modelo21}
 \input{chapters/resultados/trap-detrap-cscte}
@@ -554,7 +601,7 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 \section{Análise dos Resultados}
 \input{chapters/discussao/analise-resultados}
 
-\section{Discussão}
+\section{Discussão com a literatura}
 \label{sec:discussao}
 
 \input{chapters/discussao/discussao}
@@ -570,10 +617,8 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 \bibliography{references}
 
 
-\chapter*{Anexos}
+\chapter*{Apêndice}
 \input{chapters/outros/anexos}
-\myworries{. colocar tabela da funcao erro nos anexos}
 \myworries{. colocar os códigos}
-
 
 \end{document}
