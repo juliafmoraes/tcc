@@ -1,5 +1,5 @@
 \par Uma forma de encontrar a solução de equações diferenciais é pelo método das diferenças finitas. A ideia fundamental desse método é aproximar a derivada de uma função ao redor de um dado ponto utilizando valores desta função em pontos vizinhos, criando uma malha de nós sobre o domínio da função.
-\par Considerando um problema de equações diferenciais com condições de Dirichlet (aonde são conhecidos os valores nas extremidadades do domínio) representada pelo sistema $(S)$, podemos discretizar o intervalo [a, b] no pontos $x_i = a + ih$ para $i \in [0, n+1]$, sendo $h = \dfrac{b-a}{n+1}$, a distância entre os nós.
+\par Considerando um problema de equações diferenciais com condições de Dirichlet (onde são conhecidos os valores nas extremidadades do domínio) representada pelo sistema $(S)$, podemos discretizar o intervalo [a, b] no pontos $x_i = a + ih$ para $i \in [0, n+1]$, sendo $h = \dfrac{b-a}{n+1}$, a distância entre os nós.
 
 \begin{center}
 	\begin{math}
@@ -24,47 +24,47 @@
 	\end{math}
 \end{center} 
 
-\par Seja $u_i$ o valor aproximado de $u(x_i)$ que deseja-se calcular e $U = (u_1, ..., u_n)^T$, $u_0 = \alpha$ e $u_{n+1} = \beta$. Aproxima-se $u''(x_i)$ e $u'(x_i)$ utilizando a série de Taylor de u em torno de $x_i$.
+\par Seja $u_i$ o valor aproximado de $u(x_i)$ que deseja-se calcular e $U = (u_1, ..., u_n)^T$, $u_0 = \alpha$ e $u_{n+1} = \beta$. Aproxima-se $u''(x_i)$ e $u'(x_i)$ utilizando a série de Taylor de $u$ em torno de $x_i$.
 \par A série de Taylor é a representação de uma função na forma de uma soma infinita cujos termos são calculados pelas derivadas da função em um único ponto.
 A eq.(\ref{eq:taylor}) é a série de Taylor da funçao $f(x)$ em torno de $x_i$.
 
 \begin{equation} \label{eq:taylor}
-f(x_i) = \sum_{n=0}^\infty \dfrac{f^{(n)}(x_i)}{n!}(x-x_i)^n = f(x_i) + \dfrac{f'(x_i)(x-x_i)}{1!} + \dfrac{f''(x_i)(x-x_i)^2}{2!} + ...
+f(x_i) = \sum_{n=0}^\infty \dfrac{f^{(n)}(x_i)}{n!}(x-x_i)^n = f(x_i) + \dfrac{f'(x_i)(x-x_i)}{1!} + \dfrac{f''(x_i)(x-x_i)^2}{2!} + ... \;.
 \end{equation}
 
-Pode-se escrever a série de Taylor de $u$ em torno de $x_i$ como visto na equação \ref{eq:taylor-u}.
+Pode-se escrever a série de Taylor de $u$ em torno de $x_i$ como visto na eq.(\ref{eq:taylor-u}).
 
 \begin{equation} \label{eq:taylor-u}
-u(x) = u(x_i) + u'(x_i)(x-x_i) + \dfrac{u''(x_i)}{2!}(x-x_i)^2 + ...
+u(x) = u(x_i) + u'(x_i)(x-x_i) + \dfrac{u''(x_i)}{2!}(x-x_i)^2 + ...  \;.
 \end{equation}
 
-As expansões de Taylor para $u$ em torno e $x_i$, para $x=x_{i-1}$ e $x=x_{i+1}$ estão descritas nas equações \ref{eq:taylor-u-1} e \ref{eq:taylor-u+1}, respectivamente.
+As expansões de Taylor para $u$ em torno e $x_i$, para $x=x_{i-1}$ e $x=x_{i+1}$ estão descritas nas equações eq.(\ref{eq:taylor-u-1}) e eq.(\ref{eq:taylor-u+1}), respectivamente.
 
 \begin{equation} \label{eq:taylor-u-1}
-u(x_{i-1}) = u(x_i-h) = u(x_i) - hu'(x_i) + \dfrac{h^2u''(x_i)}{2!} - \dfrac{h^3 u^{(3)}(x_i)}{3!} + O(h^4)
+u(x_{i-1}) = u(x_i-h) = u(x_i) - hu'(x_i) + \dfrac{h^2u''(x_i)}{2!} - \dfrac{h^3 u^{(3)}(x_i)}{3!} + O(h^4) \;.
 \end{equation}
 
 
 \begin{equation} \label{eq:taylor-u+1}
-u(x_{i+1}) = u(x_i+h) = u(x_i) + hu'(x_i) + \dfrac{h^2u''(x_i)}{2!} + \dfrac{h^3 u^{(3)}(x_i)}{3!} + O(h^4)
+u(x_{i+1}) = u(x_i+h) = u(x_i) + hu'(x_i) + \dfrac{h^2u''(x_i)}{2!} + \dfrac{h^3 u^{(3)}(x_i)}{3!} + O(h^4) \;.
 \end{equation}
 
 Subtraindo a eq.(\ref{eq:taylor-u-1}) da eq.(\ref{eq:taylor-u+1}), obtém-se:
 
 \begin{equation} \label{eq:u-linha}
-\dfrac{u(x_{i+1}) - u(x_{i-1)}}{2h} = u'(x_i) + O(h^2)
+\dfrac{u(x_{i+1}) - u(x_{i-1})}{2h} = u'(x_i) + O(h^2) \;.
 \end{equation}
 
 E somando as mesmas equações:
 
 \begin{equation} \label{eq:u-linha-linha}
-\dfrac{u(x_{i+1}) -2u(x_i) + u(x_{i-1)}}{h^2} = u''(x_i) + O(h^2)
+\dfrac{u(x_{i+1}) -2u(x_i) + u(x_{i-1)}}{h^2} = u''(x_i) + O(h^2) \;.
 \end{equation}
 
-Subsitituindo as equações \ref{eq:u-linha} e \ref{eq:u-linha-linha} em $(S)$, obtém-se:
+Subsitituindo as equações eq.(\ref{eq:u-linha}) e eq.(\ref{eq:u-linha-linha}) em $(S)$, obtém-se:
 
-\begin{equation} \label{eq:u-linha-linha}
-\dfrac{u(x_{i+1}) -2u(x_i) + u(x_{i-1)}}{h^2} + p(x_i)\dfrac{u(x_{i+1}) - u(x_{i-1)}}{2h}  + q(x_i)u(x_i) - g(x_i) = e_i
+\begin{equation} 
+\dfrac{u(x_{i+1}) -2u(x_i) + u(x_{i-1})}{h^2} + p(x_i)\dfrac{u(x_{i+1}) - u(x_{i-1})}{2h}  + q(x_i)u(x_i) - g(x_i) = e_i \;.
 \end{equation}
 
 para todo $i=1, ..., n$ com $e_i = O(h^2)$ chamado de erro de truncamento.
@@ -86,7 +86,7 @@ para todo $i=1, ..., n$ com $e_i = O(h^2)$ chamado de erro de truncamento.
 			\qquad	   
     		\end{array}
     		\begin{array}{l}
-      			i = 1, ... , n 
+      			i = 1, ... , n \;.
     		\end{array}
 		\right.
 	\end{math}

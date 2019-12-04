@@ -82,7 +82,7 @@ Com algumas operações chega-se ao algoritmo em si - seja $L_i$ a linha $i$ do 
 	\end{bmatrix}
 \end{equation*}
 
-Seja $c_1' = \dfrac{c1}{b1}$ e $d_1' = \dfrac{d1}{b1}$:
+Seja $c_1' = \dfrac{c_1}{b_1}$ e $d_1' = \dfrac{d_1}{b_1}$:
 \begin{equation*}
 	L_2'' = L_2'\divisionsymbol (b_2-a_2c_1')  \Rightarrow
 	\begin{bmatrix}
@@ -151,9 +151,9 @@ De forma análoga para as outras linhas, chega-se que:
 	\end{math}
 \end{center} 
 
-Dessa forma, a solução para o sistema de equações encontrand $x_n$, $x_{n-1}$, $x_{n-2}$, ..., até $x_1$ utilizando:
+Dessa forma, a solução para o sistema de equações pode ser obtida encontrando $x_n$, $x_{n-1}$, $x_{n-2}$, ..., até $x_1$ utilizando:
 
 \begin{gather*}
-	x_n = d_n' \\
-	x_i = d_i' - c_i' x_{i+1} \ para \ i = 1, ..., n-1
+	x_n = d_n' \;,\\
+	x_i = d_i' - c_i' x_{i+1} \ para \ i = 1, ..., n-1 \;.
 \end{gather*}

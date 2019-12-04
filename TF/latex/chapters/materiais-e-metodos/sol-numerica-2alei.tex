@@ -1,15 +1,15 @@
-Recordando a Segunda Lei de Fick mencionada na seção \ref{sec:difusao}, estuda-se uma solução numérica para a equação diferencial \ref{eq:2alei-num}.
+Recordando a Segunda Lei de Fick mencionada na seção \ref{sec:difusao}, estuda-se uma solução numérica para a equação diferencial eq.(\ref{eq:2alei-num}).
 
 \begin{equation}
 \label{eq:2alei-num}
-\pdv{C(x,t)}{t} = D(C)\pdv[2]{C(x,t)}{x}
+\pdv{C(x,t)}{t} = D(C)\pdv[2]{C(x,t)}{x} \;.
 \end{equation}
 
-Para essa solução, considera-se o coeficiente de difusão constante (independente da concentração, D(C) = D. Utilizando o método das diferenças finitas apresentado na seção \ref{sec:dif-fin}, a discretização do espaço será dada por um espaçamento {$\Delta x$}, e representa-se por $i$ o i-ésimo nó do eixo x. Para o passo do tempo, utilizou-se um passo {$\Delta t$}, e $j$ nota o j-ésimo instante de tempo. Assim, tem-se a representação discretizada da eq.\ref{eq:2alei-num} dada pela eq.\ref{eq:2alei-discr} e um esquema dessa malha ilustrado na Figura \ref{fig:malha}. Destaca-se que foi utilizado o método implícito das diferenças finitas para essa parte do trabalho.
+Para essa solução, considera-se o coeficiente de difusão constante (independente da concentração, D(C) = D. Utilizando o método das diferenças finitas apresentado na seção \ref{sec:dif-fin}, a discretização do espaço será dada por um espaçamento {$\Delta x$}, e representa-se por $i$ o i-ésimo nó do eixo x. Para o passo do tempo, utilizou-se um passo {$\Delta t$}, e $j$ nota o j-ésimo instante de tempo. Assim, tem-se a representação discretizada da eq.(\ref{eq:2alei-num}) dada pela eq.(\ref{eq:2alei-discr}) e um esquema dessa malha ilustrado na Figura \ref{fig:malha}. Destaca-se que foi utilizado o método implícito das diferenças finitas para essa parte do trabalho.
 
 \begin{equation}
 \label{eq:2alei-discr}
-\dfrac{C_i^{j+1} - C_i^j}{\Delta t} = D\dfrac{C_{i+1}^{j+1} - 2C_i^{j+1} + C_{i-1}^{j+1}}{(\Delta x)^2}
+\dfrac{C_i^{j+1} - C_i^j}{\Delta t} = D\dfrac{C_{i+1}^{j+1} - 2C_i^{j+1} + C_{i-1}^{j+1}}{(\Delta x)^2}  \;.
 \end{equation}
 
 
@@ -23,10 +23,10 @@ Para essa solução, considera-se o coeficiente de difusão constante (independe
 	\end{figure}
 
 
-As condições de contorno adotadas serão as mesmas apresentadas na seção \ref{sec:difusao}, isto é, a concentração inicial de N no interior do material é nula e a concentração na superfície se mantém constante ao longo do tempo. Essas condições podem ser descritas da seguinte forma:
+As condições de contorno adotadas serão as mesmas apresentadas na seção \ref{sec:difusao}, isto é, a concentração inicial de nitrogênio no interior do material é nula e a concentração na superfície se mantém constante ao longo do tempo. Essas condições podem ser descritas da seguinte forma:
 
 \begin{gather*}
-		\mathrm{Condição\ Inicial: }\ C(x, t=0) = c_i^0 = 0 \qquad i \in [0;\ n+1] \\
+		\mathrm{Condição\ Inicial: }\ C(x, t=0) = c_i^0 = 0 \qquad i \in [0;\ n+1] \;. \\
 		\mathrm{Condições\ de\ Contorno:}\ 
 		\left\{
     		\begin{array}{l}
@@ -38,7 +38,7 @@ As condições de contorno adotadas serão as mesmas apresentadas na seção \re
 			\qquad \\	   
     		\end{array}
     		\begin{array}{l}
-    			j \in [0,\ T] 
+    			j \in [0,\ T] \;.
     		\end{array}
 		\right.	
 \end{gather*}
@@ -48,15 +48,15 @@ A eq.(\ref{eq:2alei-discr}) pode ser reescrita como:
 
 \begin{equation}
 \label{eq:antesFo}
-C_i^{j+1} - \frac{D\Delta t}{(\Delta x)^2} (C_{i+1}^{j+1} - 2C_i^{j+1} + C_{i-1}^{j+1}) = C_i^j
+C_i^{j+1} - \frac{D\Delta t}{(\Delta x)^2} (C_{i+1}^{j+1} - 2C_i^{j+1} + C_{i-1}^{j+1}) = C_i^j \;.
 \end{equation}
 
-A relação $\dfrac{D\Delta t}{(\Delta x)^2}$ é um número adimensional chamado de número de Fourier. Seja $Fo = \dfrac{D\Delta t}{(\Delta x)^2} $, a eq.\ref{eq:antesFo} é reescrita subsitindo com $Fo$, isolando a incógnita ao lado esquerdo:
+A relação $\dfrac{D\Delta t}{(\Delta x)^2}$ é um número adimensional chamado de número de Fourier. Seja $Fo = \dfrac{D\Delta t}{(\Delta x)^2} $, a eq.(\ref{eq:antesFo}) é reescrita subsitituindo com $Fo$, isolando a incógnita ao lado esquerdo:
 
 \begin{gather*}
 \label{eq:depoisFo}
 - FoC_{i+1}^{j+1} + (1+2Fo)C_i^{j+1} - FoC_{i-1}^{j+1} = C_i^j \\
-C_i^{j+1} = \dfrac{1}{(1+2Fo)}C_i^j + \dfrac{Fo}{(1+2Fo)}C_{i-1}^{j+1} + \dfrac{Fo}{(1+2Fo)}C_{i+1}^{j+1}
+C_i^{j+1} = \dfrac{1}{(1+2Fo)}C_i^j + \dfrac{Fo}{(1+2Fo)}C_{i-1}^{j+1} + \dfrac{Fo}{(1+2Fo)}C_{i+1}^{j+1} \;.
 \end{gather*}
 
 Segundo o critério de estabilidade mencionado na seção \ref{sec:dif-fin}, como $Fo>0$, o esquema implícito é sempre estável.
