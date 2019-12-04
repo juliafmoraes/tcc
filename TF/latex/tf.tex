@@ -16,7 +16,7 @@
 	
 % ========== Packages ==========
 \usepackage{xcolor}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage[section]{placeins}
 \def\sectionautorefname{}
 \def\subsectionautorefname{}
@@ -78,7 +78,7 @@
 
 
 % Orientador / Coorientador
-\orientador{Prof. Dr. Eduardo Franco de             Monlevade}
+\orientador{Prof. Dr. Eduardo Franco de Monlevade}
 
 % Tipo de documento
 \tcc{Engenharia de Materiais}
@@ -246,7 +246,7 @@ Realizando a mudança de variável obtém-se:
 \end{equation}
 
 \begin{equation} \label{eq:solC}
-\Rightarrow \frac{d^2C}{d^2x} = \pdv{}{x}\pdv{C}{x} = \pdv{ }{x} \frac{dC}{d\eta}At^m = \frac{d}{d\eta}\left(\frac{dC}{d\eta}\right)\frac{d\eta}{dx}At^m = \frac{d^2C}{d\eta ^2}A^2t^{2m}
+\Rightarrow \frac{d^2C}{d^2x} = \pdv{}{x}\pdv{C}{x} = \pdv{ }{x} \frac{dC}{d\eta}At^m = \frac{d}{d\eta}\left(\frac{dC}{d\eta}\right)\frac{d\eta}{dx}At^m = \frac{d^2C}{d\eta ^2}A^2t^{2m} \;.
 \end{equation}
 
 Substituindo a eq.(\ref{eq:solA}) e a eq.(\ref{eq:solC}) na eq.(\ref{eq:segundaLeiFickUmD}):
@@ -292,7 +292,7 @@ Utilizando a condição de contorno: $C(\eta\rightarrow \infty) = c_i$ ,
 	\Rightarrow \int_{0}^{\infty} e^{-\eta^2} d\eta  = \frac{\sqrt{\pi}}{2} \Rightarrow 			\lambda' = (c_i - c_s)\frac{2}{\sqrt{\pi}} \;.
 \end{gather*}
 
-Substituindo $\lambda'$ em \autoref{eq:solF}:
+Substituindo $\lambda'$ na eq.(\ref{eq:solF}):
 \begin{equation} \label{eq:solG}
 	\frac{c - c_s}{c_i - c_s} = \frac{2}{\pi} \int_{0}^{\eta} e^{-\eta^2} d\eta   \;.
 \end{equation}
@@ -618,7 +618,7 @@ Nas seções a seguir serão apresentados os resultados para cada uma condiçõe
 \input{chapters/resultados/sol-numerica-2alei-cscte}
 
 \subsection{Concentração na superfície variável}
-As duas seções a seguir expõe o resultador obtido para a simulação da Segunda Lei de Fick para nitretação gasosa e nitretação a plasma.
+As duas seções a seguir expõem o resultador obtido para a simulação da Segunda Lei de Fick para nitretação gasosa e nitretação a plasma.
 
 \label{sec:modelo12}
 \input{chapters/resultados/sol-numerica-2alei-csvar}
