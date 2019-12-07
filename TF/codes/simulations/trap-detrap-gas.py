@@ -38,21 +38,25 @@ class TrapDetrap(Simulation):
         N_dif = [[0] * int(self.nodes)]
         N_trap = [[0] * int(self.nodes)]
 
-        for j in range(self.iterations + 1):
+        a = self.k_d * self.host_atom_concentration
+        b = self.K * self.dt
+        for j in range(int(10801 / self.dt), self.iterations + 1):
 
             N_dif_solution = [0] * int(self.nodes)
             N_trap_solution = [0] * int(self.nodes)
 
             for i in range(0, self.nodes - 2):
                 gamma = ((N_dif[-1][i] * (self.trap_concentration - N_trap[-1][i])) -
-                         (self.k_d * self.host_atom_concentration * N_trap[-1][i])
-                         ) * self.K * self.dt
+                         (a * N_trap[-1][i])
+                         ) * b
                 N_trap_solution[i] = gamma + N_trap[-1][i]
                 if i == 0:
-                    N_dif_solution[i] = self.c_eq*(1-math.exp(-self.beta*j*self.dt)) - N_trap_solution[i]
+                    N_dif_solution[i] = self.c_eq * (1 - math.exp(-self.beta * j * self.dt)) - N_trap_solution[i]
                 else:
                     N_dif_solution[i] = N_dif[-1][i] + self.Fo * (
-                                N_dif[-1][i + 1] - 2 * N_dif[-1][i] + N_dif[-1][i - 1]) - gamma
+                            N_dif[-1][i + 1] - 2 * N_dif[-1][i] + N_dif[-1][i - 1]) - gamma
+                if N_dif_solution[i] < 10 ** (-6):
+                    break
 
             N_dif_solution.append(self.upper_bound)
             N_trap_solution.append(self.upper_bound)
@@ -60,7 +64,7 @@ class TrapDetrap(Simulation):
             N_dif.append(N_dif_solution)
             N_trap.append(N_trap_solution)
 
-            #save results
+            # save results
             if j % 100000 == 0:
                 print("solving t={}s  --> {}".format(j * dt, j / int(T / dt)))
                 N_dif = N_dif[-5:]
@@ -89,7 +93,7 @@ if __name__ == "__main__":
     diffusion_energy = 1.7622 * (10 ** (-19))  # J
     capture_radius = 0.38 * (10 ** (-9))  # m
     D_zero = 8.37 * (10 ** (-8))  # m2/s
-    c_eq = 2.0358 * (10 ** 28) # m-3
+    c_eq = 2.0358 * (10 ** 28)  # m-3
 
     dt = 0.0001  # s
     dx = 0.1 * (10 ** (-6))  # micro -> m

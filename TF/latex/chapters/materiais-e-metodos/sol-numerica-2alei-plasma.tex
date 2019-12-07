@@ -1,4 +1,4 @@
-\subsubsection{Nitretação à Plasma}
+\subsubsection{Nitretação a Plasma}
 \label{sec:nit-plasma}
 Para considerar a varição na concentração da superfície quando o processo de nitretação é a plasma, pode-se utilizar um termo de adsorção na condição de contorno, como foi utilizado por \cite{galdikas2011modeling}, dado por $\dfrac{j}{qH_{superficie}}\left(H_0-C(0,t)\right)$, onde $j$ representa a densidade de corrente média do íon de nitrogênio (A/m$^2$), $q$ é a carga elementar (equivalente a $1,602.10^{-19}C$), $H_{superficie}$ é a concentração de átomos hospedeiros na superfície (em átomos/m$^2$), $H_0$ é  concentração de átomos hospedeiros (átomos/m$^3$) e $C(0,t)$ é a concentração de átomos de nitrogênio na superfície (átomos/m$^3$).
 
@@ -45,11 +45,11 @@ Analogamente ao que foi feito na seção \ref{sec:sol-numerica-2alei}, considera
 \begin{equation*}
 	\cmrtext{A} =
 	\begin{bmatrix}
-		(1 + Fo + j_0 \Delta t) & -Fo &         &        & 0\\
-		-Fo & (1+2Fo) &  -Fo   &        & \\
-		    & -Fo &   (1+2Fo)   & \ddots & \\
-		    &     &  \ddots & \ddots & -Fo \\
-	     0  &     &         &  -Fo   & (1+2Fo) 
+		(1 + Fo + j_0 \Delta t) & -Fo &  0   & \ldots  & 0\\
+		-Fo & (1+2Fo) &  -Fo   &        & \vdots \\
+         0 & -Fo &   (1+2Fo)   & \ddots & \vdots \\
+    \vdots &     &  \ddots & \ddots & -Fo \\
+	     0 & \ldots & \ldots &  -Fo   & (1+2Fo) 
 	\end{bmatrix}
 \end{equation*}
 \begin{equation*}
