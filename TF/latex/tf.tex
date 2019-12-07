@@ -16,7 +16,7 @@
 	
 % ========== Packages ==========
 \usepackage{xcolor}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage[section]{placeins}
 \def\sectionautorefname{}
 \def\subsectionautorefname{}
@@ -31,7 +31,17 @@
 \usepackage{chngcntr}
 \counterwithout{equation}{chapter}
 
-%\newcommand{\fonte}[1]{{\small Fonte}: {#1}} 
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
 \usepackage{physics}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsthm,amsfonts,amssymb}
@@ -46,6 +56,7 @@
 %\usepackage[english]{babel}
 
 
+
 % ========== ABNT (requer ABNTeX 2) ==========
 %	http://www.ctan.org/tex-archive/macros/latex/contrib/abntex2
 \usepackage[alf, versalete, abnt-emphasize = bf]{abntex2cite}
@@ -53,9 +64,14 @@
 % Forçar o abntex2 a usar [ ] nas referências ao invés de ( )
 %\citebrackets{[}{]}
 
+% ========== Usar pdfpages ==========
+\usepackage{pdfpages}
+%\usepackage{listings}
+\usepackage{pythonhighlight}
+
 % ========== Opções do documento ==========
 % Título
-\titulo{Análise Numérica da Difusão de Nitrogênio durante a Nitretação dos Aços}
+\titulo{Análise numérica da difusão de nitrogênio em aços inoxidáveis austeníticos}
 
 % Autor
 \autor{Julia Moraes}
@@ -83,16 +99,60 @@
 
 
 \begin{document}
-% ========== Capa e folhas de rosto ==========
+% ========== Capa e folhas de rosto =========
 \capa
-%\falsafolhaderosto
-%\folhaderosto
+\falsafolhaderosto
+\folhaderosto
 
-\chapter{tmp}
-\par \myworries{colocar a legenda da figura embaixo}
+% ========== Ficha catalográfica ==========
+% Fazer solicitação no site:
+%	http://www.poli.usp.br/en/bibliotecas/servicos/catalogacao-na-publicacao.html
+\includepdf[pages=-]{file.pdf}
+%\myworries{ATUALIZAR A CATALOGACAO}
 
-\myworries{[23] nitriding can be considered as a one-d problem because...
+
+
+% ========== Dedicatória (opcional) ==========
+\dedicatoria{Dedico esse trabalho a todos que me apoiaram nos últimos anos}
+
+
+% ========== Agradecimentos ==========
+\begin{agradecimentos}
+
+\input{chapters/outros/agradecimentos}
+
+\end{agradecimentos}
+
+
+% ========== Epígrafe (opcional) ==========
+\epigrafe{%
+	\emph{``I can’t do what I do alone, and I need something from everybody. The only thing I know how to do is sketch and come up with a few ideas, but for the rest of it, I need help.''}
+	\begin{flushright}
+		(Karl Lagerfeld)
+	\end{flushright}
 }
+
+
+% ========== Resumo ==========
+\begin{resumo}
+\input{chapters/outros/resumo}
+%
+\\[3\baselineskip]
+%
+\textbf{Palavras-Chave} -- Nitretação, Difusão de nitrogênio, Aço inoxidável austenítico, Modelamento matemático, Austenita expandida.
+\end{resumo}
+
+
+% ========== Abstract ==========
+\begin{abstract}
+\input{chapters/outros/abstract}
+%
+\\[3\baselineskip]
+%
+\textbf{Keywords} -- Nitriding, Nitrogen  difusion, Autenitic stainless steel, Mathematical Modeling, Expanded austenite.
+\end{abstract}
+
+
 % ========== Listas (opcional) ==========
 \listadefiguras
 \listadetabelas
@@ -103,26 +163,25 @@
 
 % ========== Elementos textuais ==========
 \chapter{Introdução}
+\input{chapters/outros/introducao}
 
-\myworries{//O objetivo é buscar entender o perfil obtido (plato...) e a velocidade ---
- criar um modelo simplessssss e verificar a validade do mesmo}
 
 \chapter{Revisão Bibliográfica}
 \section{Difusão}
 \label{sec:difusao}
-	A difusão é um processo de transporte de matéria, no qual a matéria é transportada de uma posição no sistema para outro através de movimentos moleculares aleatórios \cite{crank1979mathematics}. Para que exista difusão é necessária uma diferença de potencial químico, que atua como força motriz para o fenômeno, um exemplo é o gradiente de concentração do átomo no meio dado pela eq.(\ref{eq:gradC}) [g/cm$^4$]. 
+	A difusão é um processo de transporte de matéria, no qual a matéria é transportada de uma posição no sistema para outro através de movimentos moleculares aleatórios \cite{crank1979mathematics}. Para que exista difusão, é necessária uma diferença de potencial químico, que atua como força motriz para o fenômeno. Um exemplo é o gradiente de concentração do átomo no meio dado pela eq.(\ref{eq:gradC}) [g/cm$^4$]. 
 
 \begin{equation} \label{eq:gradC}
-\nabla C = \pdv{C}{x}e_x + \pdv{C}{y}e_y + \pdv{C}{z}e_z
+\nabla C = \pdv{C}{x}e_x + \pdv{C}{y}e_y + \pdv{C}{z}e_z \; .
 \end{equation}
 
-Para quantificar esse processo, define-se um fluxo de difusão, que corresponde à massa difundida por unidade de tempo através de uma área unitária perpendicular à direção do movimento de massa. Quando a difusão ocorre em estado estacionário, isto é, a concentração do elemento não varia com o tempo e consequentemente o fluxo também é constante, o fluxo de difusão de uma determinada espécie química pode ser relacionado à sua diferença de concentração como na eq.(~\ref{eq:primeiraLeiFick}), também conhecida como primeira lei de Fick. O fluxo de difusão ocorre na direção contrária à do gradiente de concentração, ou seja, os átomos se movimentam das regiões de maior concentração para as de menor concentração.
+Para quantificar esse processo, define-se um fluxo de difusão, que corresponde à massa difundida por unidade de tempo através de uma área unitária perpendicular à direção do movimento de massa. Quando a difusão ocorre em estado estacionário, isto é, a concentração do elemento não varia com o tempo e consequentemente o fluxo também é constante, o fluxo de difusão de uma determinada espécie química pode ser relacionado à sua diferença de concentração como na eq.(~\ref{eq:primeiraLeiFick}), também conhecida como Primeira Lei de Fick. O fluxo de difusão ocorre na direção contrária à do gradiente de concentração, ou seja, os átomos se movimentam das regiões de maior concentração para as de menor concentração \cite{crank1979mathematics}.
 
 \begin{equation} \label{eq:primeiraLeiFick}
-J = -D\nabla C = -D(\pdv{C}{x}e_x + \pdv{C}{y}e_y + \pdv{C}{z}e_z)
+J = -D\nabla C = -D(\pdv{C}{x}e_x + \pdv{C}{y}e_y + \pdv{C}{z}e_z) \; .
 \end{equation}
 
-	Na primeira lei de Fick, J representa o fluxo de difusão [g/cm$^2$.s] e D é o coeficiente de difusão [cm$^2$/s]. Considerando o caso unidimensional e dado que em estado estacionário a concentração não varia com o tempo, também não há variação com a posição, portanto $dC/dx$ é constante e $C(x)$ é uma função linear de x, como mostra a Figura \ref{fig:primeiraLei}. \par
+	Na Primeira Lei de Fick, J representa o fluxo de difusão [g/cm$^2$.s] e D é o coeficiente de difusão [cm$^2$/s]. Considerando o caso unidimensional e dado que em estado estacionário a concentração não varia com o tempo, também não há variação com a posição, portanto $dC/dx$ é constante e $C(x)$ é uma função linear de x, como mostra a Figura \ref{fig:primeiraLei}. \par
 	
 	\begin{figure}[ht]
 	\caption{Perfil de concentração correspondente à primeira lei de Fick}
@@ -132,17 +191,18 @@ J = -D\nabla C = -D(\pdv{C}{x}e_x + \pdv{C}{y}e_y + \pdv{C}{z}e_z)
 	\fonte{Callister, 1940}
 	\end{figure}
 
-	Para o caso de difusão em regime não estacionário, tanto o gradiente de concentração, quanto o fluxo variam com o tempo. Nesse caso, utilizando a equação de conservação das espécies químicas e a Primeira Lei de Fick é possível definir a Segunda Lei de Fick dada pela eq.(\autoref{eq:segundaLeiFick}) que relaciona a variação da concentração da espécie química no tempo com sua variação de concentração no espaço. \par
+	Para o caso de difusão em regime não estacionário, tanto o gradiente de concentração quanto o fluxo variam com o tempo. Nesse caso, utilizando a equação de conservação das espécies químicas e a Primeira Lei de Fick, é possível definir a Segunda Lei de Fick dada pela eq.(\ref{eq:segundaLeiFick}) que relaciona a variação da concentração da espécie química no tempo com sua variação de concentração no espaço. \par
 
 \begin{equation} \label{eq:segundaLeiFick}
- \pdv{C}{t} = \nabla.(D\nabla C)
+ \pdv{C}{t} = \nabla.(D\nabla C) \; .
 \end{equation}
 
-	Quando condições de contorno são identificadas para situações reais é possível obter uma solução para essa equação. Uma forma de encontrar uma solução para a Segunda Lei de Fick é através da utilização de uma variável de similaridade, que consiste em reduzir o número de variáveis independentes para apenas uma variável, que depende das originais. A seguir será destacado uma possível solução retirada de \cite{notas-modelos}. \par
+	Quando condições de contorno são identificadas para situações reais é possível obter uma solução para essa equação. Uma forma de encontrar uma solução para a Segunda Lei de Fick é através da utilização de uma variável de similaridade, que consiste em reduzir o número de variáveis independentes para apenas uma variável, dependente das originais. A seguir será destacado uma possível solução retirada de \cite{notas-modelos}. 
+	
 	Considerando que o teor do átomo que se difunde é constante na superfície ao longo do tempo, que o transporte ocorre sob condições isotérmicas, com coeficiente de difusão constante, em um corpo semi infinito, para o caso unidimensional, seguem as condições necessárias para se encontrar uma solução. Seja c$_i$ a concentração inicial no interior do substrato e c$_s$ a concentração na superfície.\par
-\myworries{melhorar essa deducao}
+
 \begin{center} 
-	Condição inicial : $C(x,t=0) = c_i$ \\
+	Condição inicial : $C(x,t=0) = c_i$  \\
 	Condições de contorno (condições de Dirichlet): 
 	\begin{math}
   		\left\{
@@ -154,13 +214,13 @@ J = -D\nabla C = -D(\pdv{C}{x}e_x + \pdv{C}{y}e_y + \pdv{C}{z}e_z)
 	\end{math}
 \end{center}
 
-A eq.(\ref{eq:segundaLeiFick}) para uma dimensão, com D constante é:
+Para uma dimensão, a eq.(\ref{eq:segundaLeiFick}), com D constante, é dada por:
 
 \begin{equation} \label{eq:segundaLeiFickUmD}
- \pdv{C}{t} = D\pdv[2]{C}{x}
+ \pdv{C}{t} = D\pdv[2]{C}{x} \; .
 \end{equation}
 
-Definição da variável de similaridade $\eta$:
+A variável de similaridade $\eta$, é dada por:
 
 \begin{center}
 	\begin{math}
@@ -171,71 +231,76 @@ Definição da variável de similaridade $\eta$:
       			C(\eta=0) = c_s
     		\end{array}
 		\right.
+		\; ,
 	\end{math}
 \end{center}
 
-Aonde $A$ e $m$ são constantes.
+na qual $A$ e $m$ são constantes.
 Realizando a mudança de variável obtém-se:
 \begin{equation} \label{eq:solA}
- \pdv{C}{t} = \frac{dC}{\eta}\pdv{\eta}{t} = \frac{dC}{d\eta}mAxt^{m-1} = \frac{dC}{d\eta}m\eta t^{-1}
+ \pdv{C}{t} = \frac{dC}{d\eta}\pdv{\eta}{t} = \frac{dC}{d\eta}mAxt^{m-1} = \frac{dC}{d\eta}m\eta t^{-1}
 \end{equation}
 
 \begin{equation} \label{eq:solB}
- \frac{dC}{dx} = \frac{dC}{d\eta}\pdv{\eta}{x} = \frac{C}{\eta}At^m
+\Rightarrow \frac{dC}{dx} = \frac{dC}{d\eta}\pdv{\eta}{x} = \frac{dC}{d\eta}At^m
 \end{equation}
 
 \begin{equation} \label{eq:solC}
- \frac{d^2C}{d^2x} = \pdv{}{x}\pdv{C}{x} = \pdv{}{x}(\frac{dC}{d\eta}At^m) = \pdv{}{x}(\frac{dC}{d\eta})At^m = \frac{d}{d\eta}(\frac{dC}{d\eta})\frac{d\eta}{dx}At^m = \frac{d^2C}{d\eta ^2}A^2t^{2m}
+\Rightarrow \frac{d^2C}{d^2x} = \pdv{}{x}\pdv{C}{x} = \pdv{ }{x} \frac{dC}{d\eta}At^m = \frac{d}{d\eta}\left(\frac{dC}{d\eta}\right)\frac{d\eta}{dx}At^m = \frac{d^2C}{d\eta ^2}A^2t^{2m} \;.
 \end{equation}
 
-Substituindo as equações \autoref{eq:solB} e \autoref{eq:solC} na equação \autoref{eq:segundaLeiFickUmD}:
+Substituindo a eq.(\ref{eq:solA}) e a eq.(\ref{eq:solC}) na eq.(\ref{eq:segundaLeiFickUmD}):
 
 \begin{equation} \label{eq:solD}
- \frac{dC}{d\eta}m\eta t^{-1} = D \frac{d^2C}{d\eta ^2}A^2t^{2m} \Rightarrow \frac{d^2C}{d\eta ^2} - \frac{mt^{-1}}{DA^2t^{2m}}\eta \frac{dC}{d\eta} = 0 
+ \frac{dC}{d\eta}m\eta t^{-1} = D \frac{d^2C}{d\eta ^2}A^2t^{2m} \Rightarrow \frac{d^2C}{d\eta ^2} - \frac{mt^{-1}}{DA^2t^{2m}}\eta \frac{dC}{d\eta} = 0  \; .
 \end{equation}
 
-Considerando as constantes arbitrárias a seguir:
+De acordo com \cite{notas-modelos}, considerando que:
 \begin{gather*}		
-	\frac{t^{-1}}{t^{2m}} = 1 \Rightarrow m = -\frac{1}{2} \\
-	4DA^2 = 1 \Rightarrow A = \frac{1}{\sqrt{4D}}
+	\frac{t^{-1}}{t^{2m}} = 1  \; e\\
+	4DA^2 = 1  \; ,
+\end{gather*}	
+então
+\begin{gather*}		
+	\Rightarrow m = -\frac{1}{2} \; e \\ 
+	\Rightarrow A = \frac{1}{\sqrt{4D}} \; .
 \end{gather*}	
 
-Substituindo na equação \autoref{eq:solC}:
+
+Substituindo as constantes m e A na eq.(\ref{eq:solD}), têm-se:
 \begin{equation} \label{eq:solE}
- \frac{d^2C}{d\eta ^2} + 2\eta \frac{dC}{d\eta} = 0
+ \frac{d^2C}{d\eta ^2} + 2\eta \frac{dC}{d\eta} = 0 \;.
 \end{equation}
 
-Aonde $\eta = Axt^m = \dfrac{1}{\sqrt{4D}}xt^{-1/2} = \dfrac{x}{2\sqrt{Dt}}$.
+em que $\eta = Axt^m = \dfrac{1}{\sqrt{4D}}xt^{-1/2} = \dfrac{x}{2\sqrt{Dt}}$.
 
-Segue a resolução matemática:
+Resolvendo a E.D.O. (\ref{eq:solE}), obtêm-se:
 
 \begin{gather*}		
-	\varepsilon = \frac{dC}{d\eta} \Rightarrow \frac{dC}{d\eta} + 2\eta\varepsilon = 0 \\
-	\frac{dC}{d\eta} = -2\eta\varepsilon \Rightarrow \int\frac{d\varepsilon}{\varepsilon} = \int -2\eta d\eta + \lambda \Rightarrow ln\varepsilon = -\eta^2 + \lambda \Rightarrow \frac{dC}{d\eta} = \varepsilon = \lambda'e^{-\eta^2} \\
-	\int_{c_s}^{c} dC = \int_{0}^{\eta} \lambda'e^{-\eta^2} d\eta 
+	\varepsilon = \frac{dC}{d\eta} \Rightarrow \frac{d\varepsilon}{d\eta} + 2\eta\varepsilon = 0 \\
+	\Rightarrow \frac{d\varepsilon}{d\eta} = -2\eta\varepsilon \Rightarrow \int\frac{d\varepsilon}{\varepsilon} = \int -2\eta d\eta + \lambda \Rightarrow ln\varepsilon = -\eta^2 + \lambda \Rightarrow \frac{dC}{d\eta} = \varepsilon = \lambda'e^{-\eta^2} \\
+	\Rightarrow \int_{c_s}^{c} dC = \int_{0}^{\eta} \lambda'e^{-\eta^2} d\eta 
 \end{gather*}	
 
 \begin{equation} \label{eq:solF}
-	c - c_s =  \lambda'\int_{0}^{\eta} \eta'e^{-\eta^2} d\eta 
+	\Rightarrow c - c_s =  \lambda'\int_{0}^{\eta} e^{-\eta^2} d\eta  \;.
 \end{equation}
-
-Utilizando a seguinte condição de contorno: $C(\eta\rightarrow \infty) = c_i$ 
+Utilizando a condição de contorno: $C(\eta\rightarrow \infty) = c_i$ ,
 
 \begin{gather*}	
-	c_i - c_s = \lambda\int_{0}^{\infty} \lambda'e^{-\eta^2} d\eta  \\
-	\int_{0}^{\infty} \lambda'e^{-\eta^2} d\eta  = \frac{\sqrt{\pi}}{2} \Rightarrow 			\lambda = (c_i - c_s)\frac{2}{\sqrt{\pi}}
+	c_i - c_s = \int_{0}^{\infty} \lambda'e^{-\eta^2} d\eta  \\
+	\Rightarrow \int_{0}^{\infty} e^{-\eta^2} d\eta  = \frac{\sqrt{\pi}}{2} \Rightarrow 			\lambda' = (c_i - c_s)\frac{2}{\sqrt{\pi}} \;.
 \end{gather*}
 
-Substituindo $\lambda$ em \autoref{eq:solF}:
+Substituindo $\lambda'$ na eq.(\ref{eq:solF}):
 \begin{equation} \label{eq:solG}
-	\frac{c - c_s}{c_i - c_s} = \frac{2}{\pi} \int_{0}^{\eta} \eta'e^{-\eta^2} d\eta   
+	\frac{c - c_s}{c_i - c_s} = \frac{2}{\pi} \int_{0}^{\eta} e^{-\eta^2} d\eta   \;.
 \end{equation}
-Para $\eta = \dfrac{x}{2\sqrt{Dt}}$.
 
-A expressão $ \frac{2}{\pi} \int_{0}^{\eta} \eta'e^{-\eta^2} d\eta $ é a função erro $erf(\eta)$ e  $1 - erf(\eta)$ é seu complementar $erfc(\eta)$. Logo, chega-se que 
+A expressão $ \frac{2}{\pi} \int_{0}^{\eta} \lambda'e^{-\eta^2} d\eta $ é a função erro $erf(\eta)$ e  $1 - erf(\eta)$ é seu complementar $erfc(\eta)$. Logo, chega-se que 
 
 \begin{equation} \label{eq:solFinal}
-	1 - \frac{c - c_s}{c_i - c_s} = \frac{c - c_i}{c_s - c_i} = 1 - erf(\eta) = erfc(\eta) \Rightarrow c = c_i + (c_s - c_i) erfc(\eta)
+	1 - \frac{c - c_s}{c_i - c_s} = \frac{c - c_i}{c_s - c_i} = 1 - erf(\eta) = erfc(\eta) \Rightarrow c = c_i + (c_s - c_i) erfc(\eta) \;.
 \end{equation}
 
 \par O perfil de concentração para regime não estacionário ao longo do tempo está representado na Figura \ref{fig:segundaLei}.
@@ -248,13 +313,16 @@ A expressão $ \frac{2}{\pi} \int_{0}^{\eta} \eta'e^{-\eta^2} d\eta $ é a funç
 	\fonte{Callister, 1940}
 \end{figure}
 
+\FloatBarrier
+
 \par
-	A variável $\sqrt{Dt}$ é chamada de distância de difusão e representa a distância percorrida por um átomo com coeficiente de difusão D, após um tempo t. Considerando a solução encontrada (eq \autoref{eq:solFinal}), para c =  $c_x$ = cte, tem-se
+	A variável $\sqrt{Dt}$ é chamada de distância de difusão e representa a distância percorrida por um átomo com coeficiente de difusão D, após um tempo t. Considerando a solução encontrada (eq.(\ref{eq:solFinal})), para c =  $c_x$ = cte, tem-se
 
-$$\frac{c_x - c_s}{c_i - c_s} = 1 - erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow \frac{x}{2\sqrt{Dt}} = cte$$
+$$\frac{c_x - c_s}{c_i - c_s} = 1 - erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow erf(\frac{x}{2\sqrt{Dt}}) = cte \Rightarrow \frac{x}{2\sqrt{Dt}} = cte \;.$$ 
 
+Portanto, 
 \begin{equation} \label{eq:difdist}
-		\therefore x \propto  \sqrt{Dt}
+		\therefore x \propto  \sqrt{Dt} \;.
 \end{equation}
 
 
@@ -278,8 +346,9 @@ A difusão por lacuna ocorre quando um átomo se desloca de uma posição normal
 
 
 \subsubsection{Difusão intersticial}
-	Nesse mecanismo o átomo se desloca de uma posição intersticial do reticulado para outra que se encontra vazia. É importante que o átomo possua energia suficiente para deslocar o reticulado entre as duas posições, pois para alcançar o outro interstício ele precisa superar as forças de repulsão do reticulado no plano que separa os dois interstícios. Quando o átomo se encontra entre duas posições fala-se que ele está no estado ativado, que é o ponto em que ele possui maior energia. Caso não haja energia cinética e momento suficiente o átomo retorna à posição de origem \cite{glicksman2000diffusion}. 
-	Esse tipo de difusão é relevante para átomos que apresentam raios menores que os dos átomos que constituem a rede cristalina. A energia do átomo em função da sua posição é mínima quando ele se encontra em um interstício e máxima quando se encontra no estado ativado. Esse costuma ser um mecanismo mais rápido que outros pois a ocorrência de interstícios é maior que a de lacunas e os átomos menores conseguem se desocar com mais facilidade \cite{murty2013introduction}.
+	Nesse mecanismo o átomo se desloca de uma posição intersticial do reticulado para outra que se encontra vazia. É importante que o átomo possua energia suficiente para deslocar o reticulado entre as duas posições, pois para alcançar o outro interstício ele precisa superar as forças de repulsão do reticulado no plano que separa os dois interstícios. Quando o átomo se encontra entre duas posições fala-se que ele está no estado ativado, que é o ponto em que ele possui maior energia. Caso não haja energia cinética e momento suficiente, o átomo retorna à posição de origem \cite{glicksman2000diffusion}. A Figura \ref{fig:dif-insterticial} representa esse mecanismo.
+	
+	Esse tipo de difusão é relevante para átomos que apresentam raios menores que os dos átomos que constituem a rede cristalina. A energia do átomo em função da sua posição é mínima quando ele se encontra em um interstício e máxima quando se encontra no estado ativado. Esse costuma ser um mecanismo mais rápido que o de lacunas, pois a ocorrência de interstícios é maior que a de lacunas e os átomos menores conseguem se deslocar com mais facilidade \cite{murty2013introduction}.
 	
 	\begin{figure}[ht]
 	\caption{Esquema para explicar difusão intersticial}
@@ -289,22 +358,22 @@ A difusão por lacuna ocorre quando um átomo se desloca de uma posição normal
 	\fonte{Adaptado de Callister, 1940}
 \end{figure}
 	
-%\myworries {pegar uma imagem do murty?}
+
 	
 \subsubsection{Difusão em contorno de grão}
-A difusão em contorno de grão é mais rápida que os outros mecanismos (assim como ocorre com a difusão em outros defeitos como discordâncias e superfícies externas). Isso se deve ao fato que o espaço disponível nessas regiões é maior do que aquele no volume do reticulado cristalino. Mas pode se tornar pouco significante dado que a seção transversal das áreas é relativamente menor que comparada ao interior do material. 
+A difusão em contorno de grão é mais rápida que os outros mecanismos (assim como ocorre com a difusão em outros defeitos como discordâncias e superfícies externas). Isso se deve ao fato que o espaço disponível nessas regiões é maior do que aquele no volume do reticulado cristalino. Mas pode se tornar pouco significante dado que a seção transversal das áreas é relativamente menor que comparada ao interior do material \cite{callister2007materials}. 
 
 \subsection{Fatores que influenciam na difusão}
 	A difusão depende da espécie do átomo em difusão e da espécie que constitui o meio em que ele se difunde. Isso ocorre pois o tamanho do átomo e o espaço que ele tem para se locomover influenciam na difusão, assim como a interação química entre ambos, pois esses fatores afetam qual será o mecanismo predominante da difusão ~\cite{callister2007materials}. A temperatura também influencia a difusão à medida que um aumento da temperatura aumenta a vibração dos átomos e consequentemente sua mobilidade e difusão, além de aumentar também a concentração de lacunas. 
 	
-	Dada a influência dos diferentes fatores na difusão, como a espécie em difusão, o material hospedeiro e a temperatura, o Coeficiente de Difusão D pode ser dado pela equação \autoref{eq:coeficiente-de-dif}.
+	Dada a influência dos diferentes fatores na difusão, como a espécie em difusão, o material hospedeiro e a temperatura, o Coeficiente de Difusão D pode ser dado pela eq.(\ref{eq:coeficiente-de-dif}) \cite{callister2007materials}:
 \begin{equation} \label{eq:coeficiente-de-dif}
-	D = D_0 \ {e^{\frac{-E_A}{RT}}}		
+	D = D_0 \ {e^{\frac{-E_A}{RT}}}		\;.
 \end{equation}
 
-Os termos das equação \autoref{eq:coeficiente-de-dif} estão listados a seguir:
+Os termos das eq.(\ref{eq:coeficiente-de-dif}) estão listados a seguir:
 
-$D_0$ : constante pré-expnencial independente da temperatura [$m^2/s$]
+$D_0$ : constante pré-exponencial independente da temperatura [$m^2/s$]
 
 $E_A$ : energia de ativação para difusão [$J/mol$ ou $eV/$átomo]
 
@@ -319,20 +388,24 @@ A energia de ativação é a energia necessária para movimentar um mol de átom
 \section{Nitretação}
 	A nitretação é um processo de tratamento térmico que promove a adição de nitrogênio através da superfície de metais através da difusão. Esse tratamento é frequentemente utilizado para melhorar as propriedades mecânicas do material, em especial, a sua dureza. No caso de aços austeníticos, também é utilizado para aumentar a resistência ao desgaste sem prejudicar a resistência à corrosão \cite{baranowska2010importance}.
 	 Aplicações importantes desse processo são materiais da indústria petrolífera, que são utilizados para a extração de petróleo.
-	 Existem diferentes métodos de nitreteção, eles podem ser divididos em três categorias: nitreção à gás,  nitretação líquida e nitretação por plasma.
+	 Existem diferentes métodos de nitreteção, que podem ser divididos em três categorias: nitretação a gás,  nitretação líquida e nitretação por plasma.
 	 
-\subsection{Nitretação à gás}
-	A nitretação à gás utiliza um gás rico em nitrogênio (como amônia), que se dissocia ao entrar em contato com a peça que é aquecida e então consegue se difundir através da superfície, criando uma camada nitretada que possui maior dureza \cite{zimmermannnitretaccao}.   
-	Esse proesso permite controle do potencial químico do nitrogênio através do fluxo do gás, permite também realizar o tratamento em peças de grande volume e possui um custo baixo comparado a outros métodos. Porém, é sensível às condições da superfície e pode ser necessário fazer um tratamento prévio da superfície para remover camadas de óxidos, por exemplo.
+\subsection{Nitretação a gás}
+	A nitretação a gás utiliza um gás rico em nitrogênio (como amônia), que se dissocia ao entrar em contato com a peça que é aquecida e então consegue se difundir através da superfície, criando uma camada nitretada que possui maior dureza \cite{zimmermannnitretaccao}.   
+	
+	Esse processo permite controle do potencial químico do nitrogênio através do fluxo do gás, permite também realizar o tratamento em peças de grande volume e possui um custo baixo comparado a outros métodos. Porém, é sensível às condições da superfície e pode ser necessário fazer um tratamento prévio da superfície para remover camadas de óxidos, por exemplo.
 	 
 \subsection{Nitretação líquida}
-	Para a nitreção líquida, utiliza-se um banho de sal que contém nitrogênio (como por exemplo cianetos). O nitrogênio difunde para o interior da peça quando esta é mergulhada no banho em temperaturas entre 550 e 570°C. Posteriormente a peça é retirada, lavada e esfriada \cite{zimmermannnitretaccao}. 
+	Para a nitretação líquida, utiliza-se um banho de sal que contém nitrogênio (como por exemplo cianetos). O nitrogênio difunde para o interior da peça quando esta é mergulhada no banho em temperaturas entre 550 e 570°C. Posteriormente a peça é retirada, lavada e esfriada \cite{zimmermannnitretaccao}. 
 	Em geral esse método é rápido, com duração de aproximadamente 4 horas e simples de ser executado pois basta mergulhar a peça no banho. Apresenta como desvantagem a toxidade dos sais utilizados, o que aumenta os custos relativos a segurança e leis ambientais.
 	
 \subsection{Nitretação por plasma}
 	O método de nitretação por plasma consiste na utilização de plasma de nitrogênio para promover a adição dessa espécie no material da peça. 
-	O plasma é um estado da matéria que ocorre quando um gás é ionizado, isto é, os seus átomos perdem ou ganham elétrons, o que o torna condutor elétrico. Esse estado pode ser alcançado quando a substância é exposta à temperaturas suficientemente altas ou a um campo eletromagnético intenso. Na nitretação o plasma utilizado é uma mistura de átomos de nitrogênio e hidrogênio ou gás nitrogênio puro.
-	Para a preparação da superfície, camadas superficiais podem ser removidas por sputtering, que consiste da remoção de átomos devido à colisão dos íons no material, que podem colidir com energia maior que a energia de ligação desses átomos.
+	
+	O plasma é um estado da matéria que ocorre quando um gás é ionizado, isto é, os seus átomos perdem ou ganham elétrons, o que o torna condutor elétrico. Esse estado pode ser alcançado quando a substância é exposta a temperaturas suficientemente altas ou a um campo eletromagnético intenso. Na nitretação o plasma utilizado é uma mistura de átomos de nitrogênio e hidrogênio ou gás nitrogênio puro.
+	
+	Para a preparação da superfície, camadas superficiais podem ser removidas por \textit{sputtering}, que consiste da remoção de átomos devido à colisão dos íons no material, que podem colidir com energia maior que a energia de ligação desses átomos.
+	
 	 Esse processo permite um controle da espessura e da camada nitretada, requer uma temperatura de tratamento menor que outros métodos - com valores entre 320 e 550°C, apresenta tempo de trabalho menor que outros processos e consequentemente representa uma economia no consumo de gás e de energia \cite{zimmermannnitretaccao}. 
 	Uma grande vantagem desse método é que ele não promove a formação de nitretos de cromo como alguns outros, o que o torna interessante para aplicação em aços inoxidáveis.
 	
@@ -354,7 +427,7 @@ A energia de ativação é a energia necessária para movimentar um mol de átom
 
 \subsection{Nitrogênio em Aços Austeníticos}
 	A adição de nitrogênio em aços estabiliza a austenita, melhora as propriedades mecânicas e a resistência à corrosão. A sua presença aumenta a resistência ao escoamento mais do que a adição de carbono ou outros elementos de liga e ele é mais solúvel que carbono em temperaturas médias e altas, o que reduz a formação de precipitados. Além disso, reduz a formação de carbetos, o que reduz sensitização e dado que é um elemento que existe em abundância, possui baixo custo \cite{reed1989nitrogen}.\par
-	Os interstícios predominantemente ocupados pelo nitrogenio no reticulado CFC são os octaédricos ~\cite{christiansen2006controlled}. A solubilidade intersticial do nitrogênio em aços austenítiocs inoxidáveis é baixa, de forma que nos casos aonde a quantidade de nitrogênio na liga excede o limite de solubilidade, pode ocorrer a precipitação de Cr$_{2}$N, que reduz a resistência a corrosão pois diminui a quantidade disponível de cromo que poderia originar a camada passiva que protege o material da corrosão \cite{somers2018expanded}, o que não é desejado nas aplicações comuns desses aços. O efeito da adição de nitrogênio para algumas ligas pode ser observado na Figura \ref{fig:diagrN}, quanto maior a quantidade de nitrogênio ou carbono, maior o campo de formação de precipitados.\par
+	Os interstícios predominantemente ocupados pelo nitrogenio no reticulado CFC são os octaédricos ~\cite{christiansen2006controlled}. A solubilidade intersticial do nitrogênio em aços austenítiocs inoxidáveis é baixa, de forma que nos casos aonde a quantidade de nitrogênio na liga excede o limite de solubilidade, pode ocorrer a precipitação de Cr$_{2}$N. Tal substância reduz a resistência a corrosão pois diminui a quantidade disponível de cromo que poderia originar a camada passiva que protege o material da corrosão \cite{somers2018expanded}, o que não é desejado nas aplicações comuns desses aços. O efeito da adição de nitrogênio para algumas ligas pode ser observado na Figura \ref{fig:diagrN}, quanto maior a quantidade de nitrogênio ou carbono, maior o campo de formação de precipitados.\par
 
 	\begin{figure}[ht]
 	\caption{Diagrama de Fases do Nitrogênio em algumas ligas}
@@ -374,7 +447,7 @@ A energia de ativação é a energia necessária para movimentar um mol de átom
 	\fonte{SOMERS;CHRISITANSE;WINTHER, 2018}
 	\end{figure}
 	
-	A formação de nitretos de cromo pode ser evitada pela adição de nitrogênio à temperaturas mais baixas, como mostra o diagrama TTT na Figura \ref{fig:TTTN}. Nessas temperaturas os átomos de nitrogênio se difundem pelos interstícios octaédricos do reticulado da austenita enquanto o cromo dissolve em uma taxa inferior por ser um substitucional e por isso apresenta um mecanismo de difusão mais lento. Dessa forma, é possível alcançar profundidades de difusão maiores sem que se formem nitretos.\par
+	A formação de nitretos de cromo pode ser evitada pela adição de nitrogênio a temperaturas mais baixas, como mostra o diagrama TTT na Figura \ref{fig:TTTN}. Nessas temperaturas, os átomos de nitrogênio se difundem pelos interstícios octaédricos do reticulado da austenita, enquanto o cromo dissolve em uma taxa inferior por ser um substitucional e por isso apresenta um mecanismo de difusão mais lento. Dessa forma, é possível alcançar profundidades de difusão maiores sem que se formem nitretos.\par
 
 	\begin{figure}[ht]
 	\caption{Diagrama TTT esquemático}
@@ -392,14 +465,14 @@ A energia de ativação é a energia necessária para movimentar um mol de átom
 \subsection{Austenita Expandida}
 	A austenita expandida ($\gamma_{N}$), também chamada de fase S,  é uma solução supersaturada de átomos intersiticiais (como nitrogênio e carbono) em austenita com concentrações de nitrogênio variando entre 9 a 20\%  ~\cite{williamson1994metastable} ou até 30\% ~\cite{moskalioviene2011modeling}. Ela é caracterizada por ser uma microsestrutura desenvolvida durante processos de endurecimento da superfície em temperaturas entre 350 e 400°C ~\cite{mandl2003nitrogen}. \par
 	Como consequência dos interstícios supersaturados, essa fase apresenta uma expansão do reticulado cristalino, de até 11\% do parâmetro de rede e uma tensão residual de compressão associada elevada ~\cite{somers2018expanded}. Essa expansão pode facilitar a transferência de átomos de nitrogênio de um interstício octaédrico para um tetraédrico do reticulado CFC. Dessa forma, a energia de ativação para a difusão do nitrogênio é reduziada. Por outro lado, o aumento do teor de nitrogênio aumenta a ocupância dos interstícios, reduzindo a probabilidade do átomo em estado ativado conseguir mudar de uma posição para outra, o que reduz sua difusão \cite{christiansen2008nitrogen}. \par
-	As propriedades da austenita expandida que a torna interessante economicamente são a elevada dureza, de até 15 GPa ~\cite{mandl2003nitrogen} e a redução da taxa de desgaste em 5 ordens de grandeza.
+	As propriedades da austenita expandida que a tornam interessante economicamente são a elevada dureza, de até 15 GPa ~\cite{mandl2003nitrogen} e a redução da taxa de desgaste em 5 ordens de grandeza.
 
 
 \section{Modelos}
 	Os estudos do transporte de nitrogênio em aços austeníticos com formação de camadas superficiais constataram que o perfil de concentração dessa espécie não é consistente
-	 com o perfil obtido pela resolução clássica da 2$^a$ Lei de Fick que considera o coeficiente de difusão independente da concentração para um sólido semi-infinito e concentração na superfície constante, como visto na seção \autoref{sec:difusao}. Na realidade, o perfil obtido é caracterizado por um platô seguido de uma queda brusca da concentração de nitrogênio \cite{parascandola2000nitrogen}. \par
-	Na literatura encontram-se alguns modelos matemáticos que estudam a difusão do nitrogênio nos aços austeníticos, cada qual considerando um mecanismo predominante, um processo de nitretação e condições de contorno próprias. Os modelos podem ser dividos em algumas categorias, são elas: modelos que consideram um mecanismo de \textit{trapping-detrapping} dos átomos de nitrogênio perante o cromo ~\cite{parascandola2000nitrogen, moller2001surface, moskalioviene2011modeling}, modelos que consideram difusão com coeficiente de difusão dependente da concentração ~\cite{mandl2002concentration, mandl2003nitrogen}, aqueles que levam em consideração que a difusão é influênciada por tensões \cite{galdikas2010stress} e outros que combinam dois ou mais desses fatores ~\cite{christiansen2008nitrogen, moskalioviene2012stress}. Um resumo dos modelos analisados está listado na \autoref{tab:resumoModelos}.\par
-	Outros fatores que influenciam na difusão do nitrogênio em aços e podem alterar os resultados no modelamento são o tratamento superficial anterior à nitretação \cite{baranowska2010importance}, o método utilizado nos experimentos em que se obteve um perfil para a concentração de nitrogênio ~\cite{moskalioviene2011modeling}, a orientação cristalina ~\cite{moskalioviene2011modeling}, no caso de nitretação a plasma:  alterações da superfície, tensões de compressão e rotação do reticulado  ~\cite{moskalioviene2011modeling}, camada superficial de óxido e segregação e dessegregação de elementos de liga próximos da superfície ~\cite{mandl2002concentration}.
+	 com o perfil obtido pela resolução clássica da 2$^a$ Lei de Fick, que considera o coeficiente de difusão independente da concentração para um sólido semi-infinito e concentração na superfície constante, como visto na seção \autoref{sec:difusao}. Na realidade, o perfil obtido é caracterizado por um platô seguido de uma queda brusca da concentração de nitrogênio \cite{parascandola2000nitrogen}. \par
+	Na literatura encontram-se alguns modelos matemáticos que estudam a difusão do nitrogênio nos aços austeníticos, cada qual considerando um mecanismo predominante, um processo de nitretação e condições de contorno próprias. Os modelos podem ser dividos em algumas categorias, são elas: modelos que consideram um mecanismo de \textit{trapping-detrapping} dos átomos de nitrogênio perante o cromo ~\cite{parascandola2000nitrogen, moller2001surface, moskalioviene2011modeling}, modelos que consideram difusão com coeficiente de difusão dependente da concentração ~\cite{mandl2002concentration, mandl2003nitrogen}, aqueles que levam em consideração que a difusão é influênciada por tensões \cite{galdikas2010stress} e outros que combinam dois ou mais desses fatores ~\cite{christiansen2008nitrogen, moskalioviene2012stress}. Um resumo dos modelos analisados está disponível na \autoref{tab:resumoModelos}.\par
+	Outros fatores que influenciam na difusão do nitrogênio em aços e podem alterar os resultados no modelamento são o tratamento superficial anterior à nitretação \cite{baranowska2010importance}, o método utilizado nos experimentos em que se obteve um perfil para a concentração de nitrogênio ~\cite{moskalioviene2011modeling}, a orientação cristalina ~\cite{moskalioviene2011modeling}, alterações da superfície, tensões de compressão e rotação do reticulado  ~\cite{moskalioviene2011modeling}, camada superficial de óxido e segregação e dessegregação de elementos de liga próximos da superfície ~\cite{mandl2002concentration}.
 	
 \begin{table}[]
 \centering
@@ -424,69 +497,71 @@ Trabalho & Método de Nitretação & Coeficiente de Difusão dependente da Conce
 }
 \end{table}
 
+\FloatBarrier
 
 \subsection{Modelos \textit{trapping-detrapping}}
 \label{sec:trap-detrap}
-	O mecanismo de trapping-detrapping considera que os átomos de Cr aprisionam átomos de N devido à alta afinidade entre ambos, criando camadas superficiais enriquecidas em N com concentrações próximas ou maiores que as de Cr ~\cite{parascandola2000nitrogen}. Segundo esse modelo, quando todos os átomos de cromo já estão associados à átomos de nitrogênio, os novos átomos que difundem pela superfície difundem rapidamente pela camada formada até a região aonde os átomos de cromo ainda não estão saturados de nitrogênio.  \par
-	No modelo de ~\cite{parascandola2000nitrogen}, assumiu-se que a difusão de N em aços inoxidáveis austenítios ocorria por meio da influência de regiões de aprisionamnto representados por átomos de cromo na matriz austenítica estacionária formada por elementos substitucionais (ou seja, a difusão desses elementos não é considerada, o que se justifica pela baixa distância de difusão do Cr estimada e pela ausência de precipitação de CrN a 400°C). Além disso, considerou-se que o nitrogênio é aprsionado em interstícios da solução, sendo que cada região de aprisionamento pode deter um átomo desse elemento. Destaca-se que o fenômeno em questão segue cinética de primeira ordem. O fato de se considerar o desaprisionamento (\textit{detrapping}) possui como objetivo obter uma previsão mais quantitativa do transporte. \par
-	Os autores ~\cite{moller2001surface} analisam o caso aonde o processo de nitretação é a implantação iônica à plasma, que apresenta íons com energia entre 0-10keV com alta capacidade de penetração da superfície. No estudo realizado para esse modelo constatou-se a importância do \textit{sputtering} na nitretação dos aços inoxidáves, uma vez que reduz a camada passiva de óxido que atua como uma barreira para o nitrogênio sendo implantado. Busca-se então relacionar o \textit{sputtering} com a cinética da nitretação e conclui-se que a nitretação com íons energéticos apresenta uma desvantagem perante a nitretação à plasma pois limita-se a espessura máxima nitretada devido ao \textit{sputtering}. \par
-	O modelamento desenvolvido por ~\cite{moskalioviene2011modeling} considerou o mecanismo de \textit{trapping-detrapping} em aços inoxidáveis austeníticos policristalinos que foram tratados por nitretação a plasma com temperaturas próximas de 400°C, buscando considerar a anisotropia da difusão do nitrogênio. Para isso utilizaram-se diferentes coeficientes de difusão para diferentes orientações cristalográficas. Algumas considerações feitas nesse modelo são: o nitrogênio pode estar localizado em uma região na qual pode difundir ou em uma região de aprisionamento na qual não ocorre sua difusão, existe apenas um tipo de aprisionamento, a concentração de pontos de aprisionamento é constante no espaço e tempo, cada sítio pode aprisionar um único átomo, a energia de desaprisionamento é independente da fração de pontos potenciais ocupados, existe equilíbrio local entre nitrogênio em regiões livres e em regiões de aprisionamento e o aprisionamento e desaprisionamento são controlados por difusão e seguem cinética de primeira ordem.\par
-	Críticas aos modelos que consideram o fenômeno de \textit{trapping-detrapping} afirmam que não é possível relacionar a mudança de comportamento no transporte de nitrogênio com o teor de cromo, visto que apesar de alguns experimentos mostrarem uma transição para concentrações de nitrogênio coincidentes com as de cromo, em outros a transição correspondia à teores de nitrogênio inferiores à de cromo e visto que a magnitude da energia de interação entre Cr-C é significamente menor que a do Cr-N, assumir que esse mecanismo atua para ambos átomos deve ser questionada ~\cite{mandl2002concentration}.
+	O mecanismo de \textit{trapping-detrapping} considera que os átomos de cromo aprisionam átomos de nitrogênio devido à alta afinidade entre ambos, criando camadas superficiais enriquecidas em nitrogênio com concentrações próximas ou maiores que as de cromo ~\cite{parascandola2000nitrogen}. Segundo esse modelo, quando todos os átomos de cromo já estão associados a átomos de nitrogênio, os novos átomos que difundem pela superfície difundem rapidamente pela camada formada até a região aonde os átomos de cromo ainda não estão saturados de nitrogênio.  \par
+	No modelo de ~\cite{parascandola2000nitrogen}, assumiu-se que a difusão de N em aços inoxidáveis austenítios ocorria por meio da influência de regiões de aprisionamnto representados por átomos de cromo na matriz austenítica estacionária formada por elementos substitucionais (ou seja, a difusão desses elementos não é considerada, o que se justifica pela baixa distância de difusão do cromo estimada e pela ausência de precipitação de CrN a 400°C). Além disso, considerou-se que o nitrogênio é aprsionado em interstícios da solução, sendo que cada região de aprisionamento pode deter um átomo desse elemento. Destaca-se que o fenômeno em questão segue cinética de primeira ordem. O fato de se considerar o desaprisionamento (\textit{detrapping}) possui como objetivo obter uma previsão mais quantitativa do transporte. \par
+	Os autores ~\cite{moller2001surface} analisam o caso onde o processo de nitretação é a implantação iônica a plasma, que apresenta íons com energia entre 0-10keV com alta capacidade de penetração da superfície. No estudo realizado para esse modelo constatou-se a importância do \textit{sputtering} na nitretação dos aços inoxidáves, uma vez que reduz a camada passiva de óxido que atua como uma barreira para o nitrogênio sendo implantado. Busca-se então relacionar o \textit{sputtering} com a cinética da nitretação e conclui-se que a nitretação com íons energéticos apresenta uma desvantagem perante a nitretação a plasma pois limita-se a espessura máxima nitretada devido ao \textit{sputtering}. \par
+	O modelamento desenvolvido por \cite{moskalioviene2011modeling} considerou o mecanismo de \textit{trapping-detrapping} em aços inoxidáveis austeníticos policristalinos que foram tratados por nitretação a plasma com temperaturas próximas de 400°C, buscando considerar a anisotropia da difusão do nitrogênio. Para isso utilizaram-se diferentes coeficientes de difusão para diferentes orientações cristalográficas. Algumas considerações feitas nesse modelo são: o nitrogênio pode estar localizado em uma região na qual pode difundir ou em uma região de aprisionamento na qual não ocorre sua difusão, existe apenas um tipo de aprisionamento, a concentração de pontos de aprisionamento é constante no espaço e tempo, cada sítio pode aprisionar um único átomo, a energia de desaprisionamento é independente da fração de pontos potenciais ocupados, existe equilíbrio local entre nitrogênio em regiões livres e em regiões de aprisionamento e o aprisionamento e desaprisionamento são controlados por difusão e seguem cinética de primeira ordem.\par
+	Críticas aos modelos que consideram o fenômeno de \textit{trapping-detrapping} afirmam que não é possível relacionar a mudança de comportamento no transporte de nitrogênio com o teor de cromo, visto que apesar de alguns experimentos mostrarem uma transição para concentrações de nitrogênio coincidentes com as de cromo, em outros a transição correspondia a teores de nitrogênio inferiores a de cromo e visto que a magnitude da energia de interação entre Cr-C é significamente menor que a do Cr-N, assumir que esse mecanismo atua para ambos átomos deve ser questionada ~\cite{mandl2002concentration}.
 	
 \subsection{Modelos para coeficiente de difusão dependente da concentração}
 \label{sec:concdep}
-	Ao desenvolver o modelo que considera um coeficiente de difusão do nitrogênio em aço inoxidável austenítico, ~\cite{mandl2003nitrogen} utilizou diferentes ligas e parâmetros experimentais com o objetivo de correlacionar a difusividade com a composição da liga de forma a prever o comportamento dos aços quando nitretados. As simplificações adotadas foram que a concentração de N na superfície era constante e apenas o nitrogênio é móvel em uma matriz estacionária (não há difusão de outros componentes).\par
+	Ao desenvolver o modelo que considera um coeficiente de difusão do nitrogênio em aço inoxidável austenítico, ~\cite{mandl2003nitrogen} utilizou diferentes ligas e parâmetros experimentais com o objetivo de correlacionar a difusividade com a composição da liga de forma a prever o comportamento dos aços quando nitretados. As simplificações adotadas foram que a concentração de nitrogênio na superfície era constante e apenas o nitrogênio é móvel em uma matriz estacionária (não há difusão de outros componentes).\par
 	Os diferentes parâmetros adotados foram:
 	\begin{itemize}
-	 \item Para o aço X6CrNiMoTi17.12.2—DIN 1.4571/AISI 316Ti - de componiçaõ 0.06 p.\% C, 17 p.\% Cr, 12 p.\% Ni, 2 p.\% Mo, 0.5 p.\% Ti:
+	 \item Para o aço X6CrNiMoTi17.12.2—DIN 1.4571/AISI 316Ti - de composição 0.06 p.\% C, 17 p.\% Cr, 12 p.\% Ni, 2 p.\% Mo, 0.5 p.\% Ti:
 		\begin{itemize}
-		 \item Tratamento por implantação iônica à plasma a 380°C por 4 horas com pulsos de 5$\mu$s a 40kV
+		 \item Tratamento por implantação iônica a plasma a 380°C por 4 horas com pulsos de 5$\mu$s a 40kV
 		\end{itemize}
 	 \item Para o aço X5CrNi18.10 (DIN 1.4301), com 18 p.\% Cr (sempre a 400°C):
 		\begin{itemize}
 		 \item Implantação iônica de baixa energia com 1keV e corrente de 0,5 mA/cm$^2$
-		 \item Implantação iônica à plasma por 3 horas com pulsos de 100$\mu$s a 40 kV
+		 \item Implantação iônica a plasma por 3 horas com pulsos de 100$\mu$s a 40 kV
 		\end{itemize} 
 	\end{itemize}
-	Possíveis fontes de erro para esse modelo são a expansão do reticulado e a errosão da superfície causada pelo processo de \textit{sputtering}.
+	Possíveis fontes de erro para esse modelo são a expansão do reticulado e a erosão da superfície causada pelo processo de \textit{sputtering}.
 	Analisando o mecanismo de difusão do ponto de vista macroscópico, infere-se no artigo que o perfil de nitrogênio observado corresponde à difusão em duas fases distintas: a difusão na superfície corresponderia à difusão do nitrogênio na austenita expandida e aquela mais distante da superfície seria a difusão na austenita.\par
 
 \subsection{Difusão induzida por Tensão}
 \label{sec:tensao}
 	Para construção desse modelo, levou-se em consideração que a expansão do reticulado na formação de austenita expandida promove tensões induzidas pelo gradiente de concentração do nitrogênio e que influencia na sua difusão. Tensão é um dos fatores que determinam o potencial químico de componentes de um sistema sólido \cite{galdikas2010stress}. \par
 	 A força motriz do transporte de nitrogênio em aço está associado ao gradiente de potenical químico, que pode ser associado ao fluxo de difusão. Para utilizar essa informação, considerou-se que não há gradiente de temperatura, a atividade do nitrogênio na matriz de aço é igual a 1 (solução ideal) e que o transporte ocorre em uma dimensão. \par
-	 O modelo se limita a estudar a distribuição de nitrogênio em aços inoxidáveis austeníticos para temperaturas inferiores à formação de nitretos de cromo (~400°C), aonde o  teor de nitrogênio na superfície não deve ultrapassar 35 at.\% dado que a partir desse valor podem precipitar nitretos e não pode ser aplicado para casos de correntes de alta densidade devido aos efeitos de \textit{sputtering} e surgimento de defeitos que não são previstos no trabalho em questão.
+	 O modelo se limita a estudar a distribuição de nitrogênio em aços inoxidáveis austeníticos para temperaturas inferiores à formação de nitretos de cromo (~400°C), onde o  teor de nitrogênio na superfície não deve ultrapassar 35 at.\% dado que a partir desse valor podem precipitar nitretos e não pode ser aplicado para casos de correntes de alta densidade devido aos efeitos de \textit{sputtering} e surgimento de defeitos que não são previstos no trabalho em questão.
 	 Considerou-se que o coeficiente de difusão não depende da concentração ou da profundidade e para definir o seu valor foram testados diferentes valores até encontrar o que apresentava melhor correlação aos dados experimentais.
 	 
 \subsection{Modelos que combinam fatores}
 \subsubsection{Coeficiente de Difusão dependente da Concentração + \textit{trapping}}
 \label{sec:comb-depc-td}
-	Nesse modelo, elaborado por \cite{christiansen2008nitrogen}, a difusão do nitrogênio é abordada considerando que o coeficiente de difusão é dependente da concentração do átomo  e considera-se relevante para a construção do modelo a ordenação a curta distância entre o nitrogênio e o cromo (mecanismo de \textit{trapping} dos átomos de N pelos de Cr). Para isso o coeficiente de difusão foi aproximado por uma série de coeficientes efetivos em diferentes faixas de composição e posteriormente foi utilizado o método de Boltzmann-Matano pra obter a solução da equação com depedência da concentração. Esse modelo foi baseado naquele apresentado por \cite{sun1997numerical} para a difusão do nitrogênio em ligas de ferrita.\par
+	Nesse modelo, elaborado por \cite{christiansen2008nitrogen}, a difusão do nitrogênio é abordada considerando que o coeficiente de difusão é dependente da concentração do átomo  e considera-se relevante para a construção do modelo a ordenação a curta distância entre o nitrogênio e o cromo (mecanismo de \textit{trapping} dos átomos de nitrogênio pelos de cromo). Para isso o coeficiente de difusão foi aproximado por uma série de coeficientes efetivos em diferentes faixas de composição e posteriormente foi utilizado o método de Boltzmann-Matano pra obter a solução da equação com depedência da concentração. Esse modelo foi baseado naquele apresentado por \cite{sun1997numerical} para a difusão do nitrogênio em ligas de ferrita.\par
 	O efeito do \textit{trapping} foi modelado considerando que a constante termodinâmica de solubilidade é dada pelo produto das composiçoes de nitrogênio e cromo, acima da qual ocore aprisionamento do nitrogênio pelo cromo.
 	
-	Nesse modelo foi considerado nitretação à gás (utilizando misturas de NH$_3$/H$_2$) sob o pretexto de que esse método permite um controle do potencial químico do nitrogênio através da fase gasosa, enquanto no tratamento à plasma o potencial depende também de fatores associados ao plasma e à propriedades relacionadas ao substrato catódico. Aconselha-se evitar o uso de plasma na análise do coeficiente de difusão pois a aceleração na implantanção de íons pode promover o surgimento de defeitos que afetam o transporte.\par
-	Assumiu-se que na interface entre as fases gasosa e sólida há equilíbrio de composição, apesar de dados experimentais apontarem que a composição na superfície é menor que no caso em que há equilíbrio. Quando considerando uma concentração superficial constante, esta corresponde a concentração total devido ao aprisionamento, que aumenta a concentração total. Isto significa que quando o produto de solubilidade muda, a concentração de nitrogênio na superfície também muda para esse caso. Outras hipóteses consideradas são que não há precipitação de nitretos, dado que esse é o pretexto da metaestabilidade da austenita expandida em nitretação a baixas temperaturas e a difusão ocorre em um sistema com uma única fase.\par
+	Nesse modelo foi considerado nitretação a gás (utilizando misturas de NH$_3$/H$_2$) sob o pretexto de que esse método permite um controle do potencial químico do nitrogênio através da fase gasosa, enquanto no tratamento a plasma o potencial depende também de fatores associados ao plasma e a propriedades relacionadas ao substrato catódico. Aconselha-se evitar o uso de plasma na análise do coeficiente de difusão pois a aceleração na implantanção de íons pode promover o surgimento de defeitos que afetam o transporte.\par
+	Assumiu-se que na interface entre as fases gasosa e sólida há equilíbrio de composição, apesar de dados experimentais apontarem que a composição na superfície é menor que no caso em que há equilíbrio. Quando considerando uma concentração superficial constante, esta corresponde a concentração total devido ao aprisionamento, que aumenta a concentração total. Isto significa que quando o produto de solubilidade muda, a concentração de nitrogênio na superfície também muda para esse caso. Outras hipóteses consideradas são que não há precipitação de nitretos, dado que esse é o pretexto da metaestabilidade da austenita expandida em nitretação a baixas temperaturas, e que a difusão ocorre em um sistema com uma única fase.\par
 	O artigo ainda aponta uma possível influência das tensões residuais de compressão da austenita expandida que pode influenciar no mecanismo de difusão e constata que a determinação do coeficiente de difusão utilizando o método de Boltzmann-Matano resulta em valores não condizentes com dados reais possivelmente dado a omissão do mecanismo de aprisionamento.
 	
 \subsubsection{Coeficiente de Difusão dependente da Concentração + Tensão}
 \label{sec:comb-depc-stress}
-	Complementando o modelo criado para difusão dependente da tensão \cite{galdikas2010stress}, adicionou-se a dependênia da concentração no coeficiente de difusão de acordo com a realação de Einstein-Smoluchowski D(C$_N$)=f(1/C$_N$) \cite{moskalioviene2012stress} e assumiu-se que o teor de nitrogênio aumenta com o tempo de tratamento, ou seja C$_N\sim$ (t$^b$), logo D $\sim$ (1/t$^b$) com b $\approx$ 1.
-	As condições dos experimentos de nitretação à plasma utilizados para comparação com os daods calculados - que são também as condições consideradas para os cálculos - são: 
+	Complementando o modelo criado para difusão dependente da tensão \cite{galdikas2010stress}, adicionou-se a dependênia da concentração no coeficiente de difusão de acordo com a relação de Einstein-Smoluchowski D(C$_N$)=f(1/C$_N$) \cite{moskalioviene2012stress} e assumiu-se que o teor de nitrogênio aumenta com o tempo de tratamento, ou seja C$_N\sim$ (t$^b$), logo D $\sim$ (1/t$^b$) com b $\approx$ 1.
+	As condições dos experimentos de nitretação a plasma utilizados para comparação com os daods calculados - que são também as condições consideradas para os cálculos - são: 
 	\begin{itemize}
 	 \item Composição do gás: 60\% N$_2$ + 40\%H$_2$
 	 \item Pressão de trabalho de 7.5 Pa e amplificador de potência de 700 W
 	 \item Temperatura do substrato de 400°C
 	 \item Duração da nitretação de 1h, 3h e 8h
-  	 \item Energia dos ions inferior à 15 eV (que é menor que o limite de \textit{sputtering} para muitos materiais)
+  	 \item Energia dos íons inferior à 15 eV (que é menor que o limite de \textit{sputtering} para muitos materiais)
 	\end{itemize}
 	
 
 \chapter{Materiais e Métodos}
 \section{Desenvolvimento}
 Primeiramente foi simulada a solução clássica da Segunda Lei de Fick com coeficiente de difusão constante e concentração de átomos na superfície constante (Seções \ref{sec:sol-numerica-2alei}/\ref{sec:modelo11}). Em seguida foi feito um modelo considerando a variação da concentração de átomos na superfície (Seções \ref{sec:sol-numerica-2alei2}/\ref{sec:modelo12}). Posteriormente o modelo foi incrementado para melhor satisfazer a realidade da difusão do nitrogênio utilizando a teoria dos sítios de \textit{trapping-detrapping}, considerando concentração superficial constante (Seções \ref{sec:my-trapdetrap}/\ref{sec:modelo21}) e variável (Seções \ref{sec:trap-detrap-gas-cc}/\ref{sec:trap-detrap-plasma-cc}/\ref{sec:modelo22}/\ref{sec:modelo23}).
-O código elaborado para o trabalho foi feito em python e pode ser observado nos anexos.
+O código elaborado para o trabalho foi feito em python e pode ser observado no Apêndice B.
 
 \section{Métodos Numéricos e Algoritmos}
+Nessa seção serão descritos os métodos numéricos e algoritmos utilizados para a elaboração do trabalho. Foi consultado o livro \cite{fortuna2009tecnicas} para a elaboração dessa seção.
 
 \subsection{Método das Diferenças Finitas}
 \label{sec:dif-fin}
@@ -497,17 +572,21 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 \input{chapters/materiais-e-metodos/algoritmo-de-thomas}
 
 \section{Solução Numérica da Segunda Lei de Fick}
+Nessa seção será demonstrado os passos para obter uma solução numérica para a Segunda Lei de Fick. 
+
 \subsection{Composição Superficial Constante}
 \label{sec:sol-numerica-2alei}
 \input{chapters/materiais-e-metodos/sol-numerica-2alei}
 
 \subsection{Composição Superficial Variável}
+Foram consideradas duas diferentes condições nas quais a composição da superfície é variável, uma para nitretação gasosa e outra para nitretação a plasma.
 \label{sec:sol-numerica-2alei2}
 \input{chapters/materiais-e-metodos/sol-numerica-2alei-gas}
 \input{chapters/materiais-e-metodos/sol-numerica-2alei-plasma}
 
 
 \section{Modelo de \textit{Trapping-Detrapping}}
+O modelo de \textit{Trapping-Detrapping} será descrito nas seções a seguir. 
 \label{sec:my-trapdetrap}
 \input{chapters/materiais-e-metodos/trap-detrap}
 
@@ -516,29 +595,38 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 
 
 \section{Parâmetros e Constantes}
+Os diferentes valores para os parâmetros envolvidos nos modelos e as constante utilizadas estão definidas nas seções a seguir.
 \label{sec:params}
 
 
 \input{chapters/parametros-e-constantes/parametros}
 
 \chapter{Resultados}
-	Foram simulados dois modelos distintos - um dado pela Segunda Lei de Fick e outro dado pelo mecanismo de \textit{trapping-detrapping}, para três condições de contorno distintas: concentração superfícal constante, nitretaçao gasosa e nitretação à plasma.
+	Foram simulados dois modelos distintos - um dado pela Segunda Lei de Fick e outro dado pelo mecanismo de \textit{trapping-detrapping}, para três condições de contorno distintas: concentração superfícal constante, nitretaçao gasosa e nitretação a plasma.
 	
-	Com o objetivo de validar o modelo, foram utilizados dados experimentais obtidos de artigos de autores referenciados anteriormente. No caso da nitretação gasosa, foi disponibilizado pelo Dr Marcel Somers o resultado do experimento utilizado no artigo \cite{christiansen2008nitrogen} e para a nitretação à plasma foram retirados os dados do artigo \cite{moskalioviene2011modeling} utilizando o software WebPlotDigitizer.
+	Com o objetivo de validar o modelo, foram utilizados dados experimentais obtidos de artigos de autores referenciados anteriormente. No caso da nitretação gasosa, foi disponibilizado pelo Dr Marcel Somers o resultado do experimento utilizado no artigo \cite{christiansen2008nitrogen} e para a nitretação a plasma foram retirados os dados do artigo \cite{moskalioviene2011modeling} utilizando o software WebPlotDigitizer.
 	
-	Para cada simulação, todas as entradas podem ser consultadas nas tabelas correspondentes encontradas no Anexo A.
+	Para cada simulação, todas as entradas podem ser consultadas nas tabelas correspondentes encontradas no Apêndice A.
 
 \section{Modelo 1 - Segunda Lei de Fick}
+
+A Segunda Lei de Fick foi simulada considerando concentração superficial constante e concentração superficial variável com duas condições de contorno distantas: uma para nitretação gasosa e outra para nitretação a plasma.
+Nas seções a seguir serão apresentados os resultados para cada uma condições da concentração superficial.
 
 \subsection{Concentração na superfície constante}
 \label{sec:modelo11}
 \input{chapters/resultados/sol-numerica-2alei-cscte}
 
 \subsection{Concentração na superfície variável}
+As duas seções a seguir expõem o resultador obtido para a simulação da Segunda Lei de Fick para nitretação gasosa e nitretação a plasma.
+
 \label{sec:modelo12}
 \input{chapters/resultados/sol-numerica-2alei-csvar}
 
 \section{Modelo 2 - \textit{Trapping-Detrapping}}
+\label{sec:modelo2}
+As profundidades obtidas pelas simulações de \textit{trapping-detrapping} foram menores que as obtida pela Segunda Lei de Fick - esperado devido à redução do fluxo de difusão decorrente do aprisionamento de átomos, como será abordado na Seção \ref{sec:discussao}. Para melhor visulizar o perfil de concentração, utilizaram-se outras escalas no gráfico. 
+
 \subsection{Concentração na superfície constante}
 \label{sec:modelo21}
 \input{chapters/resultados/trap-detrap-cscte}
@@ -547,20 +635,22 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 \label{sec:modelo22}
 \input{chapters/resultados/trap-detrap-gas}
 
-\subsection{Nitretação à Plasma}
+\subsection{Nitretação a Plasma}
 \label{sec:modelo23}
+\input{chapters/resultados/trap-detrap-plasma}
 
 \chapter{Discussão}
+Nessa seção serão analisados os resultados com base no que era esperado, utilizando resultados experimentais e modelos disponíveis na literatura e também será feita uma discussão acerca de melhorias que poderiam ser feitas ao modelo desenvolvido.
+
 \section{Análise dos Resultados}
 \input{chapters/discussao/analise-resultados}
 
-\section{Discussão}
+\section{Discussão com a literatura}
 \label{sec:discussao}
-
 \input{chapters/discussao/discussao}
 
 \chapter{Conclusões}
-\myworries{\textit{TO DO}}
+\input{chapters/outros/conclusao}
 
 
 % ========== Referências ==========
@@ -570,10 +660,9 @@ O código elaborado para o trabalho foi feito em python e pode ser observado nos
 \bibliography{references}
 
 
-\chapter*{Anexos}
+\chapter*{Apêndice}
 \input{chapters/outros/anexos}
-\myworries{. colocar tabela da funcao erro nos anexos}
-\myworries{. colocar os códigos}
+\input{chapters/outros/apendiceB}
 
 
 \end{document}

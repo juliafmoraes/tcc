@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6630 64-bit) (preloaded format=xelatex 2018.5.2)  25 AUG 2019 22:01
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6630 64-bit) (preloaded format=xelatex 2018.5.2)  3 DEC 2019 23:15
 entering extended mode
 **./diferencas-finitas.tex
 (diferencas-finitas.tex
@@ -276,7 +276,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.2 \par C
-          onsiderando um problema de equações diferenciais com \myworries{co...
+          onsiderando um problema de equações diferenciais com condições de ...
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -328,15 +328,6 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no m in font nullfont!
-! Undefined control sequence.
-l.2 ...ema de equações diferenciais com \myworries
-                                                  {condições de Drichlet} re...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 Missing character: There is no c in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -349,6 +340,7 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no D in font nullfont!
+Missing character: There is no i in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no c in font nullfont!
@@ -356,6 +348,60 @@ Missing character: There is no h in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no t in font nullfont!
+Missing character: There is no ( in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no ã in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no í in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ) in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no p in font nullfont!
@@ -622,7 +668,6 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no u in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -664,8 +709,8 @@ Overfull \hbox (20.76622pt too wide) in paragraph at lines 27--28
  []
 
 
-Overfull \hbox (24.54518pt too wide) in paragraph at lines 27--28
-\OML/cmm/m/it/10 alpha$
+Overfull \hbox (6.43404pt too wide) in paragraph at lines 27--28
+\OML/cmm/m/it/10 ^^K$
  []
 
 
@@ -686,6 +731,11 @@ Overfull \hbox (27.65805pt too wide) in paragraph at lines 27--28
 
 Overfull \hbox (25.3525pt too wide) in paragraph at lines 27--28
 \OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 )$
+ []
+
+
+Overfull \hbox (5.72458pt too wide) in paragraph at lines 27--28
+\OML/cmm/m/it/10 u$
  []
 
 
@@ -757,15 +807,6 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no a in font nullfont!
-! Undefined control sequence.
-l.28 ...o na forma de uma soma infinita \myworries
-                                                  {cujos termos são as deriv...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 Missing character: There is no c in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no j in font nullfont!
@@ -780,6 +821,19 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no ã in font nullfont!
 Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -920,11 +974,11 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (342.75148pt too wide) detected at line 33
+Overfull \hbox (348.30698pt too wide) detected at line 33
 []\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 ) = []
  [][](\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[]\OT1/cmr/m/n/
 10 )[] = \OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10
- ) + [][] + [][] + \OML/cmm/m/it/10 :::
+ ) + [][] + [][] + \OML/cmm/m/it/10 ::: :
  []
 
 Missing character: There is no P in font nullfont!
@@ -980,16 +1034,13 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no q in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no ç in font nullfont!
-Missing character: There is no ã in font nullfont!
-Missing character: There is no o in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no ( in font nullfont!
 ! Undefined control sequence.
 <write> ...ference `eq:taylor-u' on page \thepage 
                                                   \space undefined\on@line .^^J
-l.35 ...i$ como visto na equação \ref{eq:taylor-u}
-                                                  
+l.35 ... $x_i$ como visto na eq.(\ref{eq:taylor-u}
+                                                  ).
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -999,6 +1050,8 @@ and I'll forget about whatever was undefined.
 
 LaTeX Warning: Reference `eq:taylor-u' on page  undefined on input line 35.
 
+Missing character: There is no ) in font nullfont!
+Missing character: There is no . in font nullfont!
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 35--36
 []
@@ -1026,7 +1079,7 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 37--37
 
 ! Undefined control sequence.
 l.38 u(x) = u(x_i) + u'(x_i)(x-x_i) + \dfrac
-                                            {u''(x_i)}{2!}(x-x_i)^2 + ...
+                                            {u''(x_i)}{2!}(x-x_i)^2 + ...  \;.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1034,13 +1087,13 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (212.6699pt too wide) detected at line 39
+Overfull \hbox (218.2254pt too wide) detected at line 39
 []\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = \OML
 /cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 ) + \OML/cmm
 /m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 )(\OML/cmm/m/i
 t/10 x \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 ) + [][](\OML/c
 mm/m/it/10 x \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 )[] + \OM
-L/cmm/m/it/10 :::
+L/cmm/m/it/10 ::: :
  []
 
 Missing character: There is no A in font nullfont!
@@ -1105,11 +1158,15 @@ Missing character: There is no ç in font nullfont!
 Missing character: There is no õ in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no q in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no ( in font nullfont!
 ! Undefined control sequence.
 <write> ...rence `eq:taylor-u-1' on page \thepage 
                                                   \space undefined\on@line .^^J
-l.41 ...descritas nas equações \ref{eq:taylor-u-1}
-                                                   e \ref{eq:taylor-u+1}, re...
+l.41 ...ritas nas equações eq.(\ref{eq:taylor-u-1}
+                                                  ) e eq.(\ref{eq:taylor-u+1...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1119,12 +1176,17 @@ and I'll forget about whatever was undefined.
 
 LaTeX Warning: Reference `eq:taylor-u-1' on page  undefined on input line 41.
 
+Missing character: There is no ) in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no q in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no ( in font nullfont!
 ! Undefined control sequence.
 <write> ...rence `eq:taylor-u+1' on page \thepage 
                                                   \space undefined\on@line .^^J
-l.41 ... \ref{eq:taylor-u-1} e \ref{eq:taylor-u+1}
-                                                  , respectivamente.
+l.41 ...{eq:taylor-u-1}) e eq.(\ref{eq:taylor-u+1}
+                                                  ), respectivamente.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1134,6 +1196,7 @@ and I'll forget about whatever was undefined.
 
 LaTeX Warning: Reference `eq:taylor-u+1' on page  undefined on input line 41.
 
+Missing character: There is no ) in font nullfont!
 Missing character: There is no , in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -1346,7 +1409,7 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 54--54
 
 ! Undefined control sequence.
 l.55 \dfrac
-           {u(x_{i+1}) - u(x_{i-1)}}{2h} = u'(x_i) + O(h^2)
+           {u(x_{i+1}) - u(x_{i-1})}{2h} = u'(x_i) + O(h^2)
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1354,7 +1417,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (160.06949pt too wide) detected at line 56
+Overfull \hbox (160.83337pt too wide) detected at line 56
 [][][] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 
 x[]\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 O\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 h[]\
 OT1/cmr/m/n/10 )
@@ -1434,11 +1497,15 @@ Missing character: There is no ç in font nullfont!
 Missing character: There is no õ in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no q in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no ( in font nullfont!
 ! Undefined control sequence.
 <write> ...eference `eq:u-linha' on page \thepage 
                                                   \space undefined\on@line .^^J
-l.64 Subsitituindo as equações \ref{eq:u-linha}
-                                                e \ref{eq:u-linha-linha} em ...
+l.64 ...itituindo as equações eq.(\ref{eq:u-linha}
+                                                  ) e eq.(\ref{eq:u-linha-li...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1448,12 +1515,17 @@ and I'll forget about whatever was undefined.
 
 LaTeX Warning: Reference `eq:u-linha' on page  undefined on input line 64.
 
+Missing character: There is no ) in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no q in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no ( in font nullfont!
 ! Undefined control sequence.
 <write> ...ce `eq:u-linha-linha' on page \thepage 
                                                   \space undefined\on@line .^^J
-l.64 ... \ref{eq:u-linha} e \ref{eq:u-linha-linha}
-                                                   em $(S)$, obtém-se:
+l.64 ...{eq:u-linha}) e eq.(\ref{eq:u-linha-linha}
+                                                  ) em $(S)$, obtém-se:
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1464,6 +1536,7 @@ and I'll forget about whatever was undefined.
 LaTeX Warning: Reference `eq:u-linha-linha' on page  undefined on input line 64
 .
 
+Missing character: There is no ) in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no , in font nullfont!
@@ -1503,7 +1576,7 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 66--66
 
 ! Undefined control sequence.
 l.67 \dfrac
-           {u(x_{i+1}) -2u(x_i) + u(x_{i-1)}}{h^2} + p(x_i)\dfrac{u(x_{i+1})...
+           {u(x_{i+1}) -2u(x_i) + u(x_{i-1})}{h^2} + p(x_i)\dfrac{u(x_{i+1})...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1511,8 +1584,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.67 ...-2u(x_i) + u(x_{i-1)}}{h^2} + p(x_i)\dfrac
-                                                  {u(x_{i+1}) - u(x_{i-1)}}{...
+l.67 ...-2u(x_i) + u(x_{i-1})}{h^2} + p(x_i)\dfrac
+                                                  {u(x_{i+1}) - u(x_{i-1})}{...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1520,12 +1593,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (347.25383pt too wide) detected at line 68
-[][][] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[
-]\OT1/cmr/m/n/10 )[][] + \OML/cmm/m/it/10 q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[
-]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\OT1/c
-mr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 g\OT1/cmr/m/n/10 (\OML/cmm/m/
-it/10 x[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 e[]
+Overfull \hbox (348.7816pt too wide) detected at line 68
+[][] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\
+OT1/cmr/m/n/10 )[][] + \OML/cmm/m/it/10 q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\
+OT1/cmr/m/n/10 )\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\OT1/cmr
+/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 g\OT1/cmr/m/n/10 (\OML/cmm/m/it
+/10 x[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 e[]
  []
 
 Missing character: There is no p in font nullfont!
@@ -2826,18 +2899,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 \newlabel{eq:u-linha-linha}{{6}{}}
-! Undefined control sequence.
-<write> \newlabel{eq:u-linha-linha}{{7}{\thepage 
-                                                 }}
-l.133 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-\newlabel{eq:u-linha-linha}{{7}{}}
 ]
 Missing character: There is no E in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -3327,25 +3388,6 @@ Missing character: There is no v in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no , in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no o in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no é in font nullfont!
@@ -3362,28 +3404,6 @@ Missing character: There is no c in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no á in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no q in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
 Missing character: There is no é in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -3409,6 +3429,25 @@ Missing character: There is no á in font nullfont!
 Missing character: There is no v in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no l in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no á in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -3419,7 +3458,7 @@ Missing character: There is no o in font nullfont!
 ! Undefined control sequence.
 <write> ...c:sol-numerica-2alei' on page \thepage 
                                                   \space undefined\on@line .^^J
-l.136 ...vel na seção \ref{sec:sol-numerica-2alei}
+l.136 ...ado na seção \ref{sec:sol-numerica-2alei}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3445,5 +3484,5 @@ Here is how much of TeX's memory you used:
  4081 multiletter control sequences out of 15000+200000
  3656 words of font info for 16 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 18i,9n,16p,594b,140s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 18i,9n,16p,567b,140s stack positions out of 5000i,500n,10000p,200000b,50000s
 Output written on diferencas-finitas.pdf (1 page).

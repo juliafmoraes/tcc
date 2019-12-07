@@ -92,37 +92,41 @@ TOTAL (multiplicado pela composição) & &  & 8,534 $\times$ 10$^{28}$\\
 }
 \end{table}
 
-Sendo assim, a composição de nitrogênio em at.\% pode ser obtida utilizando a eq.\autoref{eq:convert}
+\FloatBarrier
+
+Sendo assim, a composição de nitrogênio em at.\% pode ser obtida utilizando a eq.(\ref{eq:convert}).
 
 \begin{equation}
 \label{eq:convert}
-	N(at.\%) = \dfrac{N(m^{-3})}{N(m^{-3}) + 8,534 \times 10^{28}\\  } 
+	N(at.\%) = \dfrac{N(m^{-3})}{N(m^{-3}) + 8,534 \times 10^{28}\\  } \;. 
 \end{equation}
+
+\FloatBarrier
 
 \subsection{Concentração de Equilíbrio}
 \label{sec:ceq-param}
 Para definir um valor para a concentração da superfície para implementação da solução com as condições de contorno descritas na Seção \autoref{sec:sol-numerica-2alei}, foi utilizado o artigo  \cite{christiansen2008nitrogen}, que possui o valor da ocupância de átomos de nitrogênio $y_N^{S}$ (mais especificamente a fração de interstícios octaédricos do reticulado cúbico de face centrada ocupada por nitrogênio) para o estado de equilíbrio, com $K_N=$2,49 $bar^{-1/2}$ (valor para o qual os dados experimentais do artigo em questão mostravam-se mais próximos dos dados do modelo), para 445°C (718K). A variável $K_N=\dfrac{p_{NH_3}}{p_{H_2}^{3/2}}$ é o potencial de nitretação para uma mistura gasosa de NH$_3$/H$_2$.
 
-A partir do valor de $y_N^{eq}$, para uma temperatura de 718K, é possível definir a concentração em $mols/m^3$ de nitrogênio utilizando a relação apresentada no apêndice A2 do artigo \cite{jespersen2016modelling}, dada pela equação\autoref{eq:oc-to-m3}.
+A partir do valor de $y_N^{eq}$, para uma temperatura de 718K, é possível definir a concentração em $mols/m^3$ de nitrogênio utilizando a relação apresentada no apêndice A2 do artigo \cite{jespersen2016modelling}, dada pela eq.(\ref{eq:oc-to-m3}).
 
 \begin{equation} \label{eq:oc-to-m3}
-	C = \dfrac{4}{N_A} \cdot y_N \cdot \dfrac{1}{V(y_N)}
+	C = \dfrac{4}{N_A} \cdot y_N \cdot \dfrac{1}{V(y_N)} \;.
 \end{equation}
 
 O fator 4 é o número de interstícios octaédricos de uma célula unitária CFC, $N_A$ é o número de Avogadro ($N_A = 6,0221409 \times 10^{23} (mol^{-1})$) e $V(y_N)$ é o volume da célula unitária (em $m^3$) para uma dada ocupância de nitrogênio.
 
 A função $V(y_N)$ foi aproximada por uma função linear: 
 \begin{gather*}
-	V(y_N) = 2,8147 \times 10^{-29} \cdot y_N + 4,7134 \times 10^{-29}
+	V(y_N) = 2,8147 \times 10^{-29} \cdot y_N + 4,7134 \times 10^{-29}  \;.
 \end{gather*}
 
-Sendo assim, pode-se reescrever a equação \autoref{eq:oc-to-m3} como:
+Sendo assim, pode-se reescrever a eq.(\ref{eq:oc-to-m3}) como:
 
 \begin{equation} \label{eq:oc-to-m3-full}
-	C = \dfrac{4}{6,0221409 \times 10^{23}} \cdot \dfrac{y_N}{2,8147 \times 10^{-29} \cdot y_N + 4,7134 \times 10^{-29}}
+	C = \dfrac{4}{6,0221409 \times 10^{23}} \cdot \dfrac{y_N}{2,8147 \times 10^{-29} \cdot y_N + 4,7134 \times 10^{-29}}  \;.
 \end{equation}
 
-Dessa forma, para as condições especificadas acima, o valor de $y_N$ é 0,28 e a concentrção é 33.805 mol/m$^3$ (2,0358 $\times$ 10$^{28}$ m$^{-3}$).
+Dessa forma, para as condições especificadas acima, o valor de $y_N$ é 0,28 e a concentração é 33.805 mol/m$^3$ (2,0358 $\times$ 10$^{28}$ m$^{-3}$). O valor final pode ser visto na Tabela \ref{tab:parametros_cscte}.
 
 \begin{table}[ht]
 \centering
@@ -134,10 +138,10 @@ Dessa forma, para as condições especificadas acima, o valor de $y_N$ é 0,28 e
 \hline\hline
 Parâmetro & Descrição & Valor \\\hline
 
-$C_{eq}$ & Concentração de equilíbrio entre gás e aço &  47.318,64 mol/m$^3$ (2,0358 $\times$ 10$^{28}$ m$^{-3}$)   \\
+$C_{eq}$ & Concentração de equilíbrio entre gás e aço &  33.805 mol/m$^3$ (2,0358 $\times$ 10$^{28}$ m$^{-3}$)   \\
 \hline\hline
 \end{tabular}
-\label{tab:parametros_csvar}
+\label{tab:parametros_cscte}
 }
 }
 \end{table}
@@ -157,7 +161,7 @@ Para simular a concentração na superfície durante nitretação gasosa de acor
 \hline\hline
 Parâmetro & Descrição & Valor \\\hline
 $\beta$ & Coeficiente para relacionar velocidade em que se atinge o equilíbrio & 0,0001 \\
-$C_{eq}$ & Concentração de equilíbrio entre gás e aço &  47.318,64 mol/m$^3$ (2,0358 $\times$ 10$^{28}$ m$^-3$)    \\
+$C_{eq}$ & Concentração de equilíbrio entre gás e aço &  33.805 mol/m$^3$ (2,0358 $\times$ 10$^{28}$ m$^-3$)    \\
 \hline\hline
 \end{tabular}
 \label{tab:parametros_csvar}
@@ -168,7 +172,7 @@ $C_{eq}$ & Concentração de equilíbrio entre gás e aço &  47.318,64 mol/m$^3
 Os valores da \autoref{tab:parametros_csvar} foram retirados de \cite{christiansen2008nitrogen}. O valor de $\beta$ foi definido testando o melhor \textit{fit} em dados experimentais e $C_{eq}$ foi definido como descrito na seção \autoref{sec:ceq-param}.
 
 
-\subsection{Paramêtros para Nitretação à Plasma}
+\subsection{Paramêtros para Nitretação a Plasma}
 \label{sec:param-plasma}
 
 Para a densidade de corrente média ($j$) da Seção \ref{sec:nit-plasma}, foi utilizado o valor encontrados no artigo \cite{galdikas2011modeling}, de 0,44mA/cm$^{2}$. 

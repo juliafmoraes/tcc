@@ -1,25 +1,25 @@
-\subsubsection{Nitretação à Plasma}
+\subsubsection{Nitretação a Plasma}
 \label{sec:nit-plasma}
-Para considerar a varição na concentração da superfície quando o processo de nitretação é à plasma, pode-se utilizar um termo de adsorção na condição de contorno, como foi utilizado por \cite{galdikas2011modeling}, dado por $\dfrac{j}{qH_{superfície}}\left(H_0-C(0,t)\right)$, onde $j$ representa a densidade de corrente média do íon de nitrogênio (A/m$^2$), $q$ é a carga elementar (equivalente a $1,602.10^{-19}C$), $H_{superfície}$ é a concentração de átomos hospedeiros na superfície (em átomos/m$^2$), $H_0$ é  concentração de átomos hospedeiros (átomos/m$^3$) e $C(0,t)$ é a concentração de átomos de nitrogênio na superfície (átomos/m$^3$).
+Para considerar a varição na concentração da superfície quando o processo de nitretação é a plasma, pode-se utilizar um termo de adsorção na condição de contorno, como foi utilizado por \cite{galdikas2011modeling}, dado por $\dfrac{j}{qH_{superficie}}\left(H_0-C(0,t)\right)$, onde $j$ representa a densidade de corrente média do íon de nitrogênio (A/m$^2$), $q$ é a carga elementar (equivalente a $1,602.10^{-19}C$), $H_{superficie}$ é a concentração de átomos hospedeiros na superfície (em átomos/m$^2$), $H_0$ é  concentração de átomos hospedeiros (átomos/m$^3$) e $C(0,t)$ é a concentração de átomos de nitrogênio na superfície (átomos/m$^3$).
 
-As equações da seção \ref{sec:sol-numerica-2alei} se mantêm as mesmas, exceto pelo contorno que define a superfície pela qual ocorre adsorção, que é descrito pela eq.\autoref{eq:2alei-num-plasma}
+As equações da seção \ref{sec:sol-numerica-2alei} se mantêm as mesmas, exceto pelo contorno que define a superfície pela qual ocorre adsorção, que é descrito pela eq.(\ref{eq:2alei-num-plasma}).
 
 \begin{equation}
 \label{eq:2alei-num-plasma}
-\pdv{C(x,t)}{t} = D(C)\pdv[2]{C(x,t)}{x} + \dfrac{j}{qH_{superfície}}\left(H_0-C(0,t)\right)
+\pdv{C(x,t)}{t} = D(C)\pdv[2]{C(x,t)}{x} + \dfrac{j}{qH_{superficie}}\left(H_0-C(0,t)\right)\;.
 \end{equation}
 
 As condições iniciais e a condição de contorno para $x\rightarrow\infty$ não se alteram.
 
-Discretizando a equação \autoref{eq:2alei-num-plasma}, utilizando $j_0 = \dfrac{j}{qH_{superfície}}$ obtêm-se:
+Discretizando a eq.(\ref{eq:2alei-num-plasma}), utilizando $j_0 = \dfrac{j}{qH_{superficie}}$ obtêm-se:
 
 \begin{gather*}
-\dfrac{C_0^{j+1} - C_0^j}{\Delta t} = D\dfrac{C_{i+1}^{j+1} - C_{i}^{j+1}}{(\Delta x)^2} + j_0\left(H_0-C(0,t)\right) 
+\dfrac{C_0^{j+1} - C_0^j}{\Delta t} = D\dfrac{C_{i+1}^{j+1} - C_{i}^{j+1}}{(\Delta x)^2} + j_0\left(H_0-C(0,t)\right)  \;.
 \end{gather*}
 
 \begin{equation}
 \label{eq:2alei-num-plasma-discr}
-C_0^{j+1} = C_0^j + Fo(C_{1}^{j+1} - C_{0}^{j+1})+ j_0 \Delta t \left(H_0-C_{0}^{j+1}\right)  \qquad   j \in [0,\ T]
+C_0^{j+1} = C_0^j + Fo(C_{1}^{j+1} - C_{0}^{j+1})+ j_0 \Delta t \left(H_0-C_{0}^{j+1}\right)  \qquad   j \in [0,\ T] \;.
 \end{equation}
 
 Para resolver o probelma diferencial, desenvolve-se o sistema de equações:
@@ -40,16 +40,16 @@ i = n: \qquad -FoC_{n-1}^{j+1} + (1+2Fo)C_n^{j+1} - FoC_{n+1}^{j+1} - C_n^j & = 
 \end{matrix}
 \end{equation*}
 
-Analogamente ao que foi feito na seção \ref{sec:sol-numerica-2a-lei}, considerando o sistema de equações dado por \cmrtext{AC$^j+1$ = B$^j$}, \cmrtext{A, C e B} podem ser definidos por:
+Analogamente ao que foi feito na seção \ref{sec:sol-numerica-2alei}, considerando o sistema de equações dado por \cmrtext{AC$^j+1$ = B$^j$}, \cmrtext{A, C e B} podem ser definidos por:
 
 \begin{equation*}
 	\cmrtext{A} =
 	\begin{bmatrix}
-		(1 + Fo + j_0 \Delta t) & -Fo &         &        & 0\\
-		-Fo & (1+2Fo) &  -Fo   &        & \\
-		    & -Fo &   (1+2Fo)   & \ddots & \\
-		    &     &  \ddots & \ddots & -Fo \\
-	     0  &     &         &  -Fo   & (1+2Fo) 
+		(1 + Fo + j_0 \Delta t) & -Fo &  0   & \ldots  & 0\\
+		-Fo & (1+2Fo) &  -Fo   &        & \vdots \\
+         0 & -Fo &   (1+2Fo)   & \ddots & \vdots \\
+    \vdots &     &  \ddots & \ddots & -Fo \\
+	     0 & \ldots & \ldots &  -Fo   & (1+2Fo) 
 	\end{bmatrix}
 \end{equation*}
 \begin{equation*}

@@ -952,10 +952,10 @@
 \providecommand{\ABNTorientadordata}{}
 \providecommand{\ABNTorientadorname}{}
 \newcommand{\orientador}[2][Orientador:\vspace{1mm}\\]%
-  {\renewcommand{\ABNTorientadorname}{#1}%
+  {\renewcommand{\ABNTorientadorname}{\small{#1}}%
    \renewcommand{\ABNTorientadordata}{#2}}
 \newcommand{\orientadornameformat}{}
-\newcommand{\orientadorformat}{\large}
+\newcommand{\orientadorformat}{\small}
 
 \providecommand{\ABNTcoorientadordata}{}
 \providecommand{\ABNTcoorientadorname}{}
@@ -969,7 +969,7 @@
 \providecommand{\ABNTuppercasetitulodata}{}
 \newcommand{\titulo}[1]{
 \renewcommand{\ABNTtitulodata}{#1}
-\renewcommand{\ABNTuppercasetitulodata}{\uppercase{#1}}
+\renewcommand{\ABNTuppercasetitulodata}{#1}
 }
 \newcommand{\tituloformat}{\ABNTtitulosize\ABNTchapterfont}
 
@@ -1119,10 +1119,9 @@
 %% TCC
 \newcommand{\tcc}[1]{%
   \renewcommand{\PoliTipoDocData}{Trabalho de Conclusão de Curso}
-  \comentario{Trabalho apresentado à Escola
+  \comentario{Trabalho de Formatura apresentado à Escola
     Politécnica da Universidade de
-    São Paulo para obtenção do
-    Título de Engenheiro #1.}%
+    São Paulo para obtenção do diploma de #1.}%
 }
 
 %% Dissertação de mestrado

@@ -8,11 +8,11 @@ a_i x_{i-1} + b_i x_i + c_i x_{i+1} = d_i \qquad i = 1, ..., n
 
 \begin{equation*}
 	\begin{bmatrix}
-		b_1 & c_1 &         &        & 0\\
-		a_2 & b_2 &   c_2   &        & \\
-		    & a_3 &   b_3   & \ddots & \\
-		    &     &  \ddots & \ddots & c_{n-1} \\
-	     0  &     &         &  a_n   & b_n 
+		b_1 & c_1 &     0   &  \ldots     & 0\\
+		a_2 & b_2 &   c_2   &        &   \vdots\\
+		 0  & a_3 &   b_3   & \ddots & \vdots \\
+	\vdots  &     &  \ddots & \ddots & c_{n-1} \\
+	     0  & \ldots & \ldots &  a_n   & b_n 
 	\end{bmatrix}
 	\begin{bmatrix}
 		x_1 \\
@@ -35,11 +35,11 @@ Com algumas operações chega-se ao algoritmo em si - seja $L_i$ a linha $i$ do 
 \begin{equation*}
 	L_1' = L_1 \divisionsymbol b_1 \Rightarrow
 	\begin{bmatrix}
-		1 & \dfrac{c_1}{b_1} &         &        & 0\\
-		a_2 & b_2 &   c_2   &        & \\
-		    & a_3 &   b_3   & \ddots & \\
-		    &     &  \ddots & \ddots & c_{n-1} \\
-	     0  &     &         &  a_n   & b_n 
+		1 & \dfrac{c_1}{b_1} &    0  &   \ldots   & 0\\
+		a_2 & b_2 &   c_2   &        & \vdots \\
+		0   & a_3 &   b_3   & \ddots & \vdots \\
+	\vdots &     &  \ddots & \ddots & c_{n-1} \\
+	     0  &  \ldots    &    \ldots   &  a_n   & b_n 
 	\end{bmatrix}
 	\begin{bmatrix}
 		x_1 \\
@@ -60,11 +60,11 @@ Com algumas operações chega-se ao algoritmo em si - seja $L_i$ a linha $i$ do 
 \begin{equation*}
 	L_2' = L_2 - a_2L_1'  \Rightarrow
 	\begin{bmatrix}
-		1 & \dfrac{c_1}{b_1} &         &        & 0\\
-		0 & b_2 - a_2\dfrac{c_1}{b_1} &   c_2   &        & \\
-		    & a_3 &   b_3   & \ddots & \\
-		    &     &  \ddots & \ddots & c_{n-1} \\
-	     0  &     &         &  a_n   & b_n 
+		1 & \dfrac{c_1}{b_1} &   0    & \ldots  & 0\\
+		0 & b_2 - a_2\dfrac{c_1}{b_1} &   c_2   &        & \vdots \\
+   \vdots & a_3 &   b_3   & \ddots & \vdots \\
+   \vdots &     &  \ddots & \ddots & c_{n-1} \\
+	     0  &  \ldots   &    \ldots  &  a_n   & b_n 
 	\end{bmatrix}
 	\begin{bmatrix}
 		x_1 \\
@@ -82,15 +82,15 @@ Com algumas operações chega-se ao algoritmo em si - seja $L_i$ a linha $i$ do 
 	\end{bmatrix}
 \end{equation*}
 
-Seja $c_1' = \dfrac{c1}{b1}$ e $d_1' = \dfrac{d1}{b1}$:
+Seja $c_1' = \dfrac{c_1}{b_1}$ e $d_1' = \dfrac{d_1}{b_1}$:
 \begin{equation*}
 	L_2'' = L_2'\divisionsymbol (b_2-a_2c_1')  \Rightarrow
 	\begin{bmatrix}
-		1 & c_1' &         &        & 0\\
-		0 & 1 &   \dfrac{c_2}{b_2-a_2c_1'}   &        & \\
-		    & a_3 &   b_3   & \ddots & \\
-		    &     &  \ddots & \ddots & c_{n-1} \\
-	     0  &     &         &  a_n   & b_n 
+		1 & c_1' &    0     &   \ldots     & 0\\
+		0 & 1 &   \dfrac{c_2}{b_2-a_2c_1'}   &        & \vdots \\
+	\vdots & a_3 &   b_3   & \ddots & \vdots \\
+	\vdots &     &  \ddots & \ddots & c_{n-1} \\
+	     0  &  \ldots   &  \ldots    &  a_n   & b_n 
 	\end{bmatrix}
 	\begin{bmatrix}
 		x_1 \\
@@ -151,9 +151,9 @@ De forma análoga para as outras linhas, chega-se que:
 	\end{math}
 \end{center} 
 
-Dessa forma, a solução para o sistema de equações encontrand $x_n$, $x_{n-1}$, $x_{n-2}$, ..., até $x_1$ utilizando:
+Dessa forma, a solução para o sistema de equações pode ser obtida encontrando $x_n$, $x_{n-1}$, $x_{n-2}$, ..., até $x_1$ utilizando:
 
 \begin{gather*}
-	x_n = d_n' \\
-	x_i = d_i' - c_i' x_{i+1} \ para \ i = 1, ..., n-1
+	x_n = d_n' \;,\\
+	x_i = d_i' - c_i' x_{i+1} \ para \ i = 1, ..., n-1 \;.
 \end{gather*}
